@@ -1,0 +1,1 @@
+import setupGame from "./scripts/setup.js"
