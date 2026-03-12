@@ -36,4 +36,37 @@ function buildChestDeck(difficulty) {
         return [];
     }
 
-    if (difficulty !== "beginner") shuffle​​​​​​​​​​​​​​​​
+    if (difficulty !== "beginner") shuffle(chestDeck);
+    chestDeck.splice(chestCounts[difficulty]);
+    
+    return chestDeck;
+}
+
+function buildPlayers(playerNames) {
+    return playerNames.map((name, index) => ({
+        id: index + 1,
+        name: name,
+        inventory: [],
+        trophies: []
+    }));
+}
+
+export function setupGame(playerCount, playerNames, difficulty) {
+    const mobDeck = buildMobDeck(playerCount);
+    const mobsOnBoard = mobDeck.splice(0, 1);
+    const landscapeDeck = buildLandscapeDeck();
+    const landscapesOnBoard = landscapeDeck.splice(0, 5);
+
+    const gameState = {
+        difficulty,
+        chests: buildChestDeck(difficulty),
+        mobDeck,
+        mobsOnBoard,
+        landscapeDeck,
+        landscapesOnBoard,
+        currentPlayerIndex: 0,
+        hungerRemaining: 6,
+        players: buildPlayers(playerNames)
+    }
+    return gameState;
+}
