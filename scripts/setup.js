@@ -1,16 +1,13 @@
-import {Mobs,Landscapes,Chests} from "./cardData.js"
-
 function shuffle(deck) {
     for (let i = deck.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [deck[i], deck[j]] = [deck[j], deck[i]];
     }
     return deck;
-}
 
 function buildMobDeck(playerCount) {
     let mobDeck = [];
-    for (let mob of Mobs) {
+    for (let mob of [...Mobs]) {
         for (let i = 0; i < mob.copies; i++) {
             mobDeck.push({ ...mob });
         }
@@ -23,8 +20,9 @@ function buildMobDeck(playerCount) {
     return mobDeck;
 }
 
-function buildLandscapeDeck() {
-    return shuffle([...Landscapes]);
+function buildLandscapeDeck(){
+	let landscapeDeck = shuffle(Landscapes)
+	return landscapeDeck
 }
 
 function buildChestDeck(difficulty) {
@@ -40,15 +38,6 @@ function buildChestDeck(difficulty) {
     chestDeck.splice(chestCounts[difficulty]);
     
     return chestDeck;
-}
-
-function buildPlayers(playerNames) {
-    return playerNames.map((name, index) => ({
-        id: index + 1,
-        name: name,
-        inventory: [],
-        trophies: []
-    }));
 }
 
 export function setupGame(playerCount, playerNames, difficulty) {
@@ -70,3 +59,5 @@ export function setupGame(playerCount, playerNames, difficulty) {
     }
     return gameState;
 }
+
+
