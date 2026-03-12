@@ -4,6 +4,7 @@ function shuffle(deck) {
         [deck[i], deck[j]] = [deck[j], deck[i]];
     }
     return deck;
+}
 
 function buildMobDeck(playerCount) {
     let mobDeck = [];
