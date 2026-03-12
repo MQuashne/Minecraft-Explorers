@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Minecraft Explorers</title>
+	<link rel="stylesheet" href="explorers.css">
+</head>
+
+
+<body>
+	<header>
+		<div id="info-bar">
+			<span class="info-player">Player</span>
+			<span class="info-hunger">🍖 6</span>
+			<span class="info-deck">⚔️ 22</span>
+		</div>
+	</header>
+
+
+
+	<main>
+		<div id="chest-row" class="game-row">
+			<div class="zone" id="chests-zone">
+				<!-- revealed chests here -->
+				<span class="zone-label">Chests</span>
+			</div>
+		</div>
+
+		<div id="mob-row" class="game-row">
+			<div class="zone" id="mob-deck-zone">
+				<!-- deck card here -->
+				<span class="zone-label">Mob Deck</span>
+			</div>
+			<div class="zone" id="mobs-zone">
+				<!-- revealed mobs here -->
+				<span class="zone-label">Mobs</span>
+			</div>
+		</div>
+
+		<div id="landscape-row" class="game-row">
+			<div class="zone" id="landscape-deck-zone">
+				<!-- landscape deck card [next up] here -->
+				<span class="zone-label">Landscape Deck</span>
+			</div>
+			<div class="zone" id="landscape-zone">
+				<!-- revealed landscapes here -->
+				<span class="zone-label">Landscapes</span>
+			</div>
+			<div class="zone hidden" id="landscape-destination-zone">
+				<!-- revealed destination landscapes here -->
+				<span class="zone-label">Special Locations</span>
+			</div>
+		</div>
+	</main>
+
+	<div id="action-modal" class="modal-overlay hidden">
+		<div id="modal-container">
+			<div id="modal-card-info"></div>
+			<div id="modal-action-buttons"></div>
+		</div>
+	</div>
+
+	<div id="inventory" class="game-row">
+    <div class="zone" id="inventory-zone">
+        <!-- player items here -->
+        <span class="zone-label">Inventory</span>
+    </div>
+    <div class="zone" id="trophies-zone">
+        <!-- mob trophies here -->
+        <span class="zone-label">Trophies</span>
+    </div>
+</div>
+
+
+	<script type="module" src="main.js"></script>
+</body>
+
+</html>
