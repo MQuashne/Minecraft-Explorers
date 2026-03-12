@@ -1,3 +1,5 @@
+import { Mobs, Landscapes, Chests } from "./cardData.js"
+
 function shuffle(deck) {
     for (let i = deck.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -8,7 +10,7 @@ function shuffle(deck) {
 
 function buildMobDeck(playerCount) {
     let mobDeck = [];
-    for (let mob of [...Mobs]) {
+    for (let mob of Mobs) {
         for (let i = 0; i < mob.copies; i++) {
             mobDeck.push({ ...mob });
         }
@@ -21,9 +23,8 @@ function buildMobDeck(playerCount) {
     return mobDeck;
 }
 
-function buildLandscapeDeck(){
-	let landscapeDeck = shuffle(Landscapes)
-	return landscapeDeck
+function buildLandscapeDeck() {
+    return shuffle([...Landscapes]);
 }
 
 function buildChestDeck(difficulty) {
@@ -35,30 +36,4 @@ function buildChestDeck(difficulty) {
         return [];
     }
 
-    if (difficulty !== "beginner") shuffle(chestDeck);
-    chestDeck.splice(chestCounts[difficulty]);
-    
-    return chestDeck;
-}
-
-export function setupGame(playerCount, playerNames, difficulty) {
-    const mobDeck = buildMobDeck(playerCount);
-    const mobsOnBoard = mobDeck.splice(0, 1);
-    const landscapeDeck = buildLandscapeDeck();
-    const landscapesOnBoard = landscapeDeck.splice(0, 5);
-
-    const gameState = {
-        difficulty,
-        chests: buildChestDeck(difficulty),
-        mobDeck,
-        mobsOnBoard,
-        landscapeDeck,
-        landscapesOnBoard,
-        currentPlayerIndex: 0,
-        hungerRemaining: 6,
-        players: buildPlayers(playerNames)
-    }
-    return gameState;
-}
-
-
+    if (difficulty !== "beginner") shuffle​​​​​​​​​​​​​​​​
