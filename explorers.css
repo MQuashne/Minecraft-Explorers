@@ -1,0 +1,297 @@
+/* =============================================================================
+   Minecraft Explorers - Styles
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+/* =============================================================================
+   Reset & Base
+   ============================================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --color-green: #5d9e3f;
+    --color-gold: #f0c030;
+    --color-red: #cc4444;
+    --color-border: #444;
+    --color-text: #ffffff;
+    --color-text-muted: #ffffff66;
+		--color-slot-filled: #00aa0066;
+		--color-slot: #00000066;
+		--color-zone-border: #ffffff33;
+}
+
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--bg-primary);
+    color: var(--color-text);
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 12px;
+}
+
+
+/* =============================================================================
+   Typography Scale
+   ============================================================================= */
+
+h1 { font-size: 16px; }
+h2 { font-size: 14px; }
+p, button { font-size: 10px; }
+.small { font-size: 8px; }
+
+
+/* =============================================================================
+   Info Bar
+   ============================================================================= */
+
+header {
+    flex-shrink: 0;
+    background-color: var(--bg-secondary);
+    border-bottom: 2px solid var(--color-green);
+}
+
+#info-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    height: 48px;
+}
+
+.info-player {
+    color: var(--color-green);
+    font-size: 8px;
+}
+
+.info-hunger {
+    color: var(--color-gold);
+    font-size: 8px;
+}
+
+.info-deck {
+    color: var(--color-red);
+    font-size: 8px;
+}
+
+
+/* =============================================================================
+   Main Layout
+   ============================================================================= */
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    justify-content: space-evenly;
+}
+
+/* =============================================================================
+   Cards
+   ============================================================================= */
+
+.card {
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 2px solid var(--color-border);
+    background-color: var(--bg-secondary);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+		align-content:center;
+    transition: border-color 0.15s ease;
+}
+
+.card:hover {
+    border-color: var(--color-green);
+}
+
+.portrait-card {
+    width: 80px;
+    height: 120px;
+}
+
+.landscape-card {
+    width: 140px;
+    height: 100px;
+}
+
+.card img {
+	width: 100%;
+    height: 70%;
+    object-fit: contain;
+		
+}
+
+.card-label {
+    font-size: 7px;
+    text-align: center;
+    padding: 4px;
+    color: #cccccc;
+}
+
+
+/* =============================================================================
+   Chest Cards
+   ============================================================================= */
+
+.chest-card {
+    position: relative;
+}
+
+.chest-slot {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    background-color: var(--color-slot);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.chest-slot-1 { top: 16px; left: 11px; }
+.chest-slot-2 { top: 16px; left: 47px; }
+
+.chest-slot.filled {
+    background-color: var(--color-slot-filled);
+}
+
+
+/* =============================================================================
+   Mob Cards
+   ============================================================================= */
+
+.mob-deck-card {
+    border-color: var(--color-border);
+    opacity: 0.8;
+}
+
+.mob-deck-card.danger {
+    border-color: var(--color-red);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+
+/* =============================================================================
+   Modal
+   ============================================================================= */
+
+.modal-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    background-color: #000000cc;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#modal-container {
+    background-color: var(--bg-secondary);
+    height: 80vh;
+    width: 80vw;
+    border-radius: 8px;
+    border: 2px solid var(--color-green);
+    padding: 16px;
+    overflow-y: auto;
+}
+
+#modal-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+#modal-action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* =============================================================================
+   Game Rows & Zones
+   ============================================================================= */
+
+.game-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 8px;
+    flex-shrink: 0;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.game-row::-webkit-scrollbar {
+    display: none;
+}
+
+#chest-row     { height: 136px; }
+#mob-row       { height: 136px; }
+#landscape-row { height: 116px; }
+#inventory     { height: 136px; border-top: 2px solid var(--color-border); }
+
+.zone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px 20px 8px;
+    border: 2px solid var(--color-zone-border);
+    border-radius: 12px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.zone-label {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    font-size: 6px;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+		background-color:var(--bg-primary);
+		padding: 0px 8px;
+}
+
+#mob-deck-zone    { min-width: 96px; }   /* one card + padding */
+#mobs-zone        { min-width: 424px; }  /* five cards + gaps + padding */
+#chests-zone      { min-width: 424px; }  /* five cards + gaps + padding */
+#landscape-deck-zone { min-width: 156px; } /* one landscape card + padding */
+#landscape-zone   { min-width: 724px; }  /* five landscape cards + gaps */
+#inventory-zone   { min-width: 424px; }  /* five cards + gaps */
+#trophies-zone    { min-width: 176px; }  /* two cards + gaps */
+
