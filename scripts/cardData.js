@@ -764,7 +764,7 @@ export const Items = [
   // --- Iron ---
   {
     id: "item_iron_01",
-    visual: "item_iron",
+    visual: "item_iron_mob",
     name: "Iron Ingot",
     category: "iron",
     bonusValue: null,
@@ -782,7 +782,7 @@ export const Items = [
   },
   {
     id: "item_iron_03",
-    visual: "item_iron",
+    visual: "item_iron_mob",
     name: "Iron Ingot",
     category: "iron",
     bonusValue: null,
@@ -800,7 +800,7 @@ export const Items = [
   },
   {
     id: "item_iron_05",
-    visual: "item_iron",
+    visual: "item_iron_mob",
     name: "Iron Ingot",
     category: "iron",
     bonusValue: null,
@@ -811,7 +811,7 @@ export const Items = [
   // --- Emerald ---
   {
     id: "item_emerald_01",
-    visual: "item_emerald",
+    visual: "item_emerald_mob",
     name: "Emerald",
     category: "emerald",
     bonusValue: null,
@@ -820,7 +820,7 @@ export const Items = [
   },
   {
     id: "item_emerald_02",
-    visual: "item_emerald",
+    visual: "item_emerald_mob",
     name: "Emerald",
     category: "emerald",
     bonusValue: null,
@@ -847,7 +847,7 @@ export const Items = [
   },
   {
     id: "item_emerald_05",
-    visual: "item_emerald",
+    visual: "item_emerald_mob",
     name: "Emerald",
     category: "emerald",
     bonusValue: null,
@@ -1073,7 +1073,7 @@ export const Items = [
   },
   {
     id: "item_gold_sword_01",
-    visual: "item_gold_sword",
+    visual: "item_gold_sword_mob",
     name: "Gold Sword",
     category: "sword",
     bonusValue: 3,
@@ -1100,7 +1100,7 @@ export const Items = [
   },
   {
     id: "item_diamond_sword_02",
-    visual: "item_diamond_sword",
+    visual: "item_diamond_sword_mob",
     name: "Diamond Sword",
     category: "sword",
     bonusValue: 4,
@@ -1147,7 +1147,7 @@ export const Items = [
   },
   {
     id: "item_diamond_pickaxe_02",
-    visual: "item_diamond_pickaxe",
+    visual: "item_diamond_pickaxe_mob",
     name: "Diamond Pickaxe",
     category: "pickaxe",
     bonusValue: 4,
@@ -1176,7 +1176,7 @@ export const Items = [
   },
   {
     id: "item_crossbow_03",
-    visual: "item_crossbow",
+    visual: "item_crossbow_mob",
     name: "Crossbow",
     category: "crossbow",
     bonusValue: null,
