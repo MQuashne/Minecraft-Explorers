@@ -148,12 +148,15 @@ function renderLandscapeRow(gameState) {
 // INVENTORY ROW
 // =============================================================================
 
-function renderInventoryRow(gameState, playerIndex) {
+function renderInventoryRow(gameState, playerIndex=0) {
+	//keep only while single screen
+	playerIndex===gameState.currentPlayerIndex
+	
 	const playerInventory = gameState.players[playerIndex].inventory;
 	const playerTrophies = gameState.players[playerIndex].trophies;
 	const inventoryZone = document.querySelector("#inventory-zone");
 	const trophiesZone = document.querySelector("#trophies-zone");
-
+ playerIndex===
 	//  --- Inventory Zone ---
 	inventoryZone.innerHTML = '<span class="zone-label">Inventory</span>';
 	if (playerInventory.length > 0) {
