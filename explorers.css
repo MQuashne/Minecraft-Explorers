@@ -145,6 +145,13 @@ main {
     color: #cccccc;
 }
 
+.placeholder-card {
+    visibility: hidden;  /* invisible but holds space */
+}
+
+.rotate-card {
+	transform: rotate(180deg);
+}
 
 /* =============================================================================
    Chest Cards
