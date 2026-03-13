@@ -150,13 +150,13 @@ function renderLandscapeRow(gameState) {
 
 function renderInventoryRow(gameState, playerIndex=0) {
 	//keep only while single screen
-	playerIndex===gameState.currentPlayerIndex
+	playerIndex=gameState.currentPlayerIndex
 	
 	const playerInventory = gameState.players[playerIndex].inventory;
 	const playerTrophies = gameState.players[playerIndex].trophies;
 	const inventoryZone = document.querySelector("#inventory-zone");
 	const trophiesZone = document.querySelector("#trophies-zone");
- playerIndex===
+ 
 	//  --- Inventory Zone ---
 	inventoryZone.innerHTML = '<span class="zone-label">Inventory</span>';
 	if (playerInventory.length > 0) {
@@ -168,7 +168,7 @@ function renderInventoryRow(gameState, playerIndex=0) {
 			objectCard.src = `images/items/${object.visual}.jpg`;
 			objectCard.alt = object.id;
 			objectCard.classList.add("card", "portrait-card");
-			if (objectCard.state === "damaged") {
+			if (object.state === "damaged") {
 				objectCard.classList.add(rotate - card);
 			}
 			inventoryZone.appendChild(objectCard);
@@ -188,12 +188,12 @@ function renderInventoryRow(gameState, playerIndex=0) {
 			trophyCard.src = `images/mobs/${trophy.id}.jpg`;
 			trophyCard.alt = trophy.id;
 			trophyCard.classList.add("card", "portrait-card");
-			trophyZone.appendChild(trophyCard);
+			trophiesZone.appendChild(trophyCard);
 			
 		});
 
 	}	
-	
+	}
 // =============================================================================
 // INFO BAR
 // =============================================================================
