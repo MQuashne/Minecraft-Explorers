@@ -55,7 +55,17 @@ export function setupGame(playerCount, playerNames, difficulty) {
     const mobDeck = buildMobDeck(playerCount);
     const mobsOnBoard = mobDeck.splice(0, 1);
     const landscapeDeck = buildLandscapeDeck();
-    const landscapesOnBoard = landscapeDeck.splice(0, 5);
+    const landscapesOnBoard = [];
+    const destinationsOnBoard = [];
+
+    while (landscapesOnBoard.length<5){
+        const [drawCard] = landscapeDeck.splice(0,1);
+        if (drawCard.isDestination){
+            destinationsOnBoard.push(drawCard);
+        } else {
+            landscapesOnBoard.push(drawCard);
+        }
+    }
 
     const gameState = {
         difficulty,
@@ -64,6 +74,7 @@ export function setupGame(playerCount, playerNames, difficulty) {
         mobsOnBoard,
         landscapeDeck,
         landscapesOnBoard,
+        destinationsOnBoard,
         currentPlayerIndex: 0,
         hungerRemaining: 6,
         players: buildPlayers(playerNames)
