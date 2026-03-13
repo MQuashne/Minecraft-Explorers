@@ -145,9 +145,6 @@ main {
     color: #cccccc;
 }
 
-.placeholder-card {
-    visibility: hidden;  /* invisible but holds space */
-}
 
 /* =============================================================================
    Chest Cards
