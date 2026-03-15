@@ -10,8 +10,8 @@
 // =============================================================================
 
 function renderChestRow(gameState) {
-	const row = document.getElementById("chest - row");
-	row.innerHTML = "";
+	const row = document.getElementById("chests-zone");
+	row.innerHTML = '<span class="zone-label">Chests</span>';
 
 	gameState.chests.forEach((chest) => {
 		const card = document.createElement("div");
@@ -47,8 +47,11 @@ function renderChestRow(gameState) {
 // =============================================================================
 
 function renderMobRow(gameState) {
-	const row = document.getElementById("mob - row");
-	row.innerHTML = "";
+	const mobRow = document.getElementById("mob-zone");
+	mobRow.innerHTML = '<span class="zone-label">Mobs</span>';
+
+	const mobDeckRow = document.getElementById("mob-deck-zone");
+	mobDeckRow.innerHTML = '<span class="zone-label">Mob Deck</span>';
 
 	// --- Deck card (left side) ---
 	const deckCard = document.createElement("div");
@@ -68,16 +71,22 @@ function renderMobRow(gameState) {
 	deckCount.textContent = `${gameState.mobDeck.length}`;
 	deckCard.appendChild(deckCount);
 
-	row.appendChild(deckCard);
+	mobDeckRow.appendChild(deckCard);
 
 	// --- Revealed mobs ---
+
+	if (gameState.mobsOnBoard.length > 0) {
+		gameState.mobsOnBoard.sort((a, b) => {
+			return a.id.localeCompare(b.id);
+		});
+	}
 	gameState.mobsOnBoard.forEach((mob) => {
 		const card = document.createElement("div");
 		card.classList.add("card", "portrait-card", "mob-card");
 		const cardImage = document.createElement("img");
 		cardImage.src = `images/mobs/${mob.id}.jpg`;
 		card.appendChild(cardImage);
-		row.appendChild(card);
+		mobRow.appendChild(card);
 	});
 }
 
@@ -148,15 +157,15 @@ function renderLandscapeRow(gameState) {
 // INVENTORY ROW
 // =============================================================================
 
-function renderInventoryRow(gameState, playerIndex=0) {
+function renderInventoryRow(gameState, playerIndex = 0) {
 	//keep only while single screen
-	playerIndex=gameState.currentPlayerIndex
-	
+	playerIndex = gameState.currentPlayerIndex
+
 	const playerInventory = gameState.players[playerIndex].inventory;
 	const playerTrophies = gameState.players[playerIndex].trophies;
 	const inventoryZone = document.querySelector("#inventory-zone");
 	const trophiesZone = document.querySelector("#trophies-zone");
- 
+
 	//  --- Inventory Zone ---
 	inventoryZone.innerHTML = '<span class="zone-label">Inventory</span>';
 	if (playerInventory.length > 0) {
@@ -169,14 +178,14 @@ function renderInventoryRow(gameState, playerIndex=0) {
 			objectCard.alt = object.id;
 			objectCard.classList.add("card", "portrait-card");
 			if (object.state === "damaged") {
-				objectCard.classList.add(rotate - card);
+				objectCard.classList.add("rotate-card");
 			}
 			inventoryZone.appendChild(objectCard);
-			
+
 		});
 
 	}
-	
+
 	// --- Trophy Zone ---
 	trophiesZone.innerHTML = '<span class="zone-label">Trophies</span>';
 	if (playerTrophies.length > 0) {
@@ -189,17 +198,22 @@ function renderInventoryRow(gameState, playerIndex=0) {
 			trophyCard.alt = trophy.id;
 			trophyCard.classList.add("card", "portrait-card");
 			trophiesZone.appendChild(trophyCard);
-			
+
 		});
 
-	}	
 	}
+}
 // =============================================================================
 // INFO BAR
+
+function renderInfoBar(gameState){
+	document.querySelector(".info-player").textContent=gameState.players[gameState.currentPlayerIndex].name;
+	document.querySelector(".info-hunger").textContent=`🍖 ${gameState.hungerRemaining}`;
+	document.querySelector(".info-deck").textContent=`⚔️ ${gameState.mobDeck.length}`;
+}
+
 // =============================================================================
-
-// Coming soon
-
+//
 // =============================================================================
 // MASTER RENDER
 // =============================================================================
@@ -208,4 +222,7 @@ function renderInventoryRow(gameState, playerIndex=0) {
 export function render(gameState) {
 	renderChestRow(gameState);
 	renderMobRow(gameState);
+	renderLandscapeRow(gameState);
+	renderInventoryRow(gameState);
+	renderInfoBar(gameState);
 }
