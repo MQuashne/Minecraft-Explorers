@@ -18,10 +18,48 @@
 			<span class="info-deck">⚔️ 22</span>
 		</div>
 	</header>
-
-
-
+	
 	<main>
+		<div id="menu-modal hidden" class="modal-overlay hidden">
+			<div id="menu-container" class="modal-box">
+				<h2>Minecraft Explorers</h2>
+				<span class="option-label">Difficulty:</span>
+				<span id = "difficulty-selection"></span>
+				<input type="range" min="1" max="4" value="1" step="1" id="difficulty-slider"/>
+				<span class ="option-label">Players:</span>
+				<div id="player-number-select">
+					<input type="radio" id="players1" name="playerCount" value="1"/>
+					<label for="players1">One</label>
+					<input type="radio" id="players2" name="playerCount" value="2"/>
+					<label for="players2">Two</label>
+					<input type="radio" id="players3" name="playerCount" value="3"/>
+					<label for="players3">Three</label>
+					<input type="radio" id="players4" name="playerCount" value="4"/>
+					<label for="players4">Four</label>
+				</div>
+				<span class="option-label">Player Names:</span>
+				<div id="name-inputs">
+					<div class="player-name-group hidden" id="name-input-1">
+						<label for="player1Name">Player 1: </label>
+						<input type="text" id="player1NameBox" class="player-name-input" name="player1Name" />
+					</div>
+					<div class="player-name-group hidden" id="name-input-2">
+						<label for="player2Name">Player 2: </label>
+						<input type="text" id="player2NameBox" class="player-name-input" name="player2Name" />
+					</div>
+					<div class="player-name-group hidden" id="name-input-3">
+						<label for="player3Name">Player 3: </label>
+						<input type="text" id="player3NameBox" class="player-name-input" name="player3Name" />
+					</div>
+					<div class="player-name-group hidden" id="name-input-4">
+						<label for="player4Name">Player 4: </label>
+						<input type="text" id="player4NameBox" class="player-name-input" name="player4Name" />
+					</div>			
+				</div>
+				<input type="button" id="start-button" value="Create World"/>
+			</div>
+		</div>
+	
 		<div id="chest-row" class="game-row">
 			<div class="zone" id="chests-zone">
 				<!-- revealed chests here -->
