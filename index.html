@@ -18,48 +18,47 @@
 			<span class="info-deck">⚔️ 22</span>
 		</div>
 	</header>
-	
+
 	<main>
-		<div id="menu-modal hidden" class="modal-overlay hidden">
+		<div id="menu-modal" class="menu-modal-overlay hidden">
 			<div id="menu-container" class="modal-box">
-				<h2>Minecraft Explorers</h2>
+				<h2 class="game-title">Minecraft Explorers</h2>
 				<span class="option-label">Difficulty:</span>
-				<span id = "difficulty-selection"></span>
-				<input type="range" min="1" max="4" value="1" step="1" id="difficulty-slider"/>
-				<span class ="option-label">Players:</span>
+				<input type="range" min="1" max="5" value="1" step="1" id="difficulty-slider" />
+				<br>
+				<span id="difficulty-selection">BEGINNER</span>
 				<div id="player-number-select">
-					<input type="radio" id="players1" name="playerCount" value="1"/>
-					<label for="players1">One</label>
-					<input type="radio" id="players2" name="playerCount" value="2"/>
-					<label for="players2">Two</label>
-					<input type="radio" id="players3" name="playerCount" value="3"/>
-					<label for="players3">Three</label>
-					<input type="radio" id="players4" name="playerCount" value="4"/>
-					<label for="players4">Four</label>
+					<label for="playerCount" class="option-label">Players:</label>
+					<select name="playerCount" id="player-count">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
 				</div>
 				<span class="option-label">Player Names:</span>
 				<div id="name-inputs">
-					<div class="player-name-group hidden" id="name-input-1">
-						<label for="player1Name">Player 1: </label>
+					<div class="player-name-group" id="name-input-1">
+						<label for="player1NameBox">Player 1: </label>
 						<input type="text" id="player1NameBox" class="player-name-input" name="player1Name" />
 					</div>
 					<div class="player-name-group hidden" id="name-input-2">
-						<label for="player2Name">Player 2: </label>
+						<label for="player2NameBox">Player 2: </label>
 						<input type="text" id="player2NameBox" class="player-name-input" name="player2Name" />
 					</div>
 					<div class="player-name-group hidden" id="name-input-3">
-						<label for="player3Name">Player 3: </label>
+						<label for="player3NameBox">Player 3: </label>
 						<input type="text" id="player3NameBox" class="player-name-input" name="player3Name" />
 					</div>
 					<div class="player-name-group hidden" id="name-input-4">
-						<label for="player4Name">Player 4: </label>
+						<label for="player4NameBox">Player 4: </label>
 						<input type="text" id="player4NameBox" class="player-name-input" name="player4Name" />
-					</div>			
+					</div>
 				</div>
-				<input type="button" id="start-button" value="Create World"/>
+				<input type="button" id="start-button" class="pixel-button" value="Create World" />
 			</div>
 		</div>
-	
+
 		<div id="chest-row" class="game-row">
 			<div class="zone" id="chests-zone">
 				<!-- revealed chests here -->
@@ -95,25 +94,25 @@
 	</main>
 
 	<div id="action-modal" class="modal-overlay hidden">
-		<div id="modal-container">
+		<div id="modal-container" class="modal-box">
 			<div id="modal-card-info"></div>
 			<div id="modal-action-buttons"></div>
 		</div>
 	</div>
 
 	<div id="inventory" class="game-row">
-    <div class="zone" id="inventory-zone">
-        <!-- player items here -->
-        <span class="zone-label">Inventory</span>
-    </div>
-    <div class="zone" id="trophies-zone">
-        <!-- mob trophies here -->
-        <span class="zone-label">Trophies</span>
-    </div>
-</div>
+		<div class="zone" id="inventory-zone">
+			<!-- player items here -->
+			<span class="zone-label">Inventory</span>
+		</div>
+		<div class="zone" id="trophies-zone">
+			<!-- mob trophies here -->
+			<span class="zone-label">Trophies</span>
+		</div>
+	</div>
 
 
-	<script type="module" src="main.js"></script>
+	<script type="module" src="scripts/main.js"></script>
 </body>
 
 </html>
