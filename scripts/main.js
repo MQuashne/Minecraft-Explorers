@@ -1,4 +1,5 @@
 import { setupGame } from "./setup.js"
+import { render } from "./render.js"
 
 document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -42,8 +43,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			}
 			playerNames.push(name.value.trim() || `Player ${playerNames.length + 1}`);
 		});
-		setupGame(numPlayers, playerNames, difficulty);
+		let gameState=setupGame(numPlayers, playerNames, difficulty);
 		menuModal.classList.add("hidden");
+		render(gameState);
 
 	});
 
