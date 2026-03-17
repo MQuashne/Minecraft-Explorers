@@ -221,7 +221,7 @@ function renderInfoBar(gameState){
 
 export function render(gameState) {
 	renderChestRow(gameState);
-	//renderMobRow(gameState);
+	renderMobRow(gameState);
 	renderLandscapeRow(gameState);
 	renderInventoryRow(gameState);
 	renderInfoBar(gameState);
