@@ -34,7 +34,7 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 93vh;
     background-color: var(--bg-primary);
     color: var(--color-text);
     font-family: 'Press Start 2P', sans-serif;
@@ -122,13 +122,13 @@ main {
 }
 
 .portrait-card {
-    width: 80px;
-    height: 120px;
+    width: 70px;
+    height: 105px;
 }
 
 .landscape-card {
-    width: 140px;
-    height: 100px;
+    width: 105px;
+    height: 70px;
 }
 
 .card img {
@@ -314,10 +314,10 @@ background-color: #4cd868; /* A slightly lighter green for when you hover over i
     display: none;
 }
 
-#chest-row     { height: 150px; }
-#mob-row       { height: 150px; }
-#landscape-row { height: 130px; }
-#inventory     { height: 150px; border-top: 2px solid var(--color-border); }
+#chest-row     { height: 135px; }
+#mob-row       { height: 135px; }
+#landscape-row { height: 120px; }
+#inventory     { height: 135px; border-top: 2px solid var(--color-border); }
 
 .zone {
     display: flex;
@@ -346,8 +346,8 @@ background-color: #4cd868; /* A slightly lighter green for when you hover over i
 #mob-deck-zone    { min-width: 96px; }   /* one card + padding */
 #mobs-zone        { min-width: 424px; }  /* five cards + gaps + padding */
 #chests-zone      { min-width: 424px; }  /* five cards + gaps + padding */
-#landscape-deck-zone { min-width: 156px; } /* one landscape card + padding */
-#landscape-zone   { min-width: 724px; }  /* five landscape cards + gaps */
+#landscape-deck-zone { min-width: 121px; } /* one landscape card + padding */
+#landscape-zone   { min-width: 573px; }  /* five landscape cards + gaps */
 #inventory-zone   { min-width: 424px; }  /* five cards + gaps */
 #trophies-zone    { min-width: 176px; }  /* two cards + gaps */
 
