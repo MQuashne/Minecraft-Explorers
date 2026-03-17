@@ -228,7 +228,7 @@ main {
     width: 100vw;
     height: 100vh;
     z-index: 2;
-    background-image: radial-gradient(rgba(0,0,0,0) 60%, rgba(0,0,0,.8) 100%),url("images/explorers-cover.jpg");
+    background-image: radial-gradient(rgba(0,0,0,0) 60%, rgba(0,0,0,.8) 100%),url("images/explorers-cover.jpeg");
 		background-size:cover;
 		background-position:center;
 		/* Define the mask using a linear or radial gradient */
