@@ -47,7 +47,7 @@ function renderChestRow(gameState) {
 // =============================================================================
 
 function renderMobRow(gameState) {
-	const mobRow = document.getElementById("mob-zone");
+	const mobRow = document.getElementById("mobs-zone");
 	mobRow.innerHTML = '<span class="zone-label">Mobs</span>';
 
 	const mobDeckRow = document.getElementById("mob-deck-zone");
