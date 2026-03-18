@@ -86,21 +86,19 @@ header {
     align-items: center;
     padding: 8px 16px;
     height: 48px;
+    font-size:18px;
 }
 
 .info-player {
     color: var(--color-green);
-    font-size: 16px;
 }
 
 .info-hunger {
     color: var(--color-gold);
-    font-size: 16px;
 }
 
 .info-deck {
     color: var(--color-red);
-    font-size: 16px;
 }
 
 
