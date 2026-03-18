@@ -7,16 +7,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	const menuModal = document.getElementById("menu-modal");
 	menuModal.classList.remove("hidden");
 
-	// ---Get Difficulty ---
-	const difficultySlider = document.getElementById("difficulty-slider");
-	const difficultySelection = document.getElementById("difficulty-selection");
-	let difficulty = "beginner";
-	difficultySlider.addEventListener('input', (event) => {
-
-		const difficulties = ["beginner", "easy", "normal", "hard", "hardcore"];
-		difficulty = difficulties[difficultySlider.value - 1];
-		difficultySelection.textContent = difficulty.toUpperCase();
-	});
+	
+	// ---Get difficulty dropdown---
+	const difficultySelect = document.getElementById("difficulty-select");
+	
 
 	// ---Get Number of Players and unhide name boxes ---
 	const playerCount = document.getElementById("player-count");
@@ -43,13 +37,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			}
 			playerNames.push(name.value.trim() || `Player ${playerNames.length + 1}`);
 		});
-		let gameState=setupGame(numPlayers, playerNames, difficulty);
+		let gameState=setupGame(numPlayers, playerNames, difficultySelect.value);
 		menuModal.classList.add("hidden");
 		render(gameState);
 
 	});
-
-
-
-
 });
