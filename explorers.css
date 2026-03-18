@@ -38,12 +38,31 @@
     --color-red: #cc4444;
     --color-border: #444;
     --color-text: #ffffff;
+		--color-text-dark: #494a4c;
     --color-text-muted: #ffffff66;
 		--color-slot-filled: #00aa0066;
 		--color-slot: #00000066;
 		--color-zone-border: #ffffff33;
 		--card-long: 105px;
 		--card-short: 70px;
+		--dropdown-bg: #d0d1d3;
+		--dropdown-inner-shadow: #58585a;
+		--dropdown-inner-shadow-2: #ebebed;
+		/*dropdown goes bottom to top & right to left:
+		1) #222224 (more of a shadow on all sides
+		2) #e2e2e4 - fades to #d0d1d3; (only on bottom)
+		3) #ebebed (basically all around)
+		4) #202022
+		--button-shadow: #202022;
+		--menu-bg: #48494b;
+		--red-button-bg: #b9423e;
+		--red-button-inner-shadow: #903635;
+		--color-menu-divider: #5b5c5e;
+		--color-divider-shadow: #343537;
+		*/
+		
+		
+		
 }
 
 
@@ -86,19 +105,21 @@ header {
     align-items: center;
     padding: 8px 16px;
     height: 48px;
-    font-size:18px;
 }
 
 .info-player {
     color: var(--color-green);
+    font-size: 16px;
 }
 
 .info-hunger {
     color: var(--color-gold);
+    font-size: 16px;
 }
 
 .info-deck {
     color: var(--color-red);
+    font-size: 16px;
 }
 
 
@@ -314,7 +335,7 @@ background-color: #4cd868; /* A slightly lighter green for when you hover over i
 
 
 
-.player-name-input, #player-count {
+.player-name-input{
   font-family: 'MinecraftRegular', sans-serif;
 	font-size: 16px;
 	height: 30px;
@@ -327,6 +348,24 @@ background-color: #4cd868; /* A slightly lighter green for when you hover over i
   border: 3px solid #1E1E1F;
 	margin:6px 0;
 }
+
+
+#player-count{
+	font-family: 'MinecraftRegular', sans-serif;
+	font-size: 16px;
+	height: 30px;
+	width:60px;
+  color: var(--color-text-dark);
+  background-color: var(--dropdown-bg);
+  box-shadow: 0px 4px #ff0000ff;
+  /*width: 100%;*/
+  padding: 2px;
+  border: 1px solid #222224;
+	margin:6px 0;
+	
+}
+
+
 .option-label {
 	font-family: "MinecraftTen";
 }
