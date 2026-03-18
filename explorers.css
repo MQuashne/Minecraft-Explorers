@@ -5,17 +5,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 @font-face {
-  font-family: 'MinecraftRegular';
-  src: url('src/Minecraft-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'MinecraftRegular';
+	src: url('src/Minecraft-Regular.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: 'MinecraftTen';
-  src: url('src/Minecraft-Ten.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'MinecraftTen';
+	src: url('src/Minecraft-Ten.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 
@@ -25,30 +25,30 @@
    ============================================================================= */
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 :root {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d2d2d;
-    --color-green: #5d9e3f;
-    --color-gold: #f0c030;
-    --color-red: #cc4444;
-    --color-border: #444;
-    --color-text: #ffffff;
-		--color-text-dark: #494a4c;
-    --color-text-muted: #ffffff66;
-		--color-slot-filled: #00aa0066;
-		--color-slot: #00000066;
-		--color-zone-border: #ffffff33;
-		--card-long: 105px;
-		--card-short: 70px;
-		--dropdown-bg: #d0d1d3;
-		--dropdown-inner-shadow: #58585a;
-		--dropdown-inner-shadow-2: #ebebed;
-		/*dropdown goes bottom to top & right to left:
+	--bg-primary: #1a1a1a;
+	--bg-secondary: #2d2d2d;
+	--color-green: #5d9e3f;
+	--color-gold: #f0c030;
+	--color-red: #cc4444;
+	--color-border: #444;
+	--color-text: #ffffff;
+	--color-text-dark: #494a4c;
+	--color-text-muted: #ffffff66;
+	--color-slot-filled: #00aa0066;
+	--color-slot: #00000066;
+	--color-zone-border: #ffffff33;
+	--card-long: 105px;
+	--card-short: 70px;
+	--dropdown-bg: #d0d1d3;
+	--dropdown-inner-shadow: #58585a;
+	--dropdown-inner-shadow-2: #ebebed;
+	/*dropdown goes bottom to top & right to left:
 		1) #222224 (more of a shadow on all sides
 		2) #e2e2e4 - fades to #d0d1d3; (only on bottom)
 		3) #ebebed (basically all around)
@@ -60,32 +60,53 @@
 		--color-menu-divider: #5b5c5e;
 		--color-divider-shadow: #343537;
 		*/
-		
-		
-		
+
+
+
 }
 
 
 
 body {
-    display: flex;
-    flex-direction: column;
-    height: 93vh;
-    background-color: var(--bg-primary);
-    color: var(--color-text);
-    font-family: 'MinecraftRegular', sans-serif;
-    font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	height: 93vh;
+	background-color: var(--bg-primary);
+	color: var(--color-text);
+	font-family: 'MinecraftRegular', sans-serif;
+	font-size: 16px;
 }
 
+hr {
+	border: 1px solid #5b5c5e;
+	/* Removes the default border */
+	box-shadow: 0 1px 1px 1px #343537;
+	margin-left: -5%;
+	width: 110%;
+}
 
 /* =============================================================================
    Typography Scale
    ============================================================================= */
 
-h1 { font-size: 20px; font-family: "MinecraftTen";}
-h2 { font-size: 18px; }
-p, button { font-size: 16px; }
-.small { font-size: 8px; }
+h1 {
+	font-size: 20px;
+	font-family: "MinecraftTen";
+	color: #3cb055;
+}
+
+h2 {
+	font-size: 18px;
+}
+
+p,
+button {
+	font-size: 16px;
+}
+
+.small {
+	font-size: 8px;
+}
 
 
 /* =============================================================================
@@ -94,32 +115,32 @@ p, button { font-size: 16px; }
 
 header {
 	flex-shrink: 0;
-    background-color: var(--bg-secondary);
-    border-bottom: 2px solid var(--color-green);
+	background-color: var(--bg-secondary);
+	border-bottom: 2px solid var(--color-green);
 }
 
 #info-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 16px;
-    height: 48px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 16px;
+	height: 48px;
 }
 
 .info-player {
-    color: var(--color-green);
-    font-size: 16px;
+	color: var(--color-green);
+	font-size: 16px;
 }
 
 .info-hunger {
-    color: var(--color-gold);
-    font-size: 16px;
+	color: var(--color-gold);
+	font-size: 16px;
 }
 
 .info-deck {
-    color: var(--color-red);
-    font-size: 16px;
+	color: var(--color-red);
+	font-size: 16px;
 }
 
 
@@ -128,11 +149,11 @@ header {
    ============================================================================= */
 
 main {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    overflow: hidden;
-    justify-content: space-evenly;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	overflow: hidden;
+	justify-content: space-evenly;
 }
 
 /* =============================================================================
@@ -140,49 +161,50 @@ main {
    ============================================================================= */
 
 .card {
-    flex-shrink: 0;
-    border-radius: 4px;
-    border: 2px solid var(--color-border);
-    background-color: var(--bg-secondary);
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-		align-content:center;
-    transition: border-color 0.15s ease;
+	flex-shrink: 0;
+	border-radius: 4px;
+	border: 2px solid var(--color-border);
+	background-color: var(--bg-secondary);
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	transition: border-color 0.15s ease;
 }
 
 .card:hover {
-    border-color: var(--color-green);
+	border-color: var(--color-green);
 }
 
 .portrait-card {
-    width: 70px;
-    height: 105px;
+	width: 70px;
+	height: 105px;
 }
 
 .landscape-card {
-    width: 105px;
-    height: 70px;
+	width: 105px;
+	height: 70px;
 }
 
 .card img {
 	width: 100%;
-    height: 100%;
-    object-fit: contain;
-		
+	height: 100%;
+	object-fit: contain;
+
 }
 
 .card-label {
-    font-size: 7px;
-    text-align: center;
-    padding: 4px;
-    color: #cccccc;
+	font-size: 7px;
+	text-align: center;
+	padding: 4px;
+	color: #cccccc;
 }
 
 .placeholder-card {
-    visibility: hidden;  /* invisible but holds space */
+	visibility: hidden;
+	/* invisible but holds space */
 }
 
 .rotate-card {
@@ -194,25 +216,32 @@ main {
    ============================================================================= */
 
 .chest-card {
-    position: relative;
+	position: relative;
 }
 
 .chest-slot {
-    position: absolute;
-    width: 23px;
-    height: 23px;
-    background-color: var(--color-slot);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
+	position: absolute;
+	width: 23px;
+	height: 23px;
+	background-color: var(--color-slot);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
 }
 
-.chest-slot-1 { top: 16px; left: 11px; }
-.chest-slot-2 { top: 16px; left: 47px; }
+.chest-slot-1 {
+	top: 16px;
+	left: 11px;
+}
+
+.chest-slot-2 {
+	top: 16px;
+	left: 47px;
+}
 
 .chest-slot.filled {
-    background-color: var(--color-slot-filled);
+	background-color: var(--color-slot-filled);
 }
 
 
@@ -221,19 +250,27 @@ main {
    ============================================================================= */
 
 .mob-deck-card {
-    border-color: var(--color-border);
-    opacity: 0.8;
+	border-color: var(--color-border);
+	opacity: 0.8;
 }
 
 .mob-deck-card.danger {
-    border-color: var(--color-red);
-    animation: pulse 1s infinite;
+	border-color: var(--color-red);
+	animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
-    0%   { opacity: 1; }
-    50%  { opacity: 0.6; }
-    100% { opacity: 1; }
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.6;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
 
 
@@ -242,133 +279,130 @@ main {
    ============================================================================= */
 
 .modal-overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-    background-color: #000000cc;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 2;
+	background-color: #000000cc;
 }
 
 .menu-modal-overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-    background-image: radial-gradient(rgba(0,0,0,0) 60%, rgba(0,0,0,.8) 100%),url("images/explorers-cover.jpeg");
-		background-size:cover;
-		background-position:center;
-		/* Define the mask using a linear or radial gradient */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 2;
+	background-image: radial-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, .8) 100%), url("images/explorers-cover.jpeg");
+	background-size: cover;
+	background-position: center;
+	/* Define the mask using a linear or radial gradient */
 
 
 }
 
 .hidden {
-    display: none !important;
+	display: none !important;
 }
 
 .modal-box {
-    background-color: #48494b/*var(--bg-secondary)*/;
-    height: 80vh;
-    width: 80vw;
-    border-radius: 8px;
-    border: 2px solid var(--color-green);
-    padding: 16px;
-    overflow-y: auto;
-		gap:18px;
+	background-color: #48494b
+		/*var(--bg-secondary)*/
+	;
+	height: 80vh;
+	width: 80vw;
+	border-radius: 8px;
+	border: 2px solid var(--color-green);
+	padding: 16px;
+	overflow-y: auto;
+	gap: 18px;
+	overflow-x: hidden;
 }
 
 #modal-card-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 16px;
 }
 
 #modal-action-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-#menu-container{
 	display: flex;
 	flex-direction: column;
-	height:60vh;
+	gap: 8px;
+}
+
+#menu-container {
+	display: flex;
+	flex-direction: column;
+	height: 60vh;
 }
 
 
 .pixel-button {
-/* Font and Text */
-font-family: 'MinecraftTen', cursive; /* Use the pixel font */
-color: white; /* Text color */
-font-size: 16px; /* Adjust font size as needed */
-text-shadow: 2px 2px 0px #2f7543; /* Creates the dark shadow on the text */
 
-/* Button Shape and Colors */
-background-color: #3cb055; /* The main green color */
-border: 3px solid #1a4d23; /* The dark green border */
-padding: 15px 25px; /* Space inside the button */
-cursor: pointer; /* Makes the cursor a pointer on hover */
-
-/* Removing Default Styles */
-border-radius: 0; /* Ensures sharp corners */
-text-decoration: none; /* Removes underline if you use an tag */
-
-/* Optional: Hover Effect */
-transition: background-color 0.2s;
+	font-family: 'MinecraftTen', cursive;
+	color: white;
+	font-size: 16px;
+	text-shadow: 2px 2px 0px #2f7543;
+	background-color: #3cb055;
+	border: 3px solid #1a4d23;
+	padding: 15px 25px;
+	cursor: pointer;
+	border-radius: 0;
+	text-decoration: none;
+	transition: background-color 0.2s;
 }
 
 .pixel-button:hover {
-background-color: #4cd868; /* A slightly lighter green for when you hover over it */
+	background-color: #4cd868;
 }
 
 
 
-.player-name-input{
+.player-name-input {
 	font-family: 'MinecraftRegular', sans-serif;
 	font-size: 16px;
 	height: 30px;
-  color: white;
-  background-color: #313233;
-  border: 3px solid #1e1e1f;
-  box-shadow: inset 0px 6px #242425;
-  /*width: 100%;*/
-  padding: 2px;
-  border: 3px solid #1E1E1F;
-	margin:6px 0;
+	color: white;
+	background-color: #313233;
+	border: 3px solid #1e1e1f;
+	box-shadow: inset 0px 2px #242425;
+	/*width: 100%;*/
+	padding: 2px;
+	border: 2px solid #1E1E1F;
+	margin: 6px 0;
 }
 
 
 select {
-  -webkit-appearance: none;	
+	-webkit-appearance: none;
 	font-family: 'MinecraftRegular', sans-serif;
 	font-size: 16px;
 	height: 30px;
-	width:100%;
-  color: var(--color-text-dark);
-  background-color: var(--dropdown-bg);
-  box-shadow: inset 0px 0px 0px 1px #e2e2e4,
-	0px 3px #58585a,
-	0px 3px 0px 1px #222224,
-	0px 0px 0px 1px #222224;
-  padding: 2px 6px;
-	margin:6px 0;	
+	width: 100%;
+	color: var(--color-text-dark);
+	background-color: var(--dropdown-bg);
+	box-shadow: inset 0px 0px 0px 1px #e2e2e4,
+		0px 3px #58585a,
+		0px 3px 0px 1px #222224,
+		0px 0px 0px 1px #222224;
+	padding: 2px 6px;
+	margin: 6px 0;
 	background-image: url("images/chevron-down.png");
-	background-size:16px;
+	background-size: 16px;
 	background-repeat: no-repeat;
 	background-position: right center;
-	background-origin:content-box;
+	background-origin: content-box;
 }
 
 
@@ -378,54 +412,93 @@ select {
    ============================================================================= */
 
 .game-row {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    padding: 8px;
-    flex-shrink: 0;
-    overflow-x: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+	display: flex;
+	flex-direction: row;
+	gap: 8px;
+	padding: 8px;
+	flex-shrink: 0;
+	overflow-x: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
 .game-row::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
-#chest-row     { height: 135px; }
-#mob-row       { height: 135px; }
-#landscape-row { height: 120px; }
-#inventory     { height: 135px; border-top: 2px solid var(--color-border); }
+#chest-row {
+	height: 135px;
+}
+
+#mob-row {
+	height: 135px;
+}
+
+#landscape-row {
+	height: 120px;
+}
+
+#inventory {
+	height: 135px;
+	border-top: 2px solid var(--color-border);
+}
 
 .zone {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 8px 8px 8px;
-    border: 2px solid var(--color-zone-border);
-    border-radius: 12px;
-    position: relative;
-    flex-shrink: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 8px 8px 8px;
+	border: 2px solid var(--color-zone-border);
+	border-radius: 12px;
+	position: relative;
+	flex-shrink: 0;
 }
 
 .zone-label {
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%) translateY(50%);
-    font-size: 12px;
-    color: var(--color-text-muted);
-    white-space: nowrap;
-		background-color:var(--bg-primary);
-		padding: 0px 8px;
+	position: absolute;
+	bottom: 0px;
+	left: 50%;
+	transform: translateX(-50%) translateY(50%);
+	font-size: 12px;
+	color: var(--color-text-muted);
+	white-space: nowrap;
+	background-color: var(--bg-primary);
+	padding: 0px 8px;
 }
 
-#mob-deck-zone    { min-width: 96px; }   /* one card + padding */
-#mobs-zone        { min-width: 424px; }  /* five cards + gaps + padding */
-#chests-zone      { min-width: 424px; }  /* five cards + gaps + padding */
-#landscape-deck-zone { min-width: 121px; } /* one landscape card + padding */
-#landscape-zone   { min-width: 573px; }  /* five landscape cards + gaps */
-#inventory-zone   { min-width: 424px; }  /* five cards + gaps */
-#trophies-zone    { min-width: 176px; }  /* two cards + gaps */
+#mob-deck-zone {
+	min-width: 96px;
+}
 
+/* one card + padding */
+#mobs-zone {
+	min-width: 424px;
+}
+
+/* five cards + gaps + padding */
+#chests-zone {
+	min-width: 424px;
+}
+
+/* five cards + gaps + padding */
+#landscape-deck-zone {
+	min-width: 121px;
+}
+
+/* one landscape card + padding */
+#landscape-zone {
+	min-width: 573px;
+}
+
+/* five landscape cards + gaps */
+#inventory-zone {
+	min-width: 424px;
+}
+
+/* five cards + gaps */
+#trophies-zone {
+	min-width: 176px;
+}
+
+/* two cards + gaps */
