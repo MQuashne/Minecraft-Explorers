@@ -351,7 +351,8 @@ background-color: #4cd868; /* A slightly lighter green for when you hover over i
 
 
 #player-count{
-	font-family: 'MinecraftRegular', sans-serif;
+	-webkit-appearance:none;
+  font-family: 'MinecraftRegular', sans-serif;
 	font-size: 16px;
 	height: 30px;
 	width:60px;
@@ -362,7 +363,6 @@ background-color: #4cd868; /* A slightly lighter green for when you hover over i
   padding: 2px;
   border: 1px solid #222224;
 	margin:6px 0;
-	
 }
 
 
