@@ -15,18 +15,27 @@
 		<div id="info-bar">
 			<span class="info-player">Player</span>
 			<span class="info-hunger">🍖 6</span>
-			<span class="info-deck">⚔️ 21</span>
+			<span class="info-deck">⚔️ 22</span>
 		</div>
 	</header>
 
 	<main>
 		<div id="menu-modal" class="menu-modal-overlay hidden">
 			<div id="menu-container" class="modal-box">
-				<h2 class="game-title">Minecraft Explorers</h2>
+				<h1 class="game-title">MINECRAFT EXPLORERS</h2>
+				<hr>
 				<span class="option-label">Difficulty:</span>
-				<input type="range" min="1" max="5" value="1" step="1" id="difficulty-slider" />
-				<br>
+				<input type="range" min="1" max="5" value="1" step="1" list="ticks" id="difficulty-slider">
+				<datalist id="ticks">
+					<option value="1"></option>
+					<option value="2"></option>
+					<option value="3"></option>
+					<option value="4"></option>
+					<option value="5"></option>
+				</datalist>
+					
 				<span id="difficulty-selection">BEGINNER</span>
+				<hr>
 				<div id="player-number-select">
 					<label for="playerCount" class="option-label">Players:</label>
 					<select name="playerCount" id="player-count">
@@ -55,6 +64,7 @@
 						<input type="text" id="player4NameBox" class="player-name-input" name="player4Name" />
 					</div>
 				</div>
+				<hr>
 				<input type="button" id="start-button" class="pixel-button" value="Create World" />
 			</div>
 		</div>
