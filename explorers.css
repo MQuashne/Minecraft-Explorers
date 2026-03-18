@@ -4,6 +4,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+@font-face {
+  font-family: 'MinecraftRegular';
+  src: url('src/Minecraft-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MinecraftTen';
+  src: url('src/Minecraft-Ten.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 /* =============================================================================
    Reset & Base
@@ -27,6 +42,8 @@
 		--color-slot-filled: #00aa0066;
 		--color-slot: #00000066;
 		--color-zone-border: #ffffff33;
+		--card-long: 105px;
+		--card-short: 70px;
 }
 
 
@@ -37,8 +54,8 @@ body {
     height: 93vh;
     background-color: var(--bg-primary);
     color: var(--color-text);
-    font-family: 'Press Start 2P', sans-serif;
-    font-size: 12px;
+    font-family: 'MinecraftRegular', sans-serif;
+    font-size: 16px;
 }
 
 
@@ -46,9 +63,9 @@ body {
    Typography Scale
    ============================================================================= */
 
-h1 { font-size: 16px; }
-h2 { font-size: 14px; }
-p, button { font-size: 10px; }
+h1 { font-size: 20px; font-family: "MinecraftTen";}
+h2 { font-size: 18px; }
+p, button { font-size: 16px; }
 .small { font-size: 8px; }
 
 
@@ -57,7 +74,7 @@ p, button { font-size: 10px; }
    ============================================================================= */
 
 header {
-    flex-shrink: 0;
+	flex-shrink: 0;
     background-color: var(--bg-secondary);
     border-bottom: 2px solid var(--color-green);
 }
@@ -248,6 +265,7 @@ main {
     border: 2px solid var(--color-green);
     padding: 16px;
     overflow-y: auto;
+		gap:18px;
 }
 
 #modal-card-info {
@@ -267,7 +285,7 @@ main {
 #menu-container{
 	display: flex;
 	flex-direction: column;
-	height:60vw;
+	height:60vh;
 }
 
 
@@ -295,6 +313,26 @@ transition: background-color 0.2s;
 .pixel-button:hover {
 background-color: #4cd868; /* A slightly lighter green for when you hover over it */
 }
+
+
+
+.player-name-input, #player-count {
+  font-family: 'MinecraftRegular', sans-serif;
+	font-size: 16px;
+	height: 30px;
+  color: white;
+  background-color: #313233;
+  border: 3px solid #1e1e1f;
+  box-shadow: inset 0px 6px #242425;
+  /*width: 100%;*/
+  padding: 2px;
+  border: 3px solid #1E1E1F;
+	margin:6px 0;
+}
+.option-label {
+	font-family: "MinecraftTen";
+}
+
 /* =============================================================================
    Game Rows & Zones
    ============================================================================= */
