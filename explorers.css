@@ -277,7 +277,7 @@ main {
 }
 
 .modal-box {
-    background-color: var(--bg-secondary);
+    background-color: #48494b/*var(--bg-secondary)*/;
     height: 80vh;
     width: 80vw;
     border-radius: 8px;
@@ -336,7 +336,7 @@ background-color: #4cd868; /* A slightly lighter green for when you hover over i
 
 
 .player-name-input{
-  font-family: 'MinecraftRegular', sans-serif;
+	font-family: 'MinecraftRegular', sans-serif;
 	font-size: 16px;
 	height: 30px;
   color: white;
@@ -350,25 +350,28 @@ background-color: #4cd868; /* A slightly lighter green for when you hover over i
 }
 
 
-#player-count{
-	-webkit-appearance:none;
-  font-family: 'MinecraftRegular', sans-serif;
+select {
+  -webkit-appearance: none;	
+	font-family: 'MinecraftRegular', sans-serif;
 	font-size: 16px;
 	height: 30px;
-	width:60px;
+	width:100%;
   color: var(--color-text-dark);
   background-color: var(--dropdown-bg);
-  box-shadow: inset 0px 2px #e2e2e4;
-  /*width: 100%;*/
-  padding: 2px;
-  border: 1px solid #222224;
-	margin:6px 0;
+  box-shadow: inset 0px 0px 0px 1px #e2e2e4,
+	0px 3px #58585a,
+	0px 3px 0px 1px #222224,
+	0px 0px 0px 1px #222224;
+  padding: 2px 6px;
+	margin:6px 0;	
+	background-image: url("images/chevron-down.png");
+	background-size:16px;
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-origin:content-box;
 }
 
 
-.option-label {
-	font-family: "MinecraftTen";
-}
 
 /* =============================================================================
    Game Rows & Zones
