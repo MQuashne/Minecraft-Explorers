@@ -56,21 +56,21 @@ function renderMobRow(gameState) {
 	// --- Deck card (left side) ---
 	const deckCard = document.createElement("div");
 	deckCard.classList.add("card", "portrait-card", "mob-deck-card");
-
+/*
 	// Pulse red when 4 or fewer cards remain (Game Over is near)
 	if (gameState.mobDeck.length <= 4) {
 		deckCard.classList.add("danger");
 	}
 
-	const deckCardImage = document.createElement("img");
+*/	const deckCardImage = document.createElement("img");
 	deckCardImage.src = "images/mobs/mob_back.jpg";
 	deckCard.appendChild(deckCardImage);
-
+/*
 	const deckCount = document.createElement("div");
 	deckCount.classList.add("card-label");
 	deckCount.textContent = `${gameState.mobDeck.length}`;
 	deckCard.appendChild(deckCount);
-
+*/
 	mobDeckRow.appendChild(deckCard);
 
 	// --- Revealed mobs ---
@@ -149,13 +149,9 @@ function renderLandscapeRow(gameState) {
 	}
 }
 
-// =============================================================================
-
-// Coming soon
 
 // =============================================================================
 // INVENTORY ROW
-// =============================================================================
 
 function renderInventoryRow(gameState, playerIndex = 0) {
 	//keep only while single screen
