@@ -162,7 +162,7 @@ main {
 
 .card {
 	flex-shrink: 0;
-	border-radius: 10px;
+	border-radius: 15px;
 	border: 2px solid var(--color-border);
 	background-color: var(--bg-secondary);
 	cursor: pointer;
