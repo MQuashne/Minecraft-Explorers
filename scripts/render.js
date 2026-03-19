@@ -4,12 +4,12 @@
 // These functions read game state and update the DOM.
 // Pattern: clear the container, rebuild from current state.
 // =============================================================================
-
+import { exploreLandscape } from "./actions/explore.js"
 // =============================================================================
 // CHEST ROW
 // =============================================================================
 
-function renderChestRow(gameState) {
+function renderChestRow(gameState, renderCallback) {
 	const row = document.getElementById("chests-zone");
 	row.innerHTML = '<span class="zone-label">Chests</span>';
 
@@ -46,7 +46,7 @@ function renderChestRow(gameState) {
 // MOB ROW
 // =============================================================================
 
-function renderMobRow(gameState) {
+function renderMobRow(gameState, renderCallback) {
 	const mobRow = document.getElementById("mobs-zone");
 	mobRow.innerHTML = '<span class="zone-label">Mobs</span>';
 
@@ -56,21 +56,22 @@ function renderMobRow(gameState) {
 	// --- Deck card (left side) ---
 	const deckCard = document.createElement("div");
 	deckCard.classList.add("card", "portrait-card", "mob-deck-card");
-/*
-	// Pulse red when 4 or fewer cards remain (Game Over is near)
-	if (gameState.mobDeck.length <= 4) {
-		deckCard.classList.add("danger");
-	}
+	/*
+		// Pulse red when 4 or fewer cards remain (Game Over is near)
+		if (gameState.mobDeck.length <= 4) {
+			deckCard.classList.add("danger");
+		}
 
-*/	const deckCardImage = document.createElement("img");
+	*/
+	const deckCardImage = document.createElement("img");
 	deckCardImage.src = "images/mobs/mob_back.jpg";
 	deckCard.appendChild(deckCardImage);
-/*
-	const deckCount = document.createElement("div");
-	deckCount.classList.add("card-label");
-	deckCount.textContent = `${gameState.mobDeck.length}`;
-	deckCard.appendChild(deckCount);
-*/
+	/*
+		const deckCount = document.createElement("div");
+		deckCount.classList.add("card-label");
+		deckCount.textContent = `${gameState.mobDeck.length}`;
+		deckCard.appendChild(deckCount);
+	*/
 	mobDeckRow.appendChild(deckCard);
 
 	// --- Revealed mobs ---
@@ -92,7 +93,7 @@ function renderMobRow(gameState) {
 
 // =============================================================================
 // LANDSCAPE ROW
-function renderLandscapeRow(gameState) {
+function renderLandscapeRow(gameState, renderCallback) {
 	const deckZone = document.querySelector("#landscape-deck-zone");
 	const landscapeZone = document.querySelector("#landscape-zone");
 	const destinationZone = document.querySelector("#landscape-destination-zone");
@@ -121,6 +122,7 @@ function renderLandscapeRow(gameState) {
 			const landscapeCard = document.createElement("img");
 			landscapeCard.src = `images/landscapes/${landscape.visual}.jpg`;
 			landscapeCard.classList.add("card", "landscape-card");
+			landscapeCard.addEventListener('click', () => exploreLandscape(gameState, renderCallback, landscape));
 			landscapeZone.appendChild(landscapeCard);
 		} else {
 			const emptyLandscape = document.createElement("div");
@@ -153,7 +155,7 @@ function renderLandscapeRow(gameState) {
 // =============================================================================
 // INVENTORY ROW
 
-function renderInventoryRow(gameState, playerIndex = 0) {
+function renderInventoryRow(gameState, renderCallback, playerIndex = 0) {
 	//keep only while single screen
 	playerIndex = gameState.currentPlayerIndex
 
@@ -202,10 +204,10 @@ function renderInventoryRow(gameState, playerIndex = 0) {
 // =============================================================================
 // INFO BAR
 
-function renderInfoBar(gameState){
-	document.querySelector(".info-player").textContent=gameState.players[gameState.currentPlayerIndex].name;
-	document.querySelector(".info-hunger").textContent=`🍖 ${gameState.hungerRemaining}`;
-	document.querySelector(".info-deck").textContent=`⚔️ ${gameState.mobDeck.length}`;
+function renderInfoBar(gameState, renderCallback) {
+	document.querySelector(".info-player").textContent = gameState.players[gameState.currentPlayerIndex].name;
+	document.querySelector(".info-hunger").textContent = `🍖 ${gameState.hungerRemaining}`;
+	document.querySelector(".info-deck").textContent = `⚔️ ${gameState.mobDeck.length}`;
 }
 
 // =============================================================================
@@ -215,10 +217,10 @@ function renderInfoBar(gameState){
 // =============================================================================
 // Call this whenever game state changes to refresh the entire board.
 
-export function render(gameState) {
-	renderChestRow(gameState);
-	renderMobRow(gameState);
-	renderLandscapeRow(gameState);
-	renderInventoryRow(gameState);
-	renderInfoBar(gameState);
+export function render(gameState, renderCallback) {
+	renderChestRow(gameState, renderCallback);
+	renderMobRow(gameState, renderCallback);
+	renderLandscapeRow(gameState, renderCallback);
+	renderInventoryRow(gameState, renderCallback);
+	renderInfoBar(gameState, renderCallback);
 }
