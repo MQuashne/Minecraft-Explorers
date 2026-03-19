@@ -188,6 +188,11 @@ main {
 	height: 70px;
 }
 
+.modal-landscape {
+	width: 210px;
+	height: 140px;
+}
+
 .card img {
 	width: 100%;
 	height: 100%;
@@ -314,6 +319,7 @@ main {
 }
 
 .modal-box {
+	display: flex; flex-direction: column;
 	background-color: #48494b;
 	width: 80vw;
 	border-radius: 8px;
@@ -371,7 +377,6 @@ main {
 	height: 30px;
 	color: white;
 	background-color: #313233;
-	border: 3px solid #1e1e1f;
 	box-shadow: inset 0px 2px #242425;
 	/*width: 100%;*/
 	padding: 2px;
