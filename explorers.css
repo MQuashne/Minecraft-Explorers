@@ -81,8 +81,8 @@ hr {
 	border: 1px solid #5b5c5e;
 	/* Removes the default border */
 	box-shadow: 0 1px 1px 1px #343537;
-	margin-left: -5%;
-	width: 110%;
+	margin-left: -10%;
+	width: 120%;
 }
 
 /* =============================================================================
@@ -314,10 +314,7 @@ main {
 }
 
 .modal-box {
-	background-color: #48494b
-		/*var(--bg-secondary)*/
-	;
-	height: 80vh;
+	background-color: #48494b;
 	width: 80vw;
 	border-radius: 8px;
 	border: 2px solid var(--color-green);
@@ -344,7 +341,6 @@ main {
 #menu-container {
 	display: flex;
 	flex-direction: column;
-	height: 60vh;
 }
 
 
