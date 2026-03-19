@@ -32,14 +32,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	startButton.addEventListener('click', (event) => {
 		const visibleInputs = document.querySelectorAll('.player-name-group:not(.hidden) .player-name-input');
 		visibleInputs.forEach(name => {
-			if (name.value) {
-				playerNames.push(name.value);
-			}
 			playerNames.push(name.value.trim() || `Player ${playerNames.length + 1}`);
 		});
 		let gameState=setupGame(numPlayers, playerNames, difficultySelect.value);
 		menuModal.classList.add("hidden");
-		render(gameState);
+		render(gameState,render);
 
 	});
 });
