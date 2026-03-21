@@ -162,7 +162,8 @@ main {
 
 .card {
 	flex-shrink: 0;
-	border-radius: 15px;
+	border-radius: calc(0.1*var(--card-short));
+	;
 	border: 2px solid var(--color-border);
 	background-color: var(--bg-secondary);
 	cursor: pointer;
@@ -179,18 +180,19 @@ main {
 }
 
 .portrait-card {
-	width: 70px;
-	height: 105px;
+	width: var(--card-short);
+	height: var(--card-long);
 }
 
 .landscape-card {
-	width: 105px;
-	height: 70px;
+	width: var(--card-long);
+	height: var(--card-short);
 }
 
 .modal-landscape {
-	width: 210px;
-	height: 140px;
+	width: calc(2*var(--card-long));
+	height: calc(2*var(--card-short));
+	border-radius: calc(0.2*var(--card-short));
 }
 
 .card img {
@@ -319,7 +321,8 @@ main {
 }
 
 .modal-box {
-	display: flex; flex-direction: column;
+	display: flex;
+	flex-direction: column;
 	background-color: #48494b;
 	width: 80vw;
 	border-radius: 8px;
@@ -384,8 +387,7 @@ main {
 	margin: 6px 0;
 }
 
-
-select {
+.tap-control {
 	-webkit-appearance: none;
 	font-family: 'MinecraftRegular', sans-serif;
 	font-size: 16px;
@@ -397,13 +399,34 @@ select {
 		0px 3px #58585a,
 		0px 3px 0px 1px #222224,
 		0px 0px 0px 1px #222224;
-	padding: 2px 6px;
+	padding: 2px 30px 2px 10px;
 	margin: 6px 0;
+}
+
+.tap-control-small {
+	width: auto;
+}
+
+.dropdown {
+	-webkit-appearance: none;
+	text-align: left;
 	background-image: url("images/chevron-down.png");
 	background-size: 16px;
 	background-repeat: no-repeat;
-	background-position: right center;
-	background-origin: content-box;
+	background-position: right 10px center;
+	/*background-origin: border-box;*/
+}
+
+.button {
+	/*text-align-last: center;*/
+	padding-top: 0px;
+}
+
+.disabled {
+	background-color: #808081;
+	/*color: #A4A5A6;*/
+	box-shadow: none;
+	border: 2px solid #1E1E1F;
 }
 
 
