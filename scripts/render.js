@@ -144,6 +144,7 @@ function renderLandscapeRow(gameState, renderCallback) {
 			const destinationCard = document.createElement("img");
 			destinationCard.src = `images/landscapes/${destination.visual}.jpg`;
 			destinationCard.classList.add("card", "landscape-card");
+			destinationCard.addEventListener('click', () => exploreLandscape(gameState, renderCallback, destination));
 			destinationZone.appendChild(destinationCard);
 		});
 	} else {
