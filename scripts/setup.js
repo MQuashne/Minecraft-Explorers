@@ -37,7 +37,9 @@ function buildChestDeck(difficulty) {
     }
 
     if (difficulty !== "beginner") shuffle(chestDeck);
-    chestDeck.splice(chestCounts[difficulty]);
+    
+		chestDeck = chestDeck.slice(0, chestCounts[difficulty]);
+
     
     return chestDeck;
 }
