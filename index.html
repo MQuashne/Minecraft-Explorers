@@ -22,49 +22,49 @@
 	<main>
 		<div id="menu-modal" class="menu-modal-overlay hidden">
 			<div id="menu-container" class="modal-box">
-				<h1 class="game-title">MINECRAFT EXPLORERS</h2>
-					<hr>
-					<div id="diff-select">
-						<label for="difficultySelect" class="option-label">Difficulty</label>
-						<select name="difficultySelect" id="difficulty-select">
-							<option value="beginner">Beginner</option>
-							<option value="easy">Easy</option>
-							<option value="normal">Normal</option>
-							<option value="hard">Hard</option>
-							<option value="hardcore">Hardcore</option>
-						</select>
+				<h1 class="game-title">MINECRAFT EXPLORERS</h1>
+				<hr>
+				<div id="diff-select">
+					<label for="difficultySelect" class="option-label">Difficulty</label>
+					<select name="difficultySelect" id="difficulty-select" class="tap-control dropdown">
+						<option value="beginner">Beginner</option>
+						<option value="easy">Easy</option>
+						<option value="normal">Normal</option>
+						<option value="hard">Hard</option>
+						<option value="hardcore">Hardcore</option>
+					</select>
+				</div>
+				<hr>
+				<div id="player-number-select">
+					<label for="playerCount" class="option-label">Players</label>
+					<select name="playerCount" id="player-count" class="tap-control dropdown">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
+				</div>
+				<span class="option-label">Player Names</span>
+				<div id="name-inputs">
+					<div class="player-name-group" id="name-input-1">
+						<label for="player1NameBox">Player 1 </label>
+						<input type="text" id="player1NameBox" class="player-name-input" name="player1Name" />
 					</div>
-					<hr>
-					<div id="player-number-select">
-						<label for="playerCount" class="option-label">Players</label>
-						<select name="playerCount" id="player-count">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-						</select>
+					<div class="player-name-group hidden" id="name-input-2">
+						<label for="player2NameBox">Player 2 </label>
+						<input type="text" id="player2NameBox" class="player-name-input" name="player2Name" />
 					</div>
-					<span class="option-label">Player Names</span>
-					<div id="name-inputs">
-						<div class="player-name-group" id="name-input-1">
-							<label for="player1NameBox">Player 1 </label>
-							<input type="text" id="player1NameBox" class="player-name-input" name="player1Name" />
-						</div>
-						<div class="player-name-group hidden" id="name-input-2">
-							<label for="player2NameBox">Player 2 </label>
-							<input type="text" id="player2NameBox" class="player-name-input" name="player2Name" />
-						</div>
-						<div class="player-name-group hidden" id="name-input-3">
-							<label for="player3NameBox">Player 3 </label>
-							<input type="text" id="player3NameBox" class="player-name-input" name="player3Name" />
-						</div>
-						<div class="player-name-group hidden" id="name-input-4">
-							<label for="player4NameBox">Player 4 </label>
-							<input type="text" id="player4NameBox" class="player-name-input" name="player4Name" />
-						</div>
+					<div class="player-name-group hidden" id="name-input-3">
+						<label for="player3NameBox">Player 3 </label>
+						<input type="text" id="player3NameBox" class="player-name-input" name="player3Name" />
 					</div>
-					<hr>
-					<input type="button" id="start-button" class="pixel-button" value="Create World" />
+					<div class="player-name-group hidden" id="name-input-4">
+						<label for="player4NameBox">Player 4 </label>
+						<input type="text" id="player4NameBox" class="player-name-input" name="player4Name" />
+					</div>
+				</div>
+				<hr>
+				<input type="button" id="start-button" class="pixel-button" value="Create World" />
 			</div>
 		</div>
 
@@ -107,6 +107,7 @@
 		<div id="modal-container" class="modal-box">
 			<div id="modal-card-info"></div>
 			<div id="modal-action-buttons"></div>
+			<div id="modal-debug"></div>
 		</div>
 	</div>
 
