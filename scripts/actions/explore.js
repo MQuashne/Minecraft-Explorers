@@ -45,6 +45,8 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
 	landscapeCardView.src = `images/landscapes/${landscapeCard.visual}.jpg`;
 	landscapeCardView.classList.add("card", "modal-landscape");
 	modalCardInfo.appendChild(landscapeCardView);
+	const actionButtons = document.getElementById("modal-action-buttons");
+	actionButtons.innerHTML='';
 
 	//------------
 	//Buttons
@@ -52,13 +54,13 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
 	if (landscapeCard.subtype === "explore") {
 		let cost = landscapeCard.cost;
 		//Explore Button
-		const actionButtons = document.getElementById("modal-action-buttons");
+		
 		const exploreButton = document.createElement("button")
 		exploreButton.id = "explore-button";
 		exploreButton.classList.add("tap-control", "button");
 		exploreButton.textContent = `Explore   (${cost}🍖)`;
 		if (cost <= gameState.hungerRemaining) {
-			exploreButton.addEventListener("click", () => { executeExplore(gameState, landscapeCard, renderCallback, cost) });
+			exploreButton.addEventListener("click", () => { executeExplore() });
 		} else { exploreButton.classList.add("disabled") }
 		actionButtons.appendChild(exploreButton);
 
@@ -68,6 +70,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
 			const playerTools = testInv.filter(item => item.category === landscapeCard.toolDiscount);
 
 			if (playerTools.length > 0) {
+				const toolDiscounts = {};
 				playerTools.forEach((tool) => {
 					const useChoiceGroup = document.createElement("div")
 					const uses = (tool.state === "intact") ? "(2/2)" : "(1/2)";
@@ -88,7 +91,9 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
 					}
 					useSelect.addEventListener("change", (event) => {
 						debug.innerHTML = `cost=${cost} disc=${event.target.value}`
-						cost = Math.max(cost - event.target.value, 0);
+						toolDiscounts[tool.id] = parseInt(event.target.value);
+						const totalDiscount = Object.values(toolDiscounts).reduce((sum, val) => sum + val, 0);
+						cost = Math.max(landscapeCard.cost - totalDiscount, 0);
 						const exButton = document.getElementById('explore-button');
 						exButton.textContent = `Explore   (${cost}🍖)`;
 						if (cost <= gameState.hungerRemaining) {
@@ -102,11 +107,15 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
 				});
 			}
 		}
-
 	}
-}
-
-
-function executeExplore(gameState, landscapeCard, renderCallback, cost) {
-
+const backButton = document.createElement("button");
+backButton.classList.add("tap-control","button");
+backButton.textContent = "Go Back";
+backButton.addEventListener("click", () => {
+    actionModal.classList.add("hidden");
+});
+actionButtons.appendChild(backButton);	
+								
+	
+function executeExplore() {}
 }
