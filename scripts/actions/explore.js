@@ -1,3 +1,5 @@
+import { Items } from "../cardData.js"
+
 export function exploreLandscape(gameState, renderCallback, landscapeCard) {
 
 	const playerInventory = gameState.players[gameState.currentPlayerIndex].inventory
@@ -97,5 +99,6 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
 				}
 			}
 		});
+		const itemCard = Items.find(item => item.id===landscapeCard.item);
 	}
 }
