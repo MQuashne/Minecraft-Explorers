@@ -1,5 +1,29 @@
 /* =============================================================================
    Minecraft Explorers - Styles
+   =============================================================================
+   
+   TABLE OF CONTENTS
+   -----------------
+   1.  Fonts & Variables
+   2.  Reset & Base
+   3.  Typography
+   4.  Layout — Page Structure
+   5.  Info Bar
+   6.  Game Rows & Zones
+   7.  Cards — Base Styles
+   8.  Cards — Portrait & Landscape Sizes
+   9.  Cards — Flip Animation
+   10. Cards — Chest
+   11. Cards — Mob
+   12. Cards — Placeholder & State
+   13. Modal — Overlays
+   14. Modal — Containers & Content
+   15. Controls — Buttons & Inputs
+   ============================================================================= */
+
+
+/* =============================================================================
+   1. FONTS & VARIABLES
    ============================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -18,19 +42,8 @@
 	font-style: normal;
 }
 
-
-
-/* =============================================================================
-   Reset & Base
-   ============================================================================= */
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
 :root {
+	/* --- Colors --- */
 	--bg-primary: #1a1a1a;
 	--bg-secondary: #2d2d2d;
 	--color-green: #5d9e3f;
@@ -40,32 +53,45 @@
 	--color-text: #ffffff;
 	--color-text-dark: #494a4c;
 	--color-text-muted: #ffffff66;
-	--color-slot-filled: #00aa0066;
 	--color-slot: #00000066;
+	--color-slot-filled: #00aa0066;
 	--color-zone-border: #ffffff33;
-	--card-long: 105px;
+
+	/* --- Card Dimensions --- */
 	--card-short: 70px;
+	--card-long: 105px;
+
+	/* --- Dropdown / Control Colors --- */
 	--dropdown-bg: #d0d1d3;
 	--dropdown-inner-shadow: #58585a;
 	--dropdown-inner-shadow-2: #ebebed;
-	/*dropdown goes bottom to top & right to left:
-		1) #222224 (more of a shadow on all sides
-		2) #e2e2e4 - fades to #d0d1d3; (only on bottom)
-		3) #ebebed (basically all around)
-		4) #202022
-		--button-shadow: #202022;
-		--menu-bg: #48494b;
-		--red-button-bg: #b9423e;
-		--red-button-inner-shadow: #903635;
-		--color-menu-divider: #5b5c5e;
-		--color-divider-shadow: #343537;
-		*/
+	/*
+	Dropdown shadow layers (bottom to top, right to left):
+	  1) #222224 — outer shadow on all sides
+	  2) #e2e2e4 — fades to #d0d1d3 on bottom only
+	  3) #ebebed — all around highlight
+	  4) #202022 — inner edge
 
-
-
+	Unused variables kept for reference:
+	  --button-shadow: #202022;
+	  --menu-bg: #48494b;
+	  --red-button-bg: #b9423e;
+	  --red-button-inner-shadow: #903635;
+	  --color-menu-divider: #5b5c5e;
+	  --color-divider-shadow: #343537;
+	*/
 }
 
 
+/* =============================================================================
+   2. RESET & BASE
+   ============================================================================= */
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
 
 body {
 	display: flex;
@@ -79,14 +105,15 @@ body {
 
 hr {
 	border: 1px solid #5b5c5e;
-	/* Removes the default border */
 	box-shadow: 0 1px 1px 1px #343537;
+	/* Bleeds past modal padding — kept intentional, contained by overflow-x: hidden */
 	margin-left: -10%;
 	width: 120%;
 }
 
+
 /* =============================================================================
-   Typography Scale
+   3. TYPOGRAPHY
    ============================================================================= */
 
 h1 {
@@ -108,9 +135,30 @@ button {
 	font-size: 8px;
 }
 
+.option-label {
+	/* Placeholder class — style as needed */
+}
+
 
 /* =============================================================================
-   Info Bar
+   4. LAYOUT — PAGE STRUCTURE
+   ============================================================================= */
+
+main {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	overflow: hidden;
+	justify-content: space-evenly;
+}
+
+.hidden {
+	display: none !important;
+}
+
+
+/* =============================================================================
+   5. INFO BAR
    ============================================================================= */
 
 header {
@@ -145,295 +193,10 @@ header {
 
 
 /* =============================================================================
-   Main Layout
+   6. GAME ROWS & ZONES
    ============================================================================= */
 
-main {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
-	overflow: hidden;
-	justify-content: space-evenly;
-}
-
-/* =============================================================================
-   Cards
-   ============================================================================= */
-
-.card {
-	flex-shrink: 0;
-	border-radius: calc(0.1*var(--card-short));
-	;
-	border: 2px solid var(--color-border);
-	background-color: var(--bg-secondary);
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	align-content: center;
-	transition: border-color 0.15s ease;
-}
-
-.card:hover {
-	border-color: var(--color-green);
-}
-
-.portrait-card {
-	width: var(--card-short);
-	height: var(--card-long);
-}
-
-.landscape-card {
-	width: var(--card-long);
-	height: var(--card-short);
-}
-
-.modal-landscape {
-	width: calc(2*var(--card-long));
-	height: calc(2*var(--card-short));
-	border-radius: calc(0.2*var(--card-short));
-}
-
-.card img {
-	width: 100%;
-	height: 100%;
-	object-fit: contain;
-
-}
-
-.card-label {
-	font-size: 7px;
-	text-align: center;
-	padding: 4px;
-	color: #cccccc;
-}
-
-.placeholder-card {
-	visibility: hidden;
-	/* invisible but holds space */
-}
-
-.rotate-card {
-	transform: rotate(180deg);
-}
-
-/* =============================================================================
-   Chest Cards
-   ============================================================================= */
-
-.chest-card {
-	position: relative;
-}
-
-.chest-slot {
-	position: absolute;
-	width: 23px;
-	height: 23px;
-	background-color: var(--color-slot);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 14px;
-}
-
-.chest-slot-1 {
-	top: 16px;
-	left: 11px;
-}
-
-.chest-slot-2 {
-	top: 16px;
-	left: 47px;
-}
-
-.chest-slot.filled {
-	background-color: var(--color-slot-filled);
-}
-
-
-/* =============================================================================
-   Mob Cards
-   ============================================================================= */
-
-.mob-deck-card {
-	border-color: var(--color-border);
-	opacity: 0.8;
-}
-
-.mob-deck-card.danger {
-	border-color: var(--color-red);
-	animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-	0% {
-		opacity: 1;
-	}
-
-	50% {
-		opacity: 0.6;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-
-/* =============================================================================
-   Modal
-   ============================================================================= */
-
-.modal-overlay {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: 2;
-	background-color: #000000cc;
-}
-
-.menu-modal-overlay {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: 2;
-	background-image: radial-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, .8) 100%), url("images/explorers-cover.jpeg");
-	background-size: cover;
-	background-position: center;
-	/* Define the mask using a linear or radial gradient */
-
-
-}
-
-.hidden {
-	display: none !important;
-}
-
-.modal-box {
-	display: flex;
-	flex-direction: column;
-	background-color: #48494b;
-	width: 80vw;
-	border-radius: 8px;
-	border: 2px solid var(--color-green);
-	padding: 16px;
-	overflow-y: auto;
-	gap: 18px;
-	overflow-x: hidden;
-}
-
-#modal-card-info {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 8px;
-	margin-bottom: 16px;
-}
-
-#modal-action-buttons {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-
-#menu-container {
-	display: flex;
-	flex-direction: column;
-}
-
-
-.pixel-button {
-
-	font-family: 'MinecraftTen', cursive;
-	color: white;
-	font-size: 16px;
-	text-shadow: 2px 2px 0px #2f7543;
-	background-color: #3cb055;
-	border: 3px solid #1a4d23;
-	padding: 15px 25px;
-	cursor: pointer;
-	border-radius: 0;
-	text-decoration: none;
-	transition: background-color 0.2s;
-}
-
-.pixel-button:hover {
-	background-color: #4cd868;
-}
-
-
-
-.player-name-input {
-	font-family: 'MinecraftRegular', sans-serif;
-	font-size: 16px;
-	height: 30px;
-	color: white;
-	background-color: #313233;
-	box-shadow: inset 0px 2px #242425;
-	/*width: 100%;*/
-	padding: 2px;
-	border: 2px solid #1E1E1F;
-	margin: 6px 0;
-}
-
-.tap-control {
-	-webkit-appearance: none;
-	font-family: 'MinecraftRegular', sans-serif;
-	font-size: 16px;
-	height: 30px;
-	width: 100%;
-	color: var(--color-text-dark);
-	background-color: var(--dropdown-bg);
-	box-shadow: inset 0px 0px 0px 1px #e2e2e4,
-		0px 3px #58585a,
-		0px 3px 0px 1px #222224,
-		0px 0px 0px 1px #222224;
-	padding: 2px 30px 2px 10px;
-	margin: 6px 0;
-}
-
-.tap-control-small {
-	width: auto;
-}
-
-.dropdown {
-	-webkit-appearance: none;
-	text-align: left;
-	background-image: url("images/chevron-down.png");
-	background-size: 16px;
-	background-repeat: no-repeat;
-	background-position: right 10px center;
-	/*background-origin: border-box;*/
-}
-
-.button {
-	/*text-align-last: center;*/
-	padding-top: 0px;
-}
-
-.disabled {
-	background-color: #808081;
-	/*color: #A4A5A6;*/
-	box-shadow: none;
-	border: 2px solid #1E1E1F;
-}
-
-
-
-/* =============================================================================
-   Game Rows & Zones
-   ============================================================================= */
+/* --- Rows --- */
 
 .game-row {
 	display: flex;
@@ -450,22 +213,12 @@ main {
 	display: none;
 }
 
-#chest-row {
-	height: 135px;
-}
+#chest-row     { height: 135px; }
+#mob-row       { height: 135px; }
+#landscape-row { height: 120px; }
+#inventory     { height: 135px; border-top: 2px solid var(--color-border); }
 
-#mob-row {
-	height: 135px;
-}
-
-#landscape-row {
-	height: 120px;
-}
-
-#inventory {
-	height: 135px;
-	border-top: 2px solid var(--color-border);
-}
+/* --- Zones --- */
 
 .zone {
 	display: flex;
@@ -491,38 +244,319 @@ main {
 	padding: 0px 8px;
 }
 
-#mob-deck-zone {
-	min-width: 96px;
+/* Zone min-widths — sized to fit their expected card count + gaps + padding */
+#mob-deck-zone       { min-width: 96px; }   /* 1 portrait card */
+#mobs-zone           { min-width: 424px; }  /* 5 portrait cards */
+#chests-zone         { min-width: 424px; }  /* 5 portrait cards */
+#landscape-deck-zone { min-width: 121px; }  /* 1 landscape card */
+#landscape-zone      { min-width: 573px; }  /* 5 landscape cards */
+#inventory-zone      { min-width: 424px; }  /* 5 portrait cards */
+#trophies-zone       { min-width: 176px; }  /* 2 portrait cards */
+
+
+/* =============================================================================
+   7. CARDS — BASE STYLES
+   ============================================================================= */
+
+.card {
+	flex-shrink: 0;
+	border-radius: calc(0.1 * var(--card-short));
+	border: 2px solid var(--color-border);
+	background-color: var(--bg-secondary);
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	transition: border-color 0.15s ease;
 }
 
-/* one card + padding */
-#mobs-zone {
-	min-width: 424px;
+.card:hover {
+	border-color: var(--color-green);
 }
 
-/* five cards + gaps + padding */
-#chests-zone {
-	min-width: 424px;
+.card img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 
-/* five cards + gaps + padding */
-#landscape-deck-zone {
-	min-width: 121px;
+.card-label {
+	font-size: 7px;
+	text-align: center;
+	padding: 4px;
+	color: #cccccc;
 }
 
-/* one landscape card + padding */
-#landscape-zone {
-	min-width: 573px;
+
+/* =============================================================================
+   8. CARDS — PORTRAIT & LANDSCAPE SIZES
+   ============================================================================= */
+
+.portrait-card {
+	width: var(--card-short);
+	height: var(--card-long);
 }
 
-/* five landscape cards + gaps */
-#inventory-zone {
-	min-width: 424px;
+.landscape-card {
+	width: var(--card-long);
+	height: var(--card-short);
 }
 
-/* five cards + gaps */
-#trophies-zone {
-	min-width: 176px;
+/* Modal card — 2x landscape size */
+.modal-landscape {
+	width: calc(2 * var(--card-long));
+	height: calc(2 * var(--card-short));
+	border-radius: calc(0.2 * var(--card-short));
 }
 
-/* two cards + gaps */
+
+/* =============================================================================
+   9. CARDS — FLIP ANIMATION
+   ============================================================================= */
+
+.flip-card {
+	perspective: 600px;
+}
+
+.flip-card-inner {
+	transform-style: preserve-3d;
+	transition: transform 0.5s ease;
+	position: relative;
+}
+
+.flip-card-inner.flipped {
+	transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+	backface-visibility: hidden;
+	position: absolute;
+}
+
+.flip-card-back {
+	transform: rotateY(180deg);
+}
+
+
+/* =============================================================================
+   10. CARDS — CHEST
+   ============================================================================= */
+
+.chest-card {
+	position: relative;
+}
+
+.chest-slot {
+	position: absolute;
+	width: 23px;
+	height: 23px;
+	background-color: var(--color-slot);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+}
+
+.chest-slot-1 { top: 16px; left: 11px; }
+.chest-slot-2 { top: 16px; left: 47px; }
+
+.chest-slot.filled {
+	background-color: var(--color-slot-filled);
+}
+
+
+/* =============================================================================
+   11. CARDS — MOB
+   ============================================================================= */
+
+.mob-deck-card {
+	border-color: var(--color-border);
+	opacity: 0.8;
+}
+
+.mob-deck-card.danger {
+	border-color: var(--color-red);
+	animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+	0%   { opacity: 1; }
+	50%  { opacity: 0.6; }
+	100% { opacity: 1; }
+}
+
+
+/* =============================================================================
+   12. CARDS — PLACEHOLDER & STATE
+   ============================================================================= */
+
+.placeholder-card {
+	visibility: hidden; /* invisible but holds space */
+}
+
+.rotate-card {
+	transform: rotate(180deg);
+}
+
+
+/* =============================================================================
+   13. MODAL — OVERLAYS
+   ============================================================================= */
+
+/* Action modal — sits below the info bar */
+.modal-overlay {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 50px;
+	left: 0;
+	width: 100vw;
+	height: 100%;
+	z-index: 2;
+	background-color: #000000cc;
+}
+
+/* Menu modal — full screen with cover image background */
+.menu-modal-overlay {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 2;
+	background-image: radial-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, .8) 100%),
+	                  url("images/explorers-cover.jpeg");
+	background-size: cover;
+	background-position: center;
+}
+
+
+/* =============================================================================
+   14. MODAL — CONTAINERS & CONTENT
+   ============================================================================= */
+
+.modal-box {
+	display: flex;
+	flex-direction: column;
+	background-color: #48494b;
+	width: 80vw;
+	border-radius: 8px;
+	border: 2px solid var(--color-green);
+	padding: 16px;
+	gap: 18px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#menu-container {
+	display: flex;
+	flex-direction: column;
+}
+
+#modal-card-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+
+#modal-action-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+
+/* =============================================================================
+   15. CONTROLS — BUTTONS & INPUTS
+   ============================================================================= */
+
+/* --- Pixel Button (menu/start) --- */
+
+.pixel-button {
+	font-family: 'MinecraftTen', cursive;
+	color: white;
+	font-size: 16px;
+	text-shadow: 2px 2px 0px #2f7543;
+	background-color: #3cb055;
+	border: 3px solid #1a4d23;
+	padding: 15px 25px;
+	cursor: pointer;
+	border-radius: 0;
+	text-decoration: none;
+	transition: background-color 0.2s;
+}
+
+.pixel-button:hover {
+	background-color: #4cd868;
+}
+
+/* --- Tap Controls (dropdowns, action buttons) --- */
+
+.tap-control {
+	-webkit-appearance: none;
+	font-family: 'MinecraftRegular', sans-serif;
+	font-size: 16px;
+	height: 30px;
+	width: 100%;
+	color: var(--color-text-dark);
+	background-color: var(--dropdown-bg);
+	box-shadow: inset 0px 0px 0px 1px #e2e2e4,
+		0px 3px #58585a,
+		0px 3px 0px 1px #222224,
+		0px 0px 0px 1px #222224;
+	padding: 2px 30px 2px 10px;
+	margin: 6px 0;
+}
+
+.tap-control-small {
+	width: auto;
+}
+
+/* --- Dropdown variant --- */
+
+.dropdown {
+	-webkit-appearance: none;
+	text-align: left;
+	background-image: url("images/chevron-down.png");
+	background-size: 16px;
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+}
+
+/* --- Button variant (removes top padding) --- */
+
+.button {
+	padding-top: 0px;
+}
+
+/* --- Disabled state --- */
+
+.disabled {
+	background-color: #808081;
+	box-shadow: none;
+	border: 2px solid #1E1E1F;
+}
+
+/* --- Player name input --- */
+
+.player-name-input {
+	font-family: 'MinecraftRegular', sans-serif;
+	font-size: 16px;
+	height: 30px;
+	color: white;
+	background-color: #313233;
+	box-shadow: inset 0px 2px #242425;
+	padding: 2px;
+	border: 2px solid #1E1E1F;
+	margin: 6px 0;
+}
+
