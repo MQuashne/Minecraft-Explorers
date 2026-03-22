@@ -48,7 +48,36 @@ function buildPlayers(playerNames) {
     return playerNames.map((name, index) => ({
         id: index + 1,
         name: name,
-        inventory: [],
+        inventory: [{
+			id: "item_diamond_sword_02",
+			visual: "item_diamond_sword_mob",
+			name: "Diamond Sword",
+			category: "sword",
+			bonusValue: 4,
+			state: "intact",
+			isUsable: true,
+		},
+
+		// --- Pickaxes ---
+		{
+			id: "item_iron_pickaxe_01",
+			visual: "item_iron_pickaxe",
+			name: "Iron Pickaxe",
+			category: "pickaxe",
+			bonusValue: 2,
+			state: "intact",
+			isUsable: true,
+		},
+		{
+			id: "item_iron_pickaxe_02",
+			visual: "item_iron_pickaxe",
+			name: "Iron Pickaxe",
+			category: "pickaxe",
+			bonusValue: 2,
+			state: "damaged",
+			isUsable: true,
+		}
+	],
         trophies: []
     }));
 }
