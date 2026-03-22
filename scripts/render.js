@@ -169,7 +169,8 @@ function renderInventoryRow(gameState, renderCallback, playerIndex = 0) {
 	inventoryZone.innerHTML = '<span class="zone-label">Inventory</span>';
 	if (playerInventory.length > 0) {
 		playerInventory.sort((a, b) => {
-			return a.category.localeCompare(b.category) || a.id.localeCompare(b.id);
+			return a.category.localeCompare(b.category) || a.id.localeCompare(b.id);index = playerInventory.indexOf(tool);
+playerInventory.splice(index, 1);
 		});
 		playerInventory.forEach((object) => {
 			const objectCard = document.createElement("img");

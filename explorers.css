@@ -260,7 +260,7 @@ header {
 
 .card {
 	flex-shrink: 0;
-	border-radius: calc(0.1 * var(--card-short));
+	border-radius: calc(0.12 * var(--card-short));
 	border: 2px solid var(--color-border);
 	background-color: var(--bg-secondary);
 	cursor: pointer;
@@ -311,6 +311,12 @@ header {
 	border-radius: calc(0.2 * var(--card-short));
 }
 
+.modal-portrait {
+	width: calc(2 * var(--card-short));
+	height: calc(2 * var(--card-long));
+	border-radius: calc(0.2 * var(--card-short));
+}
+
 
 /* =============================================================================
    9. CARDS — FLIP ANIMATION
@@ -318,22 +324,28 @@ header {
 
 .flip-card {
 	perspective: 600px;
+	width: calc(2 * var(--card-long));
+height: calc(2 * var(--card-short));
 }
 
 .flip-card-inner {
 	transform-style: preserve-3d;
 	transition: transform 0.5s ease;
 	position: relative;
+	width: 100%;
+height: 100%;
 }
 
 .flip-card-inner.flipped {
-	transform: rotateY(180deg);
+	transform: rotateY(180deg) rotate(90deg);
 }
 
 .flip-card-front,
 .flip-card-back {
 	backface-visibility: hidden;
 	position: absolute;
+	height:100%;
+	width:100%;
 }
 
 .flip-card-back {
@@ -400,6 +412,9 @@ header {
 .rotate-card {
 	transform: rotate(180deg);
 }
+.item-back {
+  transform: rotate(90deg);
+}
 
 
 /* =============================================================================
@@ -465,7 +480,8 @@ header {
 	flex-direction: column;
 	align-items: center;
 	gap: 8px;
-	margin-bottom: 16px;
+	margin-bottom: 18px;
+	padding-top:calc(0.5*var(--card-short));
 }
 
 #modal-action-buttons {
@@ -559,4 +575,3 @@ header {
 	border: 2px solid #1E1E1F;
 	margin: 6px 0;
 }
-
