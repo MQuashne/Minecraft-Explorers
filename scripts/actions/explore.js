@@ -1,4 +1,5 @@
 import { Items } from "../cardData.js"
+/*import { revealMobs } from "./revealMobs.js"*/
 
 export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   
@@ -51,9 +52,11 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
     exploreButton.id = "explore-button";
     exploreButton.classList.add("tap-control", "button");
     exploreButton.textContent = `Explore   (${cost}🍖)`;
-    if (cost <= gameState.hungerRemaining) {
-      exploreButton.addEventListener("click", () => { executeExplore() });
-    } else { exploreButton.classList.add("disabled") }
+    exploreButton.addEventListener("click", () => { executeExplore() });
+    if (cost > gameState.hungerRemaining) {
+      exploreButton.disabled=true;
+      
+    } else {exploreButton.disabled=false }
     actionButtons.appendChild(exploreButton);
     
     //Tool Buttons
@@ -82,11 +85,10 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
             toolDiscounts[tool.id] = parseInt(event.target.value);
             const totalDiscount = Object.values(toolDiscounts).reduce((sum, val) => sum + val, 0);
             cost = Math.max(landscapeCard.cost - totalDiscount, 0);
-            const exButton = document.getElementById('explore-button');
-            exButton.textContent = `Explore   (${cost}🍖)`;
+            exploreButton.textContent = `Explore   (${cost}🍖)`;
             if (cost <= gameState.hungerRemaining) {
-              exButton.classList.remove("disabled");
-            } else { exploreButton.classList.add("disabled"); }
+              exploreButton.disabled=false;
+            } else { exploreButton.disabled=true}
           });
           useChoiceGroup.appendChild(useSelect);
           actionButtons.appendChild(useChoiceGroup);
@@ -133,6 +135,8 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
     placeButton.classList.add("tap-control", "button");
     placeButton.addEventListener("click", () => {
       actionModal.classList.add("hidden");
+      const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
+      gameState.landscapesOnBoard.splice(landscapeSpot, 1);
       renderCallback(gameState, renderCallback);
     });
     placeButton.innerText = "Place in Inventory"

@@ -556,7 +556,7 @@ height: 100%;
 
 /* --- Disabled state --- */
 
-.disabled {
+button:disabled {
 	background-color: #808081;
 	box-shadow: none;
 	border: 2px solid #1E1E1F;
