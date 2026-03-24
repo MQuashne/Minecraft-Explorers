@@ -35,11 +35,11 @@ function buildChestDeck(difficulty) {
         console.error(`Invalid difficulty: ${difficulty}`);
         return [];
     }
-
+    
     if (difficulty !== "beginner") shuffle(chestDeck);
     
-		chestDeck = chestDeck.slice(0, chestCounts[difficulty]);
-
+    chestDeck = chestDeck.slice(0, chestCounts[difficulty]);
+    
     
     return chestDeck;
 }
@@ -49,35 +49,44 @@ function buildPlayers(playerNames) {
         id: index + 1,
         name: name,
         inventory: [{
-			id: "item_diamond_sword_02",
-			visual: "item_diamond_sword_mob",
-			name: "Diamond Sword",
-			category: "sword",
-			bonusValue: 4,
-			state: "intact",
-			isUsable: true,
-		},
-
-		// --- Pickaxes ---
-		{
-			id: "item_iron_pickaxe_01",
-			visual: "item_iron_pickaxe",
-			name: "Iron Pickaxe",
-			category: "pickaxe",
-			bonusValue: 2,
-			state: "intact",
-			isUsable: true,
-		},
-		{
-			id: "item_iron_pickaxe_02",
-			visual: "item_iron_pickaxe",
-			name: "Iron Pickaxe",
-			category: "pickaxe",
-			bonusValue: 2,
-			state: "damaged",
-			isUsable: true,
-		}
-	],
+                id: "item_diamond_sword_02",
+                visual: "item_diamond_sword_mob",
+                name: "Diamond Sword",
+                category: "sword",
+                bonusValue: 4,
+                state: "intact",
+                isUsable: true,
+            },
+            
+            // --- Pickaxes ---
+            {
+                id: "item_iron_pickaxe_01",
+                visual: "item_iron_pickaxe",
+                name: "Iron Pickaxe",
+                category: "pickaxe",
+                bonusValue: 2,
+                state: "intact",
+                isUsable: true,
+            },
+            {
+                id: "item_iron_pickaxe_02",
+                visual: "item_iron_pickaxe",
+                name: "Iron Pickaxe",
+                category: "pickaxe",
+                bonusValue: 2,
+                state: "damaged",
+                isUsable: true,
+            },
+            {
+                id: "item_emerald_03",
+                visual: "item_emerald",
+                name: "Emerald",
+                category: "emerald",
+                bonusValue: null,
+                state: null,
+                isUsable: false,
+            }
+        ],
         trophies: []
     }));
 }
@@ -88,16 +97,16 @@ export function setupGame(playerCount, playerNames, difficulty) {
     const landscapeDeck = buildLandscapeDeck();
     const landscapesOnBoard = [];
     const destinationsOnBoard = [];
-
-    while (landscapesOnBoard.length<5){
-        const [drawCard] = landscapeDeck.splice(0,1);
-        if (drawCard.isDestination){
+    
+    while (landscapesOnBoard.length < 5) {
+        const [drawCard] = landscapeDeck.splice(0, 1);
+        if (drawCard.isDestination) {
             destinationsOnBoard.push(drawCard);
         } else {
             landscapesOnBoard.push(drawCard);
         }
     }
-
+    
     const gameState = {
         difficulty,
         chests: buildChestDeck(difficulty),

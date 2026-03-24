@@ -3,13 +3,14 @@ import { revealMobs, animateMobReveal } from "./revealMobs.js"
 
 export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   
+  // Get places in document
   const playerInventory = gameState.players[gameState.currentPlayerIndex].inventory
   const itemCard = Items.find(item => item.id === landscapeCard.item);
   const debug = document.getElementById("modal-debug");
   const actionModal = document.getElementById("action-modal");
   actionModal.classList.remove("hidden");
   
-  
+  // Create card display
   const modalCardInfo = document.getElementById("modal-card-info");
   modalCardInfo.innerHTML = ''
   
@@ -34,17 +35,18 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   flipCard.appendChild(flipInner);
   modalCardInfo.appendChild(flipCard);
   
-  
   const actionButtons = document.getElementById("modal-action-buttons");
   actionButtons.innerHTML = '';
   let cost = landscapeCard.cost;
   const playerTools = playerInventory.filter(item => item.category === landscapeCard.toolDiscount);
   const toolDiscounts = {};
+  let chosenTrade="";
   
   
   //------------
   //Buttons
   //------------
+  // Buttons for landscapes
   if (landscapeCard.subtype === "explore") {
     //Explore Button
     
@@ -95,7 +97,45 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
         });
       }
     }
+  } else if (landscapeCard.subtype === "village") {
+    // Buttons for villages
+    const chooseTrade = document.createElement("div");
+    chooseTrade.textContent = "Select an item to trade";
+    
+    // Item Chooser
+    const tradeSelector = document.createElement("select");
+    tradeSelector.classList.add("tap-control", "dropdown");
+    playerInventory.forEach((item) => {
+      if (item.category === landscapeCard.tradeItem || item.category === "emerald") {
+        const itemOption = document.createElement("option");
+        itemOption.value = item.id;
+        itemOption.text = item.name;
+        tradeSelector.appendChild(itemOption);
+      }
+    });
+    chooseTrade.appendChild(tradeSelector);
+    actionButtons.appendChild(chooseTrade);
+    
+    // Trade Button
+    const tradeButton = document.createElement("button")
+    tradeButton.id = "explore-button";
+    tradeButton.classList.add("tap-control", "button");
+    tradeButton.textContent = `Trade   (${cost}🍖)`;
+    tradeButton.addEventListener("click", () => {
+      chosenTrade=tradeSelector.value;
+      executeExplore() 
+      
+    });
+    if (cost > gameState.hungerRemaining || tradeSelector.value==='' || tradeSelector.value===null) {
+      tradeButton.disabled = true;
+      
+    } else { tradeButton.disabled = false }
+    actionButtons.appendChild(tradeButton);
+    
+    
   }
+  
+  // Go Back Button
   const backButton = document.createElement("button");
   backButton.classList.add("tap-control", "button");
   backButton.textContent = "Go Back";
@@ -110,6 +150,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
     gameState.hungerRemaining -= cost;
     
     // --- adddamage to tool's and discard broken ones --- 
+    if (landscapeCard.subtype==="explore"){
     let index = 0;
     playerTools.forEach((tool) => {
       if (toolDiscounts[tool.id] > 0) {
@@ -126,7 +167,12 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
           playerInventory.splice(index, 1);
         }
       }
-    });
+    });} else if (landscapeCard.subtype==="village"){
+      //Remove traded item from inventory 
+      const tradedItem=playerInventory.find(obj => obj.id === chosenTrade);
+      const tradeIndex = playerInventory.indexOf(tradedItem);
+      playerInventory.splice(tradeIndex,1);
+    }
     // --- Reveal Item, place in inventory, and change buttons ---
     flipInner.classList.add("flipped");
     playerInventory.push(itemCard);
@@ -150,8 +196,6 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
       });
       actionButtons.appendChild(revealButton);
     } else {
-      
-      
       
       const placeButton = document.createElement("button");
       placeButton.classList.add("tap-control", "button");
