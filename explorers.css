@@ -328,7 +328,13 @@ header {
 height: calc(2 * var(--card-short));
 }
 
-.flip-card-inner {
+.flip-card-portrait{
+	perspective: 600px;
+width: calc(2 * var(--card-short));
+height: calc(2 * var(--card-long));
+}
+
+.flip-card-inner,.flip-card-portrait-inner {
 	transform-style: preserve-3d;
 	transition: transform 0.5s ease;
 	position: relative;
@@ -338,6 +344,10 @@ height: 100%;
 
 .flip-card-inner.flipped {
 	transform: rotateY(180deg) rotate(90deg);
+}
+
+.flip-card-portrait-inner.flipped {
+	transform: rotateY(180deg);
 }
 
 .flip-card-front,
@@ -488,6 +498,12 @@ height: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+}
+
+.modalMobZone{
+	overflow-x: auto;
+flex: 1;
+/* takes remaining space */
 }
 
 

@@ -1,5 +1,5 @@
 import { Items } from "../cardData.js"
-/*import { revealMobs } from "./revealMobs.js"*/
+import { revealMobs, animateMobReveal } from "./revealMobs.js"
 
 export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   
@@ -54,9 +54,9 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
     exploreButton.textContent = `Explore   (${cost}🍖)`;
     exploreButton.addEventListener("click", () => { executeExplore() });
     if (cost > gameState.hungerRemaining) {
-      exploreButton.disabled=true;
+      exploreButton.disabled = true;
       
-    } else {exploreButton.disabled=false }
+    } else { exploreButton.disabled = false }
     actionButtons.appendChild(exploreButton);
     
     //Tool Buttons
@@ -87,8 +87,8 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
             cost = Math.max(landscapeCard.cost - totalDiscount, 0);
             exploreButton.textContent = `Explore   (${cost}🍖)`;
             if (cost <= gameState.hungerRemaining) {
-              exploreButton.disabled=false;
-            } else { exploreButton.disabled=true}
+              exploreButton.disabled = false;
+            } else { exploreButton.disabled = true }
           });
           useChoiceGroup.appendChild(useSelect);
           actionButtons.appendChild(useChoiceGroup);
@@ -131,15 +131,38 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
     flipInner.classList.add("flipped");
     playerInventory.push(itemCard);
     actionButtons.innerHTML = '';
-    const placeButton = document.createElement("button");
-    placeButton.classList.add("tap-control", "button");
-    placeButton.addEventListener("click", () => {
-      actionModal.classList.add("hidden");
-      const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
-      gameState.landscapesOnBoard.splice(landscapeSpot, 1);
-      renderCallback(gameState, renderCallback);
-    });
-    placeButton.innerText = "Place in Inventory"
-    actionButtons.appendChild(placeButton)
+    
+    if (landscapeCard.mobCount > 0) {
+      const revealButton = document.createElement("button");
+      revealButton.classList.add("tap-control", "button")
+      revealButton.textContent = "Reveal Mobs"
+      revealButton.addEventListener("click", () => {
+        
+        const { mobsRevealed, gameOverCard } = revealMobs(gameState, landscapeCard.mobCount);
+        animateMobReveal(mobsRevealed, gameOverCard, () => {
+          actionModal.classList.add("hidden");
+          const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
+          gameState.landscapesOnBoard.splice(landscapeSpot, 1);
+          renderCallback(gameState, renderCallback);
+        });
+        
+        
+      });
+      actionButtons.appendChild(revealButton);
+    } else {
+      
+      
+      
+      const placeButton = document.createElement("button");
+      placeButton.classList.add("tap-control", "button");
+      placeButton.addEventListener("click", () => {
+        actionModal.classList.add("hidden");
+        const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
+        gameState.landscapesOnBoard.splice(landscapeSpot, 1);
+        renderCallback(gameState, renderCallback);
+      });
+      placeButton.innerText = "Place in Inventory"
+      actionButtons.appendChild(placeButton)
+    }
   }
 }

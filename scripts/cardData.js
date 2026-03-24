@@ -195,7 +195,7 @@ export const Landscapes = [
     item: "item_spyglass_02",
     tradeOptions: [],
     isDestination: false,
-    toolDiscount: null,
+    toolDiscount: "pickaxe",
   },
   {
     id: "landscape_lush_cave_02",
@@ -206,7 +206,7 @@ export const Landscapes = [
     item: "item_glowberry_01",
     tradeOptions: [],
     isDestination: false,
-    toolDiscount: null,
+    toolDiscount: "pickaxe",
   },
   {
     id: "landscape_lush_cave_03",
@@ -217,7 +217,7 @@ export const Landscapes = [
     item: "item_iron_01",
     tradeOptions: [],
     isDestination: false,
-    toolDiscount: null,
+    toolDiscount: "pickaxe",
   },
   {
     id: "landscape_lush_cave_04",
@@ -228,7 +228,7 @@ export const Landscapes = [
     item: "item_iron_armor_02",
     tradeOptions: [],
     isDestination: false,
-    toolDiscount: null,
+    toolDiscount: "pickaxe",
   },
 
   // --- Geode ---
