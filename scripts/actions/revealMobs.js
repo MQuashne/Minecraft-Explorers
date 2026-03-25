@@ -4,7 +4,6 @@ export function revealMobs(gameState, revealCount, renderCallback) {
   const mobsRevealed = [];
   let newMob = {};
   let gameOverCard = false;
-  revealCount += 3;
   while (revealCount > 0) {
     newMob = deck.splice(0, 1)[0];
     newMob.isOverrun = false;
@@ -53,9 +52,9 @@ export function animateMobReveal(mobsRevealed, gameOverCard, onComplete) {
   mobModalRow.style.alignItems = "center";
   mobModalRow.style.height = `calc(2 * var(--card-long) + 30px)`;
   mobModalRow.style.alignSelf = "flex-start";
-mobModalRow.style.width = "100%";
-
-
+  mobModalRow.style.width = "100%";
+  
+  
   
   
   
@@ -96,6 +95,19 @@ mobModalRow.style.width = "100%";
       newMob.appendChild(newMobImage);
       modalMobZone.prepend(newMob);
       
+      if (mobsRevealed[currentIndex].id === "mob-game-over") {
+        const gameOverScreen = document.getElementById("game-over-modal");
+        const deathMessage = document.getElementById("killer");
+        if (currentIndex > 0) {
+          deathMessage.textContent = `${gameState.players[gameState.currentPlayerIndex].name} was killed by ${mobsRevealed[currentIndex-1].name}.`
+        } else {
+          deathMessage.textContent = `${gameState.players[gameState.currentPlayerIndex].name} discovered the floor was lava.`
+        }
+        gameOverScreen.classList.remove("hidden");
+        
+        //do game over stuff - reset somehow?
+      }
+      
       if (mobsRevealed[currentIndex].isOverrun) {
         revealInstructions.textContent = "OVERRUN!! Tap to reveal another mob!";
       }
@@ -122,6 +134,4 @@ mobModalRow.style.width = "100%";
     }, { once: true });
     
   });
-  
-  
 }
