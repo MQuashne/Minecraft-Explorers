@@ -32,7 +32,8 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
   const modalContainer = document.getElementById("modal-container");
   
   const modalCardInfo = document.getElementById("modal-card-info");
-  modalCardInfo.innerHTML = ''
+  modalCardInfo.innerHTML = '';
+  modalCardInfo.style.overflowX="scroll";
   
   const actionButtons = document.getElementById("modal-action-buttons");
   actionButtons.innerHTML = '';
@@ -53,7 +54,6 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
   mobModalRow.style.alignItems = "center";
   mobModalRow.style.height = `calc(2 * var(--card-long) + 30px)`;
   mobModalRow.style.alignSelf = "flex-start";
-  mobModalRow.style.width = "100%";
   
   
   
@@ -133,6 +133,7 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
         mobImage.src = `images/mobs/${mobsRevealed[currentIndex].id}.jpg`;
       } else {
         flipInner.classList.add("hidden");
+        flipCard.classList.add("hidden");
         revealInstructions.innerHTML = '';
         const backButton = document.createElement("button");
         backButton.classList.add("tap-control", "button");
