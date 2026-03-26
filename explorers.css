@@ -279,7 +279,7 @@ header {
 	align-items: center;
 	justify-content: center;
 	align-content: center;
-	transition: border-color 0.15s ease;
+	/*transition: border-color 0.15s ease;*/
 }
 
 .card:hover {

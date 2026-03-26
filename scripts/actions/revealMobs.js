@@ -67,8 +67,8 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
   modalMobZone.style.justifyContent = "flex-start";
   
   const placeMob = document.createElement("div");
-placeMob.classList.add("card", "modal-portrait", "mob-card","placeholder-card");
-modalMobZone.prepend(placeMob);
+  placeMob.classList.add("card", "modal-portrait", "mob-card", "placeholder-card");
+  modalMobZone.prepend(placeMob);
   
   
   
@@ -91,8 +91,11 @@ modalMobZone.prepend(placeMob);
   flipInner.appendChild(flipBack);
   flipCard.appendChild(flipInner);
   flipInner.addEventListener("click", () => {
+    void flipInner.offsetWidth;
     flipInner.classList.add("flipped");
     flipInner.addEventListener('transitionend', () => {
+     if (event.propertyName !== 'transform') return;
+    console.log("through");
       const newMob = document.createElement("div");
       newMob.classList.add("card", "modal-portrait", "mob-card");
       const newMobImage = document.createElement("img");
@@ -123,9 +126,9 @@ modalMobZone.prepend(placeMob);
       if (currentIndex < mobsRevealed.length) {
         
         flipInner.classList.add("no-transition");
-flipInner.classList.remove("flipped");
-void flipInner.offsetWidth;
-flipInner.classList.remove("no-transition");
+        flipInner.classList.remove("flipped");
+        void flipInner.offsetWidth;
+        flipInner.classList.remove("no-transition");
         
         mobImage.src = `images/mobs/${mobsRevealed[currentIndex].id}.jpg`;
       } else {
