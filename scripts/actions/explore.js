@@ -13,6 +13,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   // Create card display
   const modalCardInfo = document.getElementById("modal-card-info");
   modalCardInfo.innerHTML = ''
+ modalCardInfo.style.removeProperty("overflow-x");
   
   const flipCard = document.createElement("div");
   flipCard.classList.add("flip-card");
@@ -202,7 +203,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
       placeButton.addEventListener("click", () => {
         actionModal.classList.add("hidden");
         const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
-        gameState.landscapesOnBoard.splice(landscapeSpot, 1);
+        gameState.landscapesOnBoard.splice(landscapeSpot, 1,{id:"empty"});
         renderCallback(gameState, renderCallback);
       });
       placeButton.innerText = "Place in Inventory"

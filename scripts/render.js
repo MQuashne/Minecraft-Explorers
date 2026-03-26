@@ -117,10 +117,10 @@ function renderLandscapeRow(gameState, renderCallback) {
 
 	// --- Landscape zone (always 5 slots) ---
 	landscapeZone.innerHTML = '<span class="zone-label">Landscapes</span>';
-
+console.log(gameState.landscapesOnBoard)
 	for (let i = 0; i < 5; i++) {
 		const landscape = gameState.landscapesOnBoard[i];
-		if (landscape) {
+		if (landscape.id!="empty") {
 			const landscapeCard = document.createElement("img");
 			landscapeCard.src = `images/landscapes/${landscape.visual}.jpg`;
 			landscapeCard.classList.add("card", "landscape-card");

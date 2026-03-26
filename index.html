@@ -3,141 +3,150 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Minecraft Explorers</title>
-	<link rel="stylesheet" href="explorers.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Explorers</title>
+  <link rel="stylesheet" href="explorers.css">
 </head>
 
 
 <body>
-	<header>
-		<div id="info-bar">
-			<span class="info-player">Player</span>
-			<span class="info-hunger">🍖 6</span>
-			<span id="main-debug">debug</span>
-			<span class="info-deck">⚔️ 22</span>
-		</div>
-	</header>
-	
-	<main>
-
-		<div id="menu-modal" class="menu-modal-overlay hidden">
-			<div id="menu-container" class="modal-box">
-				<h1 class="game-title">MINECRAFT EXPLORERS</h1>
-				<hr>
-				<div id="diff-select">
-					<label for="difficultySelect" class="option-label">Difficulty</label>
-					<select name="difficultySelect" id="difficulty-select" class="tap-control dropdown">
-						<option value="beginner">Beginner</option>
-						<option value="easy">Easy</option>
-						<option value="normal">Normal</option>
-						<option value="hard">Hard</option>
-						<option value="hardcore">Hardcore</option>
-					</select>
-				</div>
-				<hr>
-				<div id="player-number-select">
-					<label for="playerCount" class="option-label">Players</label>
-					<select name="playerCount" id="player-count" class="tap-control dropdown">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select>
-				</div>
-				<span class="option-label">Player Names</span>
-				<div id="name-inputs">
-					<div class="player-name-group" id="name-input-1">
-						<label for="player1NameBox">Player 1 </label>
-						<input type="text" id="player1NameBox" class="player-name-input" name="player1Name" />
-					</div>
-					<div class="player-name-group hidden" id="name-input-2">
-						<label for="player2NameBox">Player 2 </label>
-						<input type="text" id="player2NameBox" class="player-name-input" name="player2Name" />
-					</div>
-					<div class="player-name-group hidden" id="name-input-3">
-						<label for="player3NameBox">Player 3 </label>
-						<input type="text" id="player3NameBox" class="player-name-input" name="player3Name" />
-					</div>
-					<div class="player-name-group hidden" id="name-input-4">
-						<label for="player4NameBox">Player 4 </label>
-						<input type="text" id="player4NameBox" class="player-name-input" name="player4Name" />
-					</div>
-				</div>
-				<hr>
-				<input type="button" id="start-button" class="pixel-button" value="Create World" />
-			</div>
-		</div>
-		
-		<div id="chest-row" class="game-row">
-			<div class="zone" id="chests-zone">
-				<!-- revealed chests here -->
-				<span class="zone-label">Chests</span>
-			</div>
-		</div>
-		
-		<div id="mob-row" class="game-row">
-			<div class="zone" id="mob-deck-zone">
-				<!-- deck card here -->
-				<span class="zone-label">Mob Deck</span>
-			</div>
-			<div class="zone" id="mobs-zone">
-				<!-- revealed mobs here -->
-				<span class="zone-label">Mobs</span>
-			</div>
-		</div>
-		
-		<div id="landscape-row" class="game-row">
-			
-			<div class="zone" id="landscape-zone">
-				<!-- revealed landscapes here -->
-				<span class="zone-label">Landscapes</span>
-			</div>
-			<div class="zone hidden" id="landscape-destination-zone">
-				<!-- revealed destination landscapes here -->
-				<span class="zone-label">Special Locations</span>
-			</div>
-			<div class="zone" id="landscape-deck-zone">
-				<!-- landscape deck card [next up] here -->
-				<span class="zone-label">Landscape Deck</span>
-			</div>
-		</div>
-	</main>
-	
-	<div id="action-modal" class="modal-overlay hidden">
-		<div id="modal-container" class="modal-box">
-			<div id="modal-card-info"></div>
-			<div id="modal-action-buttons"></div>
-			<div id="modal-debug"></div>
-		</div>
-	</div>
-	
-	<div id="game-over-modal" class="game-over-overlay hidden">
-		<div id="death-title">
-			You Died!
-		</div>
-		<div id="killer" class="death-message">Player 1 was slain by a thing
-		</div>
-		<div id="chest-score" class="death-message">Chests Complete: 
-		</div>
-		<img id="game-over-card" src="images/mobs/mob_game_over.jpg"/>
-		<button id="Play Again" class="pixel-button">Play Again</button>
-	</div>
-	
-	<div id="inventory" class="game-row">
-		<div class="zone" id="inventory-zone">
-			<!-- player items here -->
-			<span class="zone-label">Inventory</span>
-		</div>
-		<div class="zone" id="trophies-zone">
-			<!-- mob trophies here -->
-			<span class="zone-label">Trophies</span>
-		</div>
-	</div>
-	
-	
-	<script type="module" src="scripts/main.js"></script>
+  <header>
+    <div id="info-bar">
+      <span class="info-player">Player</span>
+      <span class="info-hunger">🍖 6</span>
+      <span id="main-debug">debug</span>
+      <span class="info-deck">⚔️ 22</span>
+    </div>
+  </header>
+  
+  <main>
+    
+    <div id="menu-modal" class="menu-modal-overlay hidden">
+      <div id="menu-container" class="modal-box">
+        <h1 class="game-title">MINECRAFT EXPLORERS</h1>
+        <hr>
+        <div id="diff-select">
+          <label for="difficultySelect" class="option-label">Difficulty</label>
+          <select name="difficultySelect" id="difficulty-select" class="tap-control dropdown">
+            <option value="beginner">Beginner</option>
+            <option value="easy">Easy</option>
+            <option value="normal">Normal</option>
+            <option value="hard">Hard</option>
+            <option value="hardcore">Hardcore</option>
+          </select>
+        </div>
+        <hr>
+        <div id="player-number-select">
+          <label for="playerCount" class="option-label">Players</label>
+          <select name="playerCount" id="player-count" class="tap-control dropdown">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <span class="option-label">Player Names</span>
+        <div id="name-inputs">
+          <div class="player-name-group" id="name-input-1">
+            <label for="player1NameBox">Player 1 </label>
+            <input type="text" id="player1NameBox" class="player-name-input" name="player1Name" />
+          </div>
+          <div class="player-name-group hidden" id="name-input-2">
+            <label for="player2NameBox">Player 2 </label>
+            <input type="text" id="player2NameBox" class="player-name-input" name="player2Name" />
+          </div>
+          <div class="player-name-group hidden" id="name-input-3">
+            <label for="player3NameBox">Player 3 </label>
+            <input type="text" id="player3NameBox" class="player-name-input" name="player3Name" />
+          </div>
+          <div class="player-name-group hidden" id="name-input-4">
+            <label for="player4NameBox">Player 4 </label>
+            <input type="text" id="player4NameBox" class="player-name-input" name="player4Name" />
+          </div>
+        </div>
+        <hr>
+        <input type="button" id="start-button" class="pixel-button" value="Create World" />
+      </div>
+    </div>
+    
+    <div id="chest-row" class="game-row">
+      <div class="zone" id="chests-zone">
+        <!-- revealed chests here -->
+        <span class="zone-label">Chests</span>
+      </div>
+    </div>
+    
+    
+    <div id="mob-row" class="game-row">
+      <div class="zone" id="mob-deck-zone">
+        <!-- deck card here -->
+        <span class="zone-label">Mob Deck</span>
+      </div>
+      <div class="zone" id="mobs-zone">
+        <!-- revealed mobs here -->
+        <span class="zone-label">Mobs</span>
+      </div>
+    </div>
+    
+    <div id="landscape-row" class="game-row">
+      
+      <div class="zone" id="landscape-zone">
+        <!-- revealed landscapes here -->
+        <span class="zone-label">Landscapes</span>
+      </div>
+      <div class="zone hidden" id="landscape-destination-zone">
+        <!-- revealed destination landscapes here -->
+        <span class="zone-label">Special Locations</span>
+      </div>
+      <div class="zone" id="landscape-deck-zone">
+        <!-- landscape deck card [next up] here -->
+        <span class="zone-label">Landscape Deck</span>
+      </div>
+    </div>
+  </main>
+  
+  <div id="action-modal" class="modal-overlay hidden">
+    <div id="modal-container" class="modal-box">
+      <div id="modal-card-info"></div>
+      <div id="modal-action-buttons"></div>
+      <div id="modal-debug"></div>
+    </div>
+  </div>
+  
+  <div id="game-over-modal" class="game-over-overlay hidden">
+    <div id="death-title">
+      You Died!
+    </div>
+    <div id="killer" class="death-message">Player 1 was slain by a thing
+    </div>
+    <div id="chest-score" class="death-message">Chests Complete:
+    </div>
+    <img id="game-over-card" src="images/mobs/mob_game_over.jpg" />
+    <button id="Play Again" class="pixel-button">Play Again</button>
+  </div>
+  <div id="end-turn-overlay" class="end-turn-overlay hidden">Sleeping through this night</div>
+  
+  <div id="player-row" class="player-row">
+    <div id="inventory" class="game-row">
+      <div class="zone" id="inventory-zone">
+        <!-- player items here -->
+        <span class="zone-label">Inventory</span>
+      </div>
+      <div class="zone" id="trophies-zone">
+        <!-- mob trophies here -->
+        <span class="zone-label">Trophies</span>
+      </div>
+    </div>
+    <div id="button-row" class="button-row">
+      <button id="fill-chests" class="tap-control board-button">Fill Chests</button>
+      <button id="refresh landscapes" class="tap-control board-button">Refresh Landscapes</button>
+      <button id="end-turn" class="tap-control board-button">End Turn</button>
+    </div>
+  </div>
+  
+  
+  <script type="module" src="scripts/main.js"></script>
 </body>
 
 </html>

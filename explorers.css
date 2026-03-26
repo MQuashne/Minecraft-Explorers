@@ -208,6 +208,12 @@ header {
 
 /* --- Rows --- */
 
+.player-row{
+	display: flex;
+flex-direction: column;
+overflow: hidden;
+justify-content: start;
+}
 .game-row {
 	display: flex;
 	flex-direction: row;
@@ -217,6 +223,18 @@ header {
 	overflow-x: auto;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
+}
+.button-row {
+	display: flex;
+	flex-direction: row;
+	gap: 6px;
+	padding:4px;
+	flex-shrink: 0;
+	overflow-x: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	width:100vw;
+	justify-content:center;
 }
 
 .game-row::-webkit-scrollbar {
@@ -459,6 +477,8 @@ height: 100%;
 	background-color: #000000cc;
 }
 
+
+
 /* Menu modal — full screen with cover image background */
 .menu-modal-overlay {
 	display: flex;
@@ -474,6 +494,27 @@ height: 100%;
 	                  url("images/explorers-cover.jpeg");
 	background-size: cover;
 	background-position: center;
+}
+
+.end-turn-overlay {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0px;
+	left: 0;
+	width: 100vw;
+	height: 100%;
+	z-index: 2;
+	background-color: #000000;
+	animation: sleep 10s 1;
+}
+
+@keyframes sleep {
+	0%   { opacity: 0; }
+	45% { opacity: 1; }
+	55% { opacity: 1;}
+	100% { opacity: 0;}
 }
 
 .game-over-overlay {
@@ -521,6 +562,7 @@ height: 100%;
 	gap: 8px;
 	margin-bottom: 18px;
 	padding-top:calc(0.5*var(--card-short));
+	flex-shrink:0;
 }
 
 .dual-card-info{
@@ -628,6 +670,13 @@ gap: 18px;
 
 .button {
 	padding-top: 0px;
+}
+
+.board-button{
+	padding: 0px 2px 2px 2px;
+	width:32%;
+	font-size:12px;
+	
 }
 
 /* --- Disabled state --- */
