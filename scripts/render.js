@@ -5,6 +5,7 @@
 // Pattern: clear the container, rebuild from current state.
 // =============================================================================
 import { exploreLandscape } from "./actions/explore.js"
+import { fightMobs } from "./actions/fightMobs.js"
 // =============================================================================
 // CHEST ROW
 // =============================================================================
@@ -87,6 +88,7 @@ function renderMobRow(gameState, renderCallback) {
 		const cardImage = document.createElement("img");
 		cardImage.src = `images/mobs/${mob.id}.jpg`;
 		card.appendChild(cardImage);
+		card.addEventListener('click', () => fightMobs(gameState, renderCallback, mob));
 		mobRow.appendChild(card);
 	});
 }

@@ -7,10 +7,10 @@ export function revealMobs(gameState, revealCount, renderCallback) {
   while (revealCount > 0) {
     newMob = deck.splice(0, 1)[0];
     newMob.isOverrun = false;
-    if (newMob.id === "mob_game_over") {
+    /*if (newMob.id === "mob_game_over") {
       gameOverCard = true;
       break;
-    }
+    }*/
     if (boardMobs.filter(mob => mob.id === newMob.id).length > 0) {
       newMob.isOverrun = true;
       revealCount++;
@@ -19,13 +19,14 @@ export function revealMobs(gameState, revealCount, renderCallback) {
     boardMobs.push(newMob);
     mobsRevealed.push(newMob);
   }
-  if (gameOverCard) {
+  console.log(mobsRevealed);
+  /*if (gameOverCard) {
     handleGameOver();
-  }
+  }*/
   return { mobsRevealed, gameOverCard }
 }
 
-export function animateMobReveal(mobsRevealed, gameOverCard, onComplete) {
+export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComplete) {
   let currentIndex = 0;
   const actionModal = document.getElementById("action-modal");
   const modalContainer = document.getElementById("modal-container");
@@ -60,10 +61,14 @@ export function animateMobReveal(mobsRevealed, gameOverCard, onComplete) {
   
   const modalMobZone = document.createElement("div");
   modalMobZone.classList.add("zone");
-  modalMobZone.style.minWidth = `calc(2 * var(--card-short)+16px)`;
+  modalMobZone.style.minWidth = `calc(2 * var(--card-short)+px)`;
   modalMobZone.style.overflowX = "auto";
   modalMobZone.style.flex = "1";
   modalMobZone.style.justifyContent = "flex-start";
+  
+  const placeMob = document.createElement("div");
+placeMob.classList.add("card", "modal-portrait", "mob-card","placeholder-card");
+modalMobZone.prepend(placeMob);
   
   
   
@@ -94,8 +99,9 @@ export function animateMobReveal(mobsRevealed, gameOverCard, onComplete) {
       newMobImage.src = `images/mobs/${mobsRevealed[currentIndex].id}.jpg`;
       newMob.appendChild(newMobImage);
       modalMobZone.prepend(newMob);
-      
-      if (mobsRevealed[currentIndex].id === "mob-game-over") {
+      console.log(mobsRevealed[currentIndex].id);
+      if (mobsRevealed[currentIndex].id === "mob_game_over") {
+        console.log("run");
         const gameOverScreen = document.getElementById("game-over-modal");
         const deathMessage = document.getElementById("killer");
         if (currentIndex > 0) {
@@ -112,15 +118,18 @@ export function animateMobReveal(mobsRevealed, gameOverCard, onComplete) {
         revealInstructions.textContent = "OVERRUN!! Tap to reveal another mob!";
       }
       currentIndex++;
-      flipInner.classList.add("no-transition");
-      flipInner.classList.remove("flipped");
-      void flipInner.offsetWidth;
-      flipInner.classList.remove("no-transition");
       
       
       if (currentIndex < mobsRevealed.length) {
+        
+        flipInner.classList.add("no-transition");
+flipInner.classList.remove("flipped");
+void flipInner.offsetWidth;
+flipInner.classList.remove("no-transition");
+        
         mobImage.src = `images/mobs/${mobsRevealed[currentIndex].id}.jpg`;
       } else {
+        flipInner.classList.add("hidden");
         revealInstructions.innerHTML = '';
         const backButton = document.createElement("button");
         backButton.classList.add("tap-control", "button");

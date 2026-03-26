@@ -20,6 +20,12 @@ function buildMobDeck(playerCount) {
     const gameOverCard = { id: "mob_game_over", name: "Game Over", cost: null, copies: 1 };
     let gameOverPosition = Math.floor(Math.random() * 5) + mobDeck.length - 4;
     mobDeck.splice(gameOverPosition, 0, gameOverCard);
+    
+    //remove after testing
+    mobDeck.splice(0,17);
+    const debugMain =document.getElementById("main-debug");
+    debugMain.textContent=mobDeck.indexOf(gameOverCard);
+    // remove after testing
     return mobDeck;
 }
 

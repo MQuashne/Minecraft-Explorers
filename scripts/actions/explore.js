@@ -185,7 +185,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
       revealButton.addEventListener("click", () => {
         
         const { mobsRevealed, gameOverCard } = revealMobs(gameState, landscapeCard.mobCount);
-        animateMobReveal(mobsRevealed, gameOverCard, () => {
+        animateMobReveal(mobsRevealed, gameOverCard, gameState, () => {
           actionModal.classList.add("hidden");
           const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
           gameState.landscapesOnBoard.splice(landscapeSpot, 1);

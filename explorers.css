@@ -523,6 +523,15 @@ height: 100%;
 	padding-top:calc(0.5*var(--card-short));
 }
 
+.dual-card-info{
+	display: flex;
+flex-direction: row;
+align-items: center;
+gap: 8px;
+margin-bottom: 18px;
+padding-top:calc(0.5*var(--card-short));
+}
+
 #modal-action-buttons {
 	display: flex;
 	flex-direction: column;
