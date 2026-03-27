@@ -40,6 +40,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   actionButtons.innerHTML = '';
   let cost = landscapeCard.cost;
   const playerTools = playerInventory.filter(item => item.category === landscapeCard.toolDiscount);
+  const playerArmor = playerInventory.filter(item => item.category === "armor");
   const toolDiscounts = {};
   let chosenTrade = "";
   
@@ -190,13 +191,39 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
         animateMobReveal(mobsRevealed, gameOverCard, gameState, () => {
           actionModal.classList.add("hidden");
           const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
-          gameState.landscapesOnBoard.splice(landscapeSpot, 1,{id:"empty"});
+          gameState.landscapesOnBoard.splice(landscapeSpot, 1, { id: "empty" });
           renderCallback(gameState, renderCallback);
         });
         
         
       });
       actionButtons.appendChild(revealButton);
+      
+      if (playerArmor.length > 0) {
+        const armorButton = document.createElement("button");
+        armorButton.classList.add("tap-control", "button");
+        armorButton.textContent = "Use Armor";
+        actionButtons.appendChild(armorButton);
+        armorButton.addEventListener("click", () => {
+          let armorIndex = playerInventory.indexOf(playerArmor[0]);
+          playerInventory.splice(armorIndex, 1);
+          actionModal.classList.add("hidden");
+          
+          if (landscapeCard.isDestination) {
+            const destSpot = gameState.destinationsOnBoard.indexOf(landscapeCard);
+            gameState.destinationsOnBoard.splice(destSpot, 1);
+            
+          } else {
+            const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
+            gameState.landscapesOnBoard.splice(landscapeSpot, 1, { id: "empty" });
+          }
+          renderCallback(gameState, renderCallback);
+          
+        });
+      }
+      
+      
+      
     } else {
       
       const placeButton = document.createElement("button");

@@ -1022,7 +1022,7 @@ export const Items = [
     category: "armor",
     bonusValue: null,
     state: null,
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_iron_armor_02",
@@ -1031,7 +1031,7 @@ export const Items = [
     category: "armor",
     bonusValue: null,
     state: null,
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_iron_armor_03",
@@ -1040,7 +1040,7 @@ export const Items = [
     category: "armor",
     bonusValue: null,
     state: null,
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_iron_armor_04",
@@ -1049,7 +1049,7 @@ export const Items = [
     category: "armor",
     bonusValue: null,
     state: null,
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_iron_armor_05",
@@ -1058,7 +1058,7 @@ export const Items = [
     category: "armor",
     bonusValue: null,
     state: null,
-    isUsable: true,
+    isUsable: false,
   },
 
   // --- Swords ---
@@ -1069,7 +1069,7 @@ export const Items = [
     category: "sword",
     bonusValue: 2,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_gold_sword_01",
@@ -1078,7 +1078,7 @@ export const Items = [
     category: "sword",
     bonusValue: 3,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_gold_sword_02",
@@ -1087,7 +1087,7 @@ export const Items = [
     category: "sword",
     bonusValue: 3,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_diamond_sword_01",
@@ -1096,7 +1096,7 @@ export const Items = [
     category: "sword",
     bonusValue: 4,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_diamond_sword_02",
@@ -1105,7 +1105,7 @@ export const Items = [
     category: "sword",
     bonusValue: 4,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
 
   // --- Pickaxes ---
@@ -1116,7 +1116,7 @@ export const Items = [
     category: "pickaxe",
     bonusValue: 2,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_iron_pickaxe_02",
@@ -1125,7 +1125,7 @@ export const Items = [
     category: "pickaxe",
     bonusValue: 2,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_gold_pickaxe_01",
@@ -1134,7 +1134,7 @@ export const Items = [
     category: "pickaxe",
     bonusValue: 3,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_diamond_pickaxe_01",
@@ -1143,7 +1143,7 @@ export const Items = [
     category: "pickaxe",
     bonusValue: 4,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
   {
     id: "item_diamond_pickaxe_02",
@@ -1152,7 +1152,7 @@ export const Items = [
     category: "pickaxe",
     bonusValue: 4,
     state: "intact",
-    isUsable: true,
+    isUsable: false,
   },
 
   // --- Crossbow ---

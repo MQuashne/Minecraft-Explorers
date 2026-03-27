@@ -137,6 +137,7 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
         backButton.textContent = "Back to Board"};
         console.log(onComplete)
         backButton.addEventListener("click", () => {
+          modalCardInfo.style.removeProperty("overflow-x");
           onComplete();
         })
         actionButtons.appendChild(backButton);

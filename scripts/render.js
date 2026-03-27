@@ -6,6 +6,7 @@
 // =============================================================================
 import { exploreLandscape } from "./actions/explore.js"
 import { fightMobs } from "./actions/fightMobs.js"
+import { viewItem } from "./actions/useItem.js"
 // =============================================================================
 // CHEST ROW
 // =============================================================================
@@ -182,6 +183,9 @@ playerInventory.splice(index, 1);
 			if (object.state === "damaged") {
 				objectCard.classList.add("rotate-card");
 			}
+			objectCard.addEventListener("click",() => {
+				viewItem(gameState,object,renderCallback);
+			});
 			inventoryZone.appendChild(objectCard);
 
 		});

@@ -56,7 +56,7 @@ function buildPlayers(playerNames) {
                 category: "sword",
                 bonusValue: 4,
                 state: "intact",
-                isUsable: true,
+                isUsable: false,
             },
             
             // --- Pickaxes ---
@@ -67,7 +67,7 @@ function buildPlayers(playerNames) {
                 category: "pickaxe",
                 bonusValue: 2,
                 state: "intact",
-                isUsable: true,
+                isUsable: false,
             },
             {
                 id: "item_iron_pickaxe_02",
@@ -76,7 +76,7 @@ function buildPlayers(playerNames) {
                 category: "pickaxe",
                 bonusValue: 2,
                 state: "damaged",
-                isUsable: true,
+                isUsable: false,
             },
             {
                 id: "item_emerald_03",
@@ -94,7 +94,7 @@ function buildPlayers(playerNames) {
                 category: "armor",
                 bonusValue: null,
                 state: null,
-                isUsable: true,
+                isUsable: false,
             }
         ],
         trophies: []
