@@ -13,7 +13,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   // Create card display
   const modalCardInfo = document.getElementById("modal-card-info");
   modalCardInfo.innerHTML = ''
- modalCardInfo.style.removeProperty("overflow-x");
+  modalCardInfo.style.removeProperty("overflow-x");
   
   const flipCard = document.createElement("div");
   flipCard.classList.add("flip-card");
@@ -41,7 +41,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   let cost = landscapeCard.cost;
   const playerTools = playerInventory.filter(item => item.category === landscapeCard.toolDiscount);
   const toolDiscounts = {};
-  let chosenTrade="";
+  let chosenTrade = "";
   
   
   //------------
@@ -123,11 +123,11 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
     tradeButton.classList.add("tap-control", "button");
     tradeButton.textContent = `Trade   (${cost}🍖)`;
     tradeButton.addEventListener("click", () => {
-      chosenTrade=tradeSelector.value;
-      executeExplore() 
+      chosenTrade = tradeSelector.value;
+      executeExplore()
       
     });
-    if (cost > gameState.hungerRemaining || tradeSelector.value==='' || tradeSelector.value===null) {
+    if (cost > gameState.hungerRemaining || tradeSelector.value === '' || tradeSelector.value === null) {
       tradeButton.disabled = true;
       
     } else { tradeButton.disabled = false }
@@ -151,28 +151,29 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
     gameState.hungerRemaining -= cost;
     
     // --- adddamage to tool's and discard broken ones --- 
-    if (landscapeCard.subtype==="explore"){
-    let index = 0;
-    playerTools.forEach((tool) => {
-      if (toolDiscounts[tool.id] > 0) {
-        const uses = toolDiscounts[tool.id] / tool.bonusValue;
-        if (tool.state === "damaged") {
-          tool.state = "broken";
-          index = playerInventory.indexOf(tool);
-          playerInventory.splice(index, 1);
-        } else if (uses === 1) {
-          tool.state = "damaged"
-        } else {
-          tool.state = "broken";
-          index = playerInventory.indexOf(tool);
-          playerInventory.splice(index, 1);
+    if (landscapeCard.subtype === "explore") {
+      let index = 0;
+      playerTools.forEach((tool) => {
+        if (toolDiscounts[tool.id] > 0) {
+          const uses = toolDiscounts[tool.id] / tool.bonusValue;
+          if (tool.state === "damaged") {
+            tool.state = "broken";
+            index = playerInventory.indexOf(tool);
+            playerInventory.splice(index, 1);
+          } else if (uses === 1) {
+            tool.state = "damaged"
+          } else {
+            tool.state = "broken";
+            index = playerInventory.indexOf(tool);
+            playerInventory.splice(index, 1);
+          }
         }
-      }
-    });} else if (landscapeCard.subtype==="village"){
+      });
+    } else if (landscapeCard.subtype === "village") {
       //Remove traded item from inventory 
-      const tradedItem=playerInventory.find(obj => obj.id === chosenTrade);
+      const tradedItem = playerInventory.find(obj => obj.id === chosenTrade);
       const tradeIndex = playerInventory.indexOf(tradedItem);
-      playerInventory.splice(tradeIndex,1);
+      playerInventory.splice(tradeIndex, 1);
     }
     // --- Reveal Item, place in inventory, and change buttons ---
     flipInner.classList.add("flipped");
@@ -189,7 +190,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
         animateMobReveal(mobsRevealed, gameOverCard, gameState, () => {
           actionModal.classList.add("hidden");
           const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
-          gameState.landscapesOnBoard.splice(landscapeSpot, 1);
+          gameState.landscapesOnBoard.splice(landscapeSpot, 1,{id:"empty"});
           renderCallback(gameState, renderCallback);
         });
         
@@ -202,8 +203,15 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
       placeButton.classList.add("tap-control", "button");
       placeButton.addEventListener("click", () => {
         actionModal.classList.add("hidden");
-        const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
-        gameState.landscapesOnBoard.splice(landscapeSpot, 1,{id:"empty"});
+        
+        if (landscapeCard.isDestination) {
+          const destSpot = gameState.destinationsOnBoard.indexOf(landscapeCard);
+          gameState.destinationsOnBoard.splice(destSpot, 1);
+          
+        } else {
+          const landscapeSpot = gameState.landscapesOnBoard.indexOf(landscapeCard);
+          gameState.landscapesOnBoard.splice(landscapeSpot, 1, { id: "empty" });
+        }
         renderCallback(gameState, renderCallback);
       });
       placeButton.innerText = "Place in Inventory"

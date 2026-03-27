@@ -7,10 +7,6 @@ export function revealMobs(gameState, revealCount, renderCallback) {
   while (revealCount > 0) {
     newMob = deck.splice(0, 1)[0];
     newMob.isOverrun = false;
-    /*if (newMob.id === "mob_game_over") {
-      gameOverCard = true;
-      break;
-    }*/
     if (boardMobs.filter(mob => mob.id === newMob.id).length > 0) {
       newMob.isOverrun = true;
       revealCount++;
@@ -19,16 +15,13 @@ export function revealMobs(gameState, revealCount, renderCallback) {
     boardMobs.push(newMob);
     mobsRevealed.push(newMob);
   }
-  console.log(mobsRevealed);
-  /*if (gameOverCard) {
-    handleGameOver();
-  }*/
   return { mobsRevealed, gameOverCard }
 }
 
 export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComplete) {
   let currentIndex = 0;
   const actionModal = document.getElementById("action-modal");
+  actionModal.classList.remove("hidden");
   const modalContainer = document.getElementById("modal-container");
   
   const modalCardInfo = document.getElementById("modal-card-info");
@@ -137,7 +130,12 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
         revealInstructions.innerHTML = '';
         const backButton = document.createElement("button");
         backButton.classList.add("tap-control", "button");
-        backButton.textContent = "Back to Board";
+        console.log(gameState.turnEnded);
+        if (gameState.turnEnded){
+          backButton.textContent = "Sleep";
+        }else{
+        backButton.textContent = "Back to Board"};
+        console.log(onComplete)
         backButton.addEventListener("click", () => {
           onComplete();
         })

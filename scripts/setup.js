@@ -21,11 +21,6 @@ function buildMobDeck(playerCount) {
     let gameOverPosition = Math.floor(Math.random() * 5) + mobDeck.length - 4;
     mobDeck.splice(gameOverPosition, 0, gameOverCard);
     
-    //remove after testing
-    mobDeck.splice(0,17);
-    const debugMain =document.getElementById("main-debug");
-    debugMain.textContent=mobDeck.indexOf(gameOverCard);
-    // remove after testing
     return mobDeck;
 }
 
@@ -91,6 +86,15 @@ function buildPlayers(playerNames) {
                 bonusValue: null,
                 state: null,
                 isUsable: false,
+            },
+            {
+                id: "item_iron_armor_02",
+                visual: "item_iron_armor",
+                name: "Iron Armor",
+                category: "armor",
+                bonusValue: null,
+                state: null,
+                isUsable: true,
             }
         ],
         trophies: []
@@ -123,7 +127,8 @@ export function setupGame(playerCount, playerNames, difficulty) {
         destinationsOnBoard,
         currentPlayerIndex: 0,
         hungerRemaining: 6,
-        players: buildPlayers(playerNames)
+        players: buildPlayers(playerNames),
+        turnEnded: false
     }
     return gameState;
 }

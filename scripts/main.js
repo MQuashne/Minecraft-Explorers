@@ -1,17 +1,18 @@
 import { setupGame } from "./setup.js"
 import { render } from "./render.js"
+import { endTurn } from "./actions/endTurn.js"
 
 document.addEventListener('DOMContentLoaded', (event) => {
-
+	
 	// --- Main Menu Unhide ---
 	const menuModal = document.getElementById("menu-modal");
 	menuModal.classList.remove("hidden");
-
+	
 	
 	// ---Get difficulty dropdown---
 	const difficultySelect = document.getElementById("difficulty-select");
 	
-
+	
 	// ---Get Number of Players and unhide name boxes ---
 	const playerCount = document.getElementById("player-count");
 	const nameBoxes = document.querySelectorAll('.player-name-group');
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			} else {
 				nameGroup.classList.add('hidden');
 			}
-
+			
 		});
 	});
 	const startButton = document.getElementById("start-button");
@@ -34,9 +35,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		visibleInputs.forEach(name => {
 			playerNames.push(name.value.trim() || `Player ${playerNames.length + 1}`);
 		});
-		let gameState=setupGame(numPlayers, playerNames, difficultySelect.value);
+		let gameState = setupGame(numPlayers, playerNames, difficultySelect.value);
 		menuModal.classList.add("hidden");
-		render(gameState,render);
-
+		const endTurnButton = document.getElementById("end-turn");
+		endTurnButton.addEventListener("click", () => endTurn(gameState, render));
+		render(gameState, render);
+		
 	});
 });
