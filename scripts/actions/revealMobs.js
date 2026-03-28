@@ -23,6 +23,7 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
   const actionModal = document.getElementById("action-modal");
   actionModal.classList.remove("hidden");
   const modalContainer = document.getElementById("modal-container");
+  modalContainer.style.width="90vw";
   
   const modalCardInfo = document.getElementById("modal-card-info");
   modalCardInfo.innerHTML = '';
@@ -95,6 +96,7 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
       newMobImage.src = `images/mobs/${mobsRevealed[currentIndex].id}.jpg`;
       newMob.appendChild(newMobImage);
       modalMobZone.prepend(newMob);
+      placeMob.classList.add("hidden");
       console.log(mobsRevealed[currentIndex].id);
       if (mobsRevealed[currentIndex].id === "mob_game_over") {
         console.log("run");
@@ -138,6 +140,7 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
         console.log(onComplete)
         backButton.addEventListener("click", () => {
           modalCardInfo.style.removeProperty("overflow-x");
+          modalContainer.style.removeProperty("width");
           onComplete();
         })
         actionButtons.appendChild(backButton);

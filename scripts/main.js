@@ -1,6 +1,8 @@
 import { setupGame } from "./setup.js"
 import { render } from "./render.js"
 import { endTurn } from "./actions/endTurn.js"
+import { refreshLandscapes } from "./actions/refreshLandscapes.js"
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
 	
@@ -39,6 +41,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		menuModal.classList.add("hidden");
 		const endTurnButton = document.getElementById("end-turn");
 		endTurnButton.addEventListener("click", () => endTurn(gameState, render));
+		render(gameState, render);
+		const refreshButton = document.getElementById("refresh-landscapes");
+		refreshButton.addEventListener("click", () => refreshLandscapes(gameState, render));
 		render(gameState, render);
 		
 	});

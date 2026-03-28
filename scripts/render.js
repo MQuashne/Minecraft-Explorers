@@ -7,6 +7,7 @@
 import { exploreLandscape } from "./actions/explore.js"
 import { fightMobs } from "./actions/fightMobs.js"
 import { viewItem } from "./actions/useItem.js"
+import { useTrophies } from "./actions/useTrophies.js"
 // =============================================================================
 // CHEST ROW
 // =============================================================================
@@ -14,19 +15,19 @@ import { viewItem } from "./actions/useItem.js"
 function renderChestRow(gameState, renderCallback) {
 	const row = document.getElementById("chests-zone");
 	row.innerHTML = '<span class="zone-label">Chests</span>';
-
+	
 	gameState.chests.forEach((chest) => {
 		const card = document.createElement("div");
 		card.classList.add("card", "portrait-card", "chest-card");
 		const cardImage = document.createElement("img");
-
+		
 		// Chest is fully filled — show closed chest
 		if (chest.placedItems.length === chest.fillItems.length) {
 			cardImage.src = `images/chests/chest_filled.jpg`;
 		} else {
 			// Chest is empty or partially filled — show open chest card
 			cardImage.src = `images/chests/${chest.id}.jpg`;
-
+			
 			// Partially filled — add indicator to correct slot
 			if (chest.placedItems.length === 1) {
 				const filledSlot = document.createElement("div");
@@ -38,7 +39,7 @@ function renderChestRow(gameState, renderCallback) {
 				card.appendChild(filledSlot);
 			}
 		}
-
+		
 		card.appendChild(cardImage);
 		row.appendChild(card);
 	});
@@ -51,10 +52,10 @@ function renderChestRow(gameState, renderCallback) {
 function renderMobRow(gameState, renderCallback) {
 	const mobRow = document.getElementById("mobs-zone");
 	mobRow.innerHTML = '<span class="zone-label">Mobs</span>';
-
+	
 	const mobDeckRow = document.getElementById("mob-deck-zone");
 	mobDeckRow.innerHTML = '<span class="zone-label">Mob Deck</span>';
-
+	
 	// --- Deck card (left side) ---
 	const deckCard = document.createElement("div");
 	deckCard.classList.add("card", "portrait-card", "mob-deck-card");
@@ -75,9 +76,9 @@ function renderMobRow(gameState, renderCallback) {
 		deckCard.appendChild(deckCount);
 	*/
 	mobDeckRow.appendChild(deckCard);
-
+	
 	// --- Revealed mobs ---
-
+	
 	if (gameState.mobsOnBoard.length > 0) {
 		gameState.mobsOnBoard.sort((a, b) => {
 			return a.id.localeCompare(b.id);
@@ -101,8 +102,8 @@ function renderLandscapeRow(gameState, renderCallback) {
 	const landscapeZone = document.querySelector("#landscape-zone");
 	const destinationZone = document.querySelector("#landscape-destination-zone");
 	deckZone.innerHTML = '<span class="zone-label">Landscape Deck</span>';
-
-	// --- Deck card (left side) ---
+	
+	// --- Deck card (right side) ---
 	if (gameState.landscapeDeck.length > 0) {
 		const topCard = gameState.landscapeDeck[0];
 		const img = document.createElement("img");
@@ -115,17 +116,24 @@ function renderLandscapeRow(gameState, renderCallback) {
 		empty.classList.add("card", "landscape-card", "placeholder-card");
 		deckZone.appendChild(empty);
 	}
-
+	
 	// --- Landscape zone (always 5 slots) ---
 	landscapeZone.innerHTML = '<span class="zone-label">Landscapes</span>';
-console.log(gameState.landscapesOnBoard)
+	landscapeZone.dataset.actionMode = "explore";
 	for (let i = 0; i < 5; i++) {
 		const landscape = gameState.landscapesOnBoard[i];
-		if (landscape.id!="empty") {
+		if (landscape.id != "empty") {
+			
+			
+			
 			const landscapeCard = document.createElement("img");
 			landscapeCard.src = `images/landscapes/${landscape.visual}.jpg`;
 			landscapeCard.classList.add("card", "landscape-card");
-			landscapeCard.addEventListener('click', () => exploreLandscape(gameState, renderCallback, landscape));
+			landscapeCard.addEventListener('click', () => {
+				if (landscapeZone.dataset.actionMode === "explore") {
+					exploreLandscape(gameState, renderCallback, landscape)
+				}
+			});
 			landscapeZone.appendChild(landscapeCard);
 		} else {
 			const emptyLandscape = document.createElement("div");
@@ -137,9 +145,9 @@ console.log(gameState.landscapesOnBoard)
 			landscapeZone.appendChild(emptyLandscape);
 		}
 	}
-
+	
 	// --- Destination zone (up to 2 slots) ---
-
+	
 	destinationZone.innerHTML = '<span class="zone-label">Destinations</span>';
 	if (gameState.destinationsOnBoard.length > 0) {
 		gameState.destinationsOnBoard.forEach((destination) => {
@@ -162,18 +170,19 @@ console.log(gameState.landscapesOnBoard)
 function renderInventoryRow(gameState, renderCallback, playerIndex = 0) {
 	//keep only while single screen
 	playerIndex = gameState.currentPlayerIndex
-
+	
 	const playerInventory = gameState.players[playerIndex].inventory;
 	const playerTrophies = gameState.players[playerIndex].trophies;
 	const inventoryZone = document.querySelector("#inventory-zone");
 	const trophiesZone = document.querySelector("#trophies-zone");
-
+	
 	//  --- Inventory Zone ---
 	inventoryZone.innerHTML = '<span class="zone-label">Inventory</span>';
 	if (playerInventory.length > 0) {
 		playerInventory.sort((a, b) => {
-			return a.category.localeCompare(b.category) || a.id.localeCompare(b.id);index = playerInventory.indexOf(tool);
-playerInventory.splice(index, 1);
+			return a.category.localeCompare(b.category) || a.id.localeCompare(b.id);
+			index = playerInventory.indexOf(tool);
+			playerInventory.splice(index, 1);
 		});
 		playerInventory.forEach((object) => {
 			const objectCard = document.createElement("img");
@@ -183,15 +192,15 @@ playerInventory.splice(index, 1);
 			if (object.state === "damaged") {
 				objectCard.classList.add("rotate-card");
 			}
-			objectCard.addEventListener("click",() => {
-				viewItem(gameState,object,renderCallback);
+			objectCard.addEventListener("click", () => {
+				viewItem(gameState, object, renderCallback);
 			});
 			inventoryZone.appendChild(objectCard);
-
+			
 		});
-
+		
 	}
-
+	
 	// --- Trophy Zone ---
 	trophiesZone.innerHTML = '<span class="zone-label">Trophies</span>';
 	if (playerTrophies.length > 0) {
@@ -203,10 +212,13 @@ playerInventory.splice(index, 1);
 			trophyCard.src = `images/mobs/${trophy.id}.jpg`;
 			trophyCard.alt = trophy.id;
 			trophyCard.classList.add("card", "portrait-card");
+			trophyCard.addEventListener("click", () => {
+				useTrophies(gameState, trophy, renderCallback);
+			});
 			trophiesZone.appendChild(trophyCard);
-
+			
 		});
-
+		
 	}
 }
 // =============================================================================

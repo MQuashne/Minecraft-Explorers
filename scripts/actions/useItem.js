@@ -1,6 +1,6 @@
 /*Code for using:
 
-food
+done - food
 crossbow
 map
 spyglass
@@ -13,6 +13,7 @@ export function viewItem(gameState, itemCard, renderCallback) {
   const cardInfo = document.getElementById("modal-card-info");
   const actionButtons = document.getElementById("modal-action-buttons");
   const playerInventory = gameState.players[gameState.currentPlayerIndex].inventory
+  const itemIndex = playerInventory.indexOf(itemCard);
   
   //Item Image
   const itemImage = document.createElement("img");
@@ -30,7 +31,17 @@ export function viewItem(gameState, itemCard, renderCallback) {
     const useButton = document.createElement("button")
     useButton.classList.add("tap-control", "button");
     useButton.textContent = `Use ${itemCard.name}`;
-    useButton.addEventListener("click", () => {});
+    useButton.addEventListener("click", () => {
+      if (itemCard.category==="food"){
+        useFood();
+      } //else if...
+      
+      //for all:
+      playerInventory.splice(itemIndex,1);
+      actionModal.classList.add("hidden");
+      renderCallback(gameState,renderCallback);
+      
+    });
     actionButtons.appendChild(useButton);
   }
   
@@ -45,4 +56,9 @@ export function viewItem(gameState, itemCard, renderCallback) {
   
   actionModal.classList.remove("hidden");
   
+  //Type-Specific Functions
+  function useFood(){
+    gameState.hungerRemaining+=itemCard.bonusValue
+    
+  };
 }
