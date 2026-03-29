@@ -125,13 +125,25 @@ function renderLandscapeRow(gameState, renderCallback) {
 		if (landscape.id != "empty") {
 			
 			
-			
-			const landscapeCard = document.createElement("img");
-			landscapeCard.src = `images/landscapes/${landscape.visual}.jpg`;
+			const landscapeCard = document.createElement("div");
+			landscapeCard.id=landscape.id;
 			landscapeCard.classList.add("card", "landscape-card");
+			landscapeCard.style.position = "relative";
+			const landscapeImage = document.createElement("img");
+			landscapeImage.src = `images/landscapes/${landscape.visual}.jpg`;
+			const tint = document.createElement("div");
+			tint.classList.add("selection-tint", "hidden");
+			landscapeCard.appendChild(landscapeImage);
+			landscapeCard.appendChild(tint);
+			
+			
+			
 			landscapeCard.addEventListener('click', () => {
 				if (landscapeZone.dataset.actionMode === "explore") {
 					exploreLandscape(gameState, renderCallback, landscape)
+				} else if (landscapeZone.dataset.actionMode === "refresh") {
+					tint.classList.toggle("hidden");
+					landscapeCard.toggleAttribute("refresh");
 				}
 			});
 			landscapeZone.appendChild(landscapeCard);
@@ -140,8 +152,9 @@ function renderLandscapeRow(gameState, renderCallback) {
 			emptyLandscape.classList.add(
 				"card",
 				"landscape-card",
-				"placeholder-card",
+				"placeholder-card"
 			);
+			emptyLandscape.setAttribute("refresh",'');
 			landscapeZone.appendChild(emptyLandscape);
 		}
 	}
