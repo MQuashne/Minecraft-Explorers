@@ -621,17 +621,33 @@ header {
 
 #board-cover {
   position: fixed;
+  /*display:flex;
+  flex-direction:column;*/
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: #000000D0;
   z-index: 3;
-  display:flex;
-  flex-direction:column;
-  justify-content:end;
   padding-bottom:10vh;
-  gap:8px;
+  padding-top:20vh;
+}
+
+#cover-buttons {
+  position:absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width:100%;
+  padding:5px;
+  
+}
+
+#cover-message {
+  position: absolute;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
 }
 
 /* =============================================================================

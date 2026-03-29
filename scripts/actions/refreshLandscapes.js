@@ -5,14 +5,21 @@ export function refreshLandscapes(gameState, renderCallback) {
   const landscapeDeck = gameState.landscapeDeck;
   const boardButtons = document.querySelectorAll('.board-button');
   const boardCover = document.getElementById("board-cover");
-  boardCover.innerHTML = '';
+  const coverButtons=document.getElementById("cover-buttons");
+  const coverMessage=document.getElementById("cover-message");
+  
+ 
+  coverMessage.innerHTML="Choose landscapes to replace. <br> All empty spaces will be filled.";
   boardCover.classList.remove("hidden");
   landscapeZone.style.zIndex = "4";
   landscapeZone.dataset.actionMode = "refresh";
   const doneButton = document.createElement("button");
   doneButton.classList.add("tap-control", "button");
   let rect = landscapeZone.getBoundingClientRect();
-  doneButton.textContent = "Refill Empty & Refresh Selected (1🍖)";
+  coverButtons.style.top = (rect.top + rect.height + 30).toString() + "px";
+  coverMessage.style.top = (rect.top/2).toString() + "px";
+  
+  doneButton.textContent = "Refresh Selected (1🍖)";
   let landscapeFound = false;
   
   if (gameState.hungerRemaining >= 1) {
@@ -40,7 +47,7 @@ export function refreshLandscapes(gameState, renderCallback) {
             if (filledLandscape.isDestination) {
               gameState.destinationsOnBoard.push(filledLandscape);
             } else {
-              gameState.landscapesOnBoard.splice(i, 1, filledLandscape);
+              gameState.landscapesOnBoard.splice(removedLandscape, 1, filledLandscape);
               landscapeFound = true;
             }
           }
@@ -66,6 +73,6 @@ export function refreshLandscapes(gameState, renderCallback) {
     renderCallback(gameState, renderCallback);
   })
   
-  boardCover.appendChild(doneButton);
-  boardCover.appendChild(backButton);
+  coverButtons.appendChild(doneButton);
+  coverButtons.appendChild(backButton);
 }
