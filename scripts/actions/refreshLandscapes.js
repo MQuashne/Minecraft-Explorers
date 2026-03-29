@@ -17,22 +17,18 @@ export function refreshLandscapes(gameState, renderCallback) {
   
   if (gameState.hungerRemaining >= 1) {
     doneButton.addEventListener("click", () => {
-      const refreshCards = landscapeZone.querySelectorAll("div[refresh]");
-      refreshCards.forEach((card) => {
-        card.toggleAttribute("refresh");
-        if (card.id) {
-          let removedLandscape = gameState.landscapesOnBoard.findIndex(landscape => landscape.id === card.id);
-          console.log(removedLandscape)
-          
-          landscapeFound = false;
-          while (landscapeFound === false) {
-            const [addedLandscape] = landscapeDeck.splice(0, 1);
-            if (addedLandscape.isDestination) {
-              gameState.destinationsOnBoard.push(addedLandscape);
-            } else {
-              gameState.landscapesOnBoard.splice(removedLandscape, 1, addedLandscape);
-              landscapeFound = true;
-            }
+      const selectedIndices = [...landscapeZone.querySelectorAll("[data-selected-for-refresh]")]
+        .map(el => parseInt(el.dataset.selectedForRefresh))
+        .sort((a, b) => b - a);
+      selectedIndices.forEach((index) => {
+        landscapeFound = false;
+        while (!landscapeFound) {
+          const [addedLandscape] = landscapeDeck.splice(0, 1);
+          if (addedLandscape.isDestination) {
+            gameState.destinationsOnBoard.push(addedLandscape);
+          } else {
+            gameState.landscapesOnBoard.splice(index, 1, addedLandscape);
+            landscapeFound = true;
           }
         }
       });
@@ -44,13 +40,13 @@ export function refreshLandscapes(gameState, renderCallback) {
             if (filledLandscape.isDestination) {
               gameState.destinationsOnBoard.push(filledLandscape);
             } else {
-              gameState.landscapesOnBoard.splice(removedLandscape, 1, filledLandscape);
+              gameState.landscapesOnBoard.splice(i, 1, filledLandscape);
               landscapeFound = true;
             }
           }
         };
       }
-      if (refreshCards.length > 0) {
+      if (selectedIndices.length > 0) {
         gameState.hungerRemaining--;
       }
       boardCover.classList.add("hidden");

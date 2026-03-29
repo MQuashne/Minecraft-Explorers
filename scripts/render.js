@@ -132,7 +132,8 @@ function renderLandscapeRow(gameState, renderCallback) {
 			const landscapeImage = document.createElement("img");
 			landscapeImage.src = `images/landscapes/${landscape.visual}.jpg`;
 			const tint = document.createElement("div");
-			tint.classList.add("selection-tint", "hidden");
+			tint.classList.add("selection-tint");
+			tint.style.display="none";
 			landscapeCard.appendChild(landscapeImage);
 			landscapeCard.appendChild(tint);
 			
@@ -142,8 +143,12 @@ function renderLandscapeRow(gameState, renderCallback) {
 				if (landscapeZone.dataset.actionMode === "explore") {
 					exploreLandscape(gameState, renderCallback, landscape)
 				} else if (landscapeZone.dataset.actionMode === "refresh") {
-					tint.classList.toggle("hidden");
-					landscapeCard.toggleAttribute("refresh");
+					if (landscapeCard.dataset.selectedForRefresh){
+						delete landscapeCard.dataset.selectedForRefresh;
+						tint.style.display="none"
+					}else{landscapeCard.dataset.selectedForRefresh=i;
+					tint.style.display="block";
+					}
 				}
 			});
 			landscapeZone.appendChild(landscapeCard);
