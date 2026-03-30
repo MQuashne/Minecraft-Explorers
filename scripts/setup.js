@@ -87,6 +87,15 @@ function buildPlayers(playerNames) {
                 state: null,
                 isUsable: false,
             },
+              {
+      id: "item_crossbow_01",
+      visual: "item_crossbow",
+      name: "Crossbow",
+      category: "crossbow",
+      bonusValue: null,
+      state: null,
+      isUsable: true,
+  },
             {
                 id: "item_iron_armor_02",
                 visual: "item_iron_armor",
@@ -130,6 +139,7 @@ export function setupGame(playerCount, playerNames, difficulty) {
         destinationsOnBoard,
         currentPlayerIndex: 0,
         hungerRemaining: 6,
+        lastActionTaken: "start",
         players: buildPlayers(playerNames),
         turnEnded: false
     }

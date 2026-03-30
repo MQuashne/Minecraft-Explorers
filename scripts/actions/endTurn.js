@@ -78,6 +78,7 @@ export function endTurn(gameState, renderCallback) {
       } else { gameState.currentPlayerIndex++; }
       gameState.hungerRemaining = 6;
       gameState.turnEnded = false;
+      gameState.lastActionTaken="end turn";
       
       endOverlay.classList.remove("hidden");
       setTimeout(() => { renderCallback(gameState, renderCallback); }, 3000)

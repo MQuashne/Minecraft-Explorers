@@ -43,6 +43,7 @@ export function useTrophies(gameState, trophyCard, renderCallback) {
         const trophyIndex = playerTrophies.indexOf(playerTrophyOfType[j]);
         playerTrophies.splice(trophyIndex,1);
       }
+      gameState.lastActionTaken="trophy sale";
       actionModal.classList.add("hidden");
       renderCallback(gameState,renderCallback);
     });

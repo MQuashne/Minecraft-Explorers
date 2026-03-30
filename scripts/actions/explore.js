@@ -150,6 +150,7 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   function executeExplore() {
     // --- Deduct exploration cost --
     gameState.hungerRemaining -= cost;
+    gameState.lastActionTaken = "explore";
     
     // --- adddamage to tool's and discard broken ones --- 
     if (landscapeCard.subtype === "explore") {

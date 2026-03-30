@@ -10,6 +10,7 @@ export function refreshLandscapes(gameState, renderCallback) {
   
  
   coverMessage.innerHTML="Choose landscapes to replace. <br> All empty spaces will be filled.";
+  coverButtons.innerHTML='';
   boardCover.classList.remove("hidden");
   landscapeZone.style.zIndex = "4";
   landscapeZone.dataset.actionMode = "refresh";
@@ -55,6 +56,7 @@ export function refreshLandscapes(gameState, renderCallback) {
       }
       if (selectedIndices.length > 0) {
         gameState.hungerRemaining--;
+        gameState.lastActionTaken="refresh";
       }
       boardCover.classList.add("hidden");
       landscapeZone.style.removeProperty("z-index");

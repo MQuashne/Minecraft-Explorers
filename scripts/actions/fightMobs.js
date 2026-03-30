@@ -84,6 +84,7 @@ export function fightMobs(gameState, renderCallback, mobCard) {
   
   function executeFight() {
     gameState.hungerRemaining -= fightCost;
+    gameState.lastActionTaken="fight";
     
     playerWeapons.forEach((weapon) => {
       if (weaponDiscounts[weapon.id] > 0) {

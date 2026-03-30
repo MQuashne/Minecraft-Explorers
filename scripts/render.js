@@ -84,14 +84,35 @@ function renderMobRow(gameState, renderCallback) {
 			return a.id.localeCompare(b.id);
 		});
 	}
-	gameState.mobsOnBoard.forEach((mob) => {
+	gameState.mobsOnBoard.forEach((mob,index) => {
 		const card = document.createElement("div");
-		card.classList.add("card", "portrait-card", "mob-card");
+		card.classList.add("card", "portrait-card");
+		card.style.position = "relative";
 		const cardImage = document.createElement("img");
 		cardImage.src = `images/mobs/${mob.id}.jpg`;
+		const tint = document.createElement("div");
+		tint.classList.add("selection-tint");
+		tint.style.display = "none";
+		
 		card.appendChild(cardImage);
-		card.addEventListener('click', () => fightMobs(gameState, renderCallback, mob));
-		mobRow.appendChild(card);
+		card.appendChild(tint);
+		console.log("rendered");
+		mobRow.dataset.actionMode = "fight";
+		card.addEventListener('click', () => {
+			console.log("mobclick:" + mobRow.dataset.actionMode);
+			if (mobRow.dataset.actionMode === "fight") {
+				fightMobs(gameState, renderCallback, mob)
+			} else if (mobRow.dataset.actionMode === "crossbow") {
+				const selectedIndices = [...mobRow.querySelectorAll("[data-selected-for-kill]")];
+				if (card.dataset.selectedForKill) {
+					delete card.dataset.selectedForKill;
+					tint.style.display = "none"
+				} else if (selectedIndices.length<2){
+					card.dataset.selectedForKill= index;
+					tint.style.display = "block";
+				}
+			}});
+			mobRow.appendChild(card);
 	});
 }
 
@@ -126,14 +147,14 @@ function renderLandscapeRow(gameState, renderCallback) {
 			
 			
 			const landscapeCard = document.createElement("div");
-			landscapeCard.id=landscape.id;
+			landscapeCard.id = landscape.id;
 			landscapeCard.classList.add("card", "landscape-card");
 			landscapeCard.style.position = "relative";
 			const landscapeImage = document.createElement("img");
 			landscapeImage.src = `images/landscapes/${landscape.visual}.jpg`;
 			const tint = document.createElement("div");
 			tint.classList.add("selection-tint");
-			tint.style.display="none";
+			tint.style.display = "none";
 			landscapeCard.appendChild(landscapeImage);
 			landscapeCard.appendChild(tint);
 			
@@ -143,11 +164,12 @@ function renderLandscapeRow(gameState, renderCallback) {
 				if (landscapeZone.dataset.actionMode === "explore") {
 					exploreLandscape(gameState, renderCallback, landscape)
 				} else if (landscapeZone.dataset.actionMode === "refresh") {
-					if (landscapeCard.dataset.selectedForRefresh){
+					if (landscapeCard.dataset.selectedForRefresh) {
 						delete landscapeCard.dataset.selectedForRefresh;
-						tint.style.display="none"
-					}else{landscapeCard.dataset.selectedForRefresh=i;
-					tint.style.display="block";
+						tint.style.display = "none"
+					} else {
+						landscapeCard.dataset.selectedForRefresh = i;
+						tint.style.display = "block";
 					}
 				}
 			});
@@ -159,7 +181,7 @@ function renderLandscapeRow(gameState, renderCallback) {
 				"landscape-card",
 				"placeholder-card"
 			);
-			emptyLandscape.setAttribute("refresh",'');
+			emptyLandscape.setAttribute("refresh", '');
 			landscapeZone.appendChild(emptyLandscape);
 		}
 	}
