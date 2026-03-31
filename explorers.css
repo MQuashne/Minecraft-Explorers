@@ -401,6 +401,9 @@ header {
   height: calc(2 * var(--card-long));
   border-radius: calc(0.2 * var(--card-short));
 }
+.card-image{
+  border-radius: calc(0.2 * var(--card-short));
+}
 
 
 /* =============================================================================
@@ -462,29 +465,37 @@ header {
 }
 
 .chest-slot {
+  font-family: "minecraftTen";
   position: absolute;
-  width: 23px;
-  height: 23px;
-  background-color: var(--color-slot);
+  width: 32%;
+  height: 21%;
+  /*background-color: var(--color-slot);*/
+  border: 3px solid #3cb055;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 98%;
+  color: #3cb055;
+  background-image: url("images/Check.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .chest-slot-1 {
-  top: 16px;
-  left: 11px;
+  top: 14%;
+  left: 12.5%;
 }
 
 .chest-slot-2 {
-  top: 16px;
-  left: 47px;
+  top: 14%;
+  left: 56.5%;
 }
 
+/*
 .chest-slot.filled {
   background-color: var(--color-slot-filled);
-}
+}*/
 
 
 /* =============================================================================
@@ -629,17 +640,17 @@ header {
   height: 100vh;
   background-color: #000000D0;
   z-index: 3;
-  padding-bottom:10vh;
-  padding-top:20vh;
+  padding-bottom: 10vh;
+  padding-top: 20vh;
 }
 
 #cover-buttons {
-  position:absolute;
+  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width:100%;
-  padding:5px;
+  width: 100%;
+  padding: 5px;
   
 }
 

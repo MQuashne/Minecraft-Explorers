@@ -8,6 +8,7 @@ import { exploreLandscape } from "./actions/explore.js"
 import { fightMobs } from "./actions/fightMobs.js"
 import { viewItem } from "./actions/useItem.js"
 import { useTrophies } from "./actions/useTrophies.js"
+import { viewChest } from "./actions/fillChests.js"
 // =============================================================================
 // CHEST ROW
 // =============================================================================
@@ -39,7 +40,10 @@ function renderChestRow(gameState, renderCallback) {
 				card.appendChild(filledSlot);
 			}
 		}
-		
+		card.addEventListener("click", () => {
+			console.log("found")
+	viewChest(gameState, chest, renderCallback);
+});
 		card.appendChild(cardImage);
 		row.appendChild(card);
 	});

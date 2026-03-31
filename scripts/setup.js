@@ -88,6 +88,24 @@ function buildPlayers(playerNames) {
                 isUsable: false,
             },
               {
+      id: "item_iron_01",
+      visual: "item_iron_mob",
+      name: "Iron Ingot",
+      category: "iron",
+      bonusValue: null,
+      state: null,
+      isUsable: false,
+  },
+  {
+      id: "item_iron_02",
+      visual: "item_iron",
+      name: "Iron Ingot",
+      category: "iron",
+      bonusValue: null,
+      state: null,
+      isUsable: false,
+  },
+              {
       id: "item_crossbow_01",
       visual: "item_crossbow",
       name: "Crossbow",
@@ -143,5 +161,7 @@ export function setupGame(playerCount, playerNames, difficulty) {
         players: buildPlayers(playerNames),
         turnEnded: false
     }
+    gameState.chests[0].placedItems.push("wood");
+    gameState.chests[2].placedItems.push("furnishing");
     return gameState;
 }

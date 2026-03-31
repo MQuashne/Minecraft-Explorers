@@ -77,7 +77,8 @@ export function viewItem(gameState, itemCard, renderCallback) {
     gameState.lastActionTaken="food";
     renderCallback(gameState, renderCallback);
   };
-  //Change to mob logic!!
+  
+  
   function useCrossbow() {
     coverButtons.innerHTML = '';
     boardCover.classList.remove("hidden");

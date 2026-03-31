@@ -1295,7 +1295,7 @@ export const Mobs = [
 // "tool" category means any pickaxe or sword of any material qualifies.
 
 export const Chests = [
-  { id: "chest_01", fillItems: ["wood", "wood"], placedItems: [] },
+  { id: "chest_01", fillItems: ["wood", "wood"], placedItems: ["wood"] },
   { id: "chest_02", fillItems: ["iron", "iron"], placedItems: [] },
   { id: "chest_03", fillItems: ["lighting", "furnishing"], placedItems: [] },
   { id: "chest_04", fillItems: ["pickaxe", "emerald"], placedItems: [] },
