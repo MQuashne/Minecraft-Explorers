@@ -96,6 +96,7 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
       newMobImage.src = `images/mobs/${mobsRevealed[currentIndex].id}.jpg`;
       newMob.appendChild(newMobImage);
       modalMobZone.prepend(newMob);
+      newMobImage.classList.add("card-image");
       placeMob.classList.add("hidden");
       if (mobsRevealed[currentIndex].id === "mob_game_over") {
         const gameOverScreen = document.getElementById("game-over-modal");
