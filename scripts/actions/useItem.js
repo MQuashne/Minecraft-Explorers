@@ -180,6 +180,7 @@ export function viewItem(gameState, itemCard, renderCallback) {
 		console.log(allScapes.length)
 		for (let i = 0; i < 5; i++) {
 			const landscapeCard = gameState.landscapesOnBoard[i];
+			if (landscapeCard.id!="empty"){
 			const itemCard = Items.find(item => item.id === landscapeCard.item);
 			const itemImage = document.createElement("img");
 			itemImage.src = `images/items/${itemCard.visual}.jpg`;
@@ -188,6 +189,7 @@ export function viewItem(gameState, itemCard, renderCallback) {
 			itemImage.style.height = `var(--card-long)`;
 			allScapes[i].innerHTML = '';
 			allScapes[i].appendChild(itemImage);
+			}
 			
 		}
 		
