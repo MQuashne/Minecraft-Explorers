@@ -30,7 +30,7 @@ export function viewItem(gameState, itemCard, renderCallback) {
 	//Item Image
 	const itemImage = document.createElement("img");
 	console.log(itemCard);
-	itemImage.classList.add("card", "modal-portrait","card-image");
+	itemImage.classList.add("card", "modal-portrait", "card-image");
 	itemImage.src = `images/items/${itemCard.visual}.jpg`;
 	cardInfo.innerHTML = '';
 	actionButtons.innerHTML = '';
@@ -136,6 +136,16 @@ export function viewItem(gameState, itemCard, renderCallback) {
 	function useMap() {
 		actionButtons.innerHTML = '';
 		const destInDeck = gameState.landscapeDeck.filter(landscape => landscape.isDestination);
+		const backButton = document.createElement("button");
+		backButton.classList.add("tap-control", "button");
+		backButton.textContent = `Back`;
+		backButton.addEventListener("click", () => {
+			playerInventory.splice(itemIndex, 1);
+			gameState.lastActionTaken = "map"
+			actionModal.classList.add("hidden");
+			renderCallback(gameState, renderCallback);
+		});
+		actionButtons.appendChild(backButton);
 		if (destInDeck.length > 0) {
 			destInDeck.forEach((dest) => {
 				console.log(dest);
@@ -153,16 +163,7 @@ export function viewItem(gameState, itemCard, renderCallback) {
 				actionButtons.appendChild(destButton);
 			});
 		} else {
-			const backButton = document.createElement("button");
-			backButton.classList.add("tap-control", "button");
 			backButton.textContent = `All found, back to board`;
-			backButton.addEventListener("click", () => {
-				playerInventory.splice(itemIndex, 1);
-				gameState.lastActionTaken = "map"
-				actionModal.classList.add("hidden");
-				renderCallback(gameState, renderCallback);
-			});
-			actionButtons.appendChild(backButton);
 		}
 	}
 	
@@ -180,16 +181,16 @@ export function viewItem(gameState, itemCard, renderCallback) {
 		console.log(allScapes.length)
 		for (let i = 0; i < 5; i++) {
 			const landscapeCard = gameState.landscapesOnBoard[i];
-			if (landscapeCard.id!="empty"){
-			const itemCard = Items.find(item => item.id === landscapeCard.item);
-			const itemImage = document.createElement("img");
-			itemImage.src = `images/items/${itemCard.visual}.jpg`;
-			itemImage.classList.add("card-image");
-			itemImage.style.transform = "rotate(90deg)";
-			itemImage.style.width = `var(--card-short)`;
-			itemImage.style.height = `var(--card-long)`;
-			allScapes[i].innerHTML = '';
-			allScapes[i].appendChild(itemImage);
+			if (landscapeCard.id != "empty") {
+				const itemCard = Items.find(item => item.id === landscapeCard.item);
+				const itemImage = document.createElement("img");
+				itemImage.src = `images/items/${itemCard.visual}.jpg`;
+				itemImage.classList.add("card-image")
+				itemImage.style.transform = "rotate(90deg)";
+				itemImage.style.width = `var(--card-short)`;
+				itemImage.style.height = `var(--card-long)`;
+				allScapes[i].innerHTML = '';
+				allScapes[i].appendChild(itemImage);
 			}
 			
 		}
