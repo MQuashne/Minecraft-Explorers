@@ -21,11 +21,12 @@ export function exploreLandscape(gameState, renderCallback, landscapeCard) {
   flipInner.classList.add("flip-card-inner");
   const flipFront = document.createElement("img");
   flipFront.src = `images/landscapes/${landscapeCard.visual}.jpg`;
-  flipFront.classList.add("card", "modal-landscape", "flip-card-front");
+  flipFront.classList.add("card", "modal-landscape", "flip-card-front","card-image");
   const flipBack = document.createElement("div");
   flipBack.classList.add("card", "modal-landscape", "flip-card-back");
   const itemImage = document.createElement("img");
   itemImage.src = `images/items/${itemCard.visual}.jpg`;
+  itemImage.classList.add("card-image");
   itemImage.style.transform = "rotate(90deg)";
   itemImage.style.width = `calc(2 * var(--card-short))`;
   itemImage.style.height = `calc(2 * var(--card-long))`;

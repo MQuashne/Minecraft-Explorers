@@ -21,6 +21,7 @@ function renderChestRow(gameState, renderCallback) {
 		const card = document.createElement("div");
 		card.classList.add("card", "portrait-card", "chest-card");
 		const cardImage = document.createElement("img");
+		cardImage.classList.add("card-image");
 		
 		// Chest is fully filled — show closed chest
 		if (chest.placedItems.length === chest.fillItems.length) {
@@ -71,6 +72,7 @@ function renderMobRow(gameState, renderCallback) {
 	*/
 	const deckCardImage = document.createElement("img");
 	deckCardImage.src = "images/mobs/mob_back.jpg";
+	deckCardImage.classList.add("card-image");
 	deckCard.appendChild(deckCardImage);
 	/*
 		const deckCount = document.createElement("div");
@@ -93,6 +95,7 @@ function renderMobRow(gameState, renderCallback) {
 		card.style.position = "relative";
 		const cardImage = document.createElement("img");
 		cardImage.src = `images/mobs/${mob.id}.jpg`;
+		cardImage.classList.add("card-image");
 		const tint = document.createElement("div");
 		tint.classList.add("selection-tint");
 		tint.style.display = "none";
@@ -133,7 +136,7 @@ function renderLandscapeRow(gameState, renderCallback) {
 		const img = document.createElement("img");
 		img.src = `images/landscapes/${topCard.visual}.jpg`;
 		img.alt = topCard.id;
-		img.classList.add("card", "landscape-card");
+		img.classList.add("card", "landscape-card","card-image");
 		deckZone.appendChild(img);
 	} else {
 		const empty = document.createElement("div");
@@ -155,6 +158,7 @@ function renderLandscapeRow(gameState, renderCallback) {
 			landscapeCard.style.position = "relative";
 			const landscapeImage = document.createElement("img");
 			landscapeImage.src = `images/landscapes/${landscape.visual}.jpg`;
+			landscapeImage.classList.add("card-image")
 			const tint = document.createElement("div");
 			tint.classList.add("selection-tint");
 			tint.style.display = "none";
@@ -199,7 +203,7 @@ function renderLandscapeRow(gameState, renderCallback) {
 			destinationZone.classList.remove("hidden");
 			const destinationCard = document.createElement("img");
 			destinationCard.src = `images/landscapes/${destination.visual}.jpg`;
-			destinationCard.classList.add("card", "landscape-card");
+			destinationCard.classList.add("card", "landscape-card","card-image");
 			destinationCard.addEventListener('click', () => exploreLandscape(gameState, renderCallback, destination));
 			destinationZone.appendChild(destinationCard);
 		});
@@ -233,7 +237,7 @@ function renderInventoryRow(gameState, renderCallback, playerIndex = 0) {
 			const objectCard = document.createElement("img");
 			objectCard.src = `images/items/${object.visual}.jpg`;
 			objectCard.alt = object.id;
-			objectCard.classList.add("card", "portrait-card");
+			objectCard.classList.add("card", "portrait-card", "card-image");
 			if (object.state === "damaged") {
 				objectCard.classList.add("rotate-card");
 			}
@@ -256,7 +260,7 @@ function renderInventoryRow(gameState, renderCallback, playerIndex = 0) {
 			const trophyCard = document.createElement("img");
 			trophyCard.src = `images/mobs/${trophy.id}.jpg`;
 			trophyCard.alt = trophy.id;
-			trophyCard.classList.add("card", "portrait-card");
+			trophyCard.classList.add("card", "portrait-card","card-image");
 			trophyCard.addEventListener("click", () => {
 				useTrophies(gameState, trophy, renderCallback);
 			});

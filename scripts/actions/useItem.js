@@ -30,7 +30,7 @@ export function viewItem(gameState, itemCard, renderCallback) {
 	//Item Image
 	const itemImage = document.createElement("img");
 	console.log(itemCard);
-	itemImage.classList.add("card", "modal-portrait");
+	itemImage.classList.add("card", "modal-portrait","card-image");
 	itemImage.src = `images/items/${itemCard.visual}.jpg`;
 	cardInfo.innerHTML = '';
 	actionButtons.innerHTML = '';
@@ -184,6 +184,7 @@ export function viewItem(gameState, itemCard, renderCallback) {
 			const itemCard = Items.find(item => item.id === landscapeCard.item);
 			const itemImage = document.createElement("img");
 			itemImage.src = `images/items/${itemCard.visual}.jpg`;
+			itemImage.classList.add("card-image");
 			itemImage.style.transform = "rotate(90deg)";
 			itemImage.style.width = `var(--card-short)`;
 			itemImage.style.height = `var(--card-long)`;

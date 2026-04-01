@@ -49,7 +49,7 @@ function buildPlayers(playerNames) {
     return playerNames.map((name, index) => ({
         id: index + 1,
         name: name,
-        inventory: [{
+        inventory: [/*{
                 id: "item_diamond_sword_02",
                 visual: "item_diamond_sword_mob",
                 name: "Diamond Sword",
@@ -141,11 +141,11 @@ function buildPlayers(playerNames) {
                 state: null,
                 isUsable: true,
             }
-        ],
+        */],
         trophies: [
-            { id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 },
+            /*{ id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 },
             { id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 }
-        ]
+        */]
     }));
 }
 
@@ -179,7 +179,7 @@ export function setupGame(playerCount, playerNames, difficulty) {
         players: buildPlayers(playerNames),
         turnEnded: false
     }
-    gameState.chests[0].placedItems.push("wood");
-    gameState.chests[2].placedItems.push("furnishing");
+    //gameState.chests[0].placedItems.push("wood");
+    //gameState.chests[2].placedItems.push("furnishing");
     return gameState;
 }

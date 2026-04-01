@@ -75,11 +75,12 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
   flipInner.classList.add("flip-card-portrait-inner");
   const flipFront = document.createElement("img");
   flipFront.src = `images/mobs/mob_back.jpg`;
-  flipFront.classList.add("card", "modal-portrait", "flip-card-front");
+  flipFront.classList.add("card", "modal-portrait", "flip-card-front","card-image");
   const flipBack = document.createElement("div");
   flipBack.classList.add("card", "modal-portrait", "flip-card-back");
   const mobImage = document.createElement("img");
   mobImage.src = `images/mobs/${mobsRevealed[0].id}.jpg`;
+  mobImage.classList.add("card-image");
   flipBack.appendChild(mobImage);
   flipInner.appendChild(flipFront);
   flipInner.appendChild(flipBack);
