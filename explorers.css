@@ -139,16 +139,18 @@ button {
   /* Placeholder class — style as needed */
 }
 
-#death-title {
+.death-title {
   font-size: 36px;
   text-shadow: 3px 3px 0 black;
   padding: 60px 8px 8px 8px;
+  justify-content: center;
 }
 
 .death-message {
   font-size: 18px;
   text-shadow: 2px 2px 0 black;
   padding: 8px;
+  text-align: center;
 }
 
 /* =============================================================================
@@ -628,6 +630,24 @@ header {
   background-color: #cc4444cc;
   overflow-y: scroll;
   animation: dead 2s ease-out forwards;
+}
+
+.win-overlay {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 2;
+  overflow-y: hidden;
+  background-image:url("images/MobDance.GIF");
+background-size: cover;
+background-position: center;
+gap: 20px;
 }
 
 #board-cover {

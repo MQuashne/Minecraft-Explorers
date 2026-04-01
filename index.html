@@ -69,6 +69,17 @@
       </div>
     </div>
     
+    <div id="continue-modal" class="menu-modal-overlay hidden">
+      <div id="continue-container" class="modal-box">
+        <h1 class="game-title">MINECRAFT EXPLORERS</h1>
+        <hr>
+        <p style="text-align:center;">Welcome back!</p>
+        <div id="continue-action-buttons">
+          <button id="continue-game" class=" tap-control button">Continue Game</button>
+          <button id="new-game" class=" tap-control button">New Game</button>
+        </div>
+      </div>
+    </div>
     
     
     <div id="chest-row" class="game-row">
@@ -124,9 +135,21 @@
     <div id="chest-score" class="death-message">Chests Complete:
     </div>
     <img id="game-over-card" src="images/mobs/mob_game_over.jpg" />
-    <button id="Play Again" class="pixel-button">Play Again</button>
+    <button id="died-play-again" class="pixel-button">Play Again</button>
   </div>
   <div id="end-turn-overlay" class="end-turn-overlay hidden">Sleeping through this night
+  </div>
+  
+  <div id="win-overlay" class="win-overlay hidden">
+    <div id="death-title" class="death-title">
+      YOU WIN!
+    </div>
+    <div id="team" class="death-title">🏆 Winners 🏆
+      <div class="death-message">Name 1</div>
+    </div>
+    <div id="win-difficulty" class="death-message">Difficulty:
+    </div>
+    <button id="win-play-again" class="pixel-button">Play Again</button>
   </div>
   
   <div id="player-row" class="player-row">

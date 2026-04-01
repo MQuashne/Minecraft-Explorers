@@ -89,7 +89,6 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
     flipInner.classList.add("flipped");
     flipInner.addEventListener('transitionend', () => {
      if (event.propertyName !== 'transform') return;
-    console.log("through");
       const newMob = document.createElement("div");
       newMob.classList.add("card", "modal-portrait", "mob-card");
       const newMobImage = document.createElement("img");
@@ -97,9 +96,7 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
       newMob.appendChild(newMobImage);
       modalMobZone.prepend(newMob);
       placeMob.classList.add("hidden");
-      console.log(mobsRevealed[currentIndex].id);
       if (mobsRevealed[currentIndex].id === "mob_game_over") {
-        console.log("run");
         const gameOverScreen = document.getElementById("game-over-modal");
         const deathMessage = document.getElementById("killer");
         if (currentIndex > 0) {
@@ -107,7 +104,11 @@ export function animateMobReveal(mobsRevealed, gameOverCard, gameState, onComple
         } else {
           deathMessage.textContent = `${gameState.players[gameState.currentPlayerIndex].name} discovered the floor was lava.`
         }
+        const playAgain=document.getElementById("died-play-again");
+       playAgain.addEventListener("click", () => {location.reload()});
         gameOverScreen.classList.remove("hidden");
+        localStorage.clear();
+
         
         //do game over stuff - reset somehow?
       }

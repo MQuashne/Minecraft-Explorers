@@ -1136,6 +1136,15 @@ export const Items = [
     state: "intact",
     isUsable: false,
   },
+    {
+    id: "item_gold_pickaxe_01",
+    visual: "item_gold_pickaxe",
+    name: "Gold Pickaxe",
+    category: "pickaxe",
+    bonusValue: 3,
+    state: "intact",
+    isUsable: false,
+  },
   {
     id: "item_diamond_pickaxe_01",
     visual: "item_diamond_pickaxe",

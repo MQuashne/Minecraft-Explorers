@@ -32,6 +32,7 @@ export function viewChest(gameState, chest, renderCallback) {
   coverButtons.innerHTML = '';
   const coverMessage = document.getElementById("cover-message");
   const playerTrophies = gameState.players[gameState.currentPlayerIndex].trophies;
+  const winOverlay = document.getElementById("win-overlay");
   
   //Make Instructions
   const instructions = document.createElement("div");
@@ -44,8 +45,6 @@ export function viewChest(gameState, chest, renderCallback) {
     const card = document.createElement("div");
     card.classList.add("card", "modal-portrait", "chest-card");
     const cardImage = document.createElement("img");
-    console.log(chest.fillItems.length);
-    console.log(chest.placedItems.length);
     // Chest is fully filled — show closed chest
     if (chest.placedItems.length === chest.fillItems.length) {
       cardImage.src = `images/chests/chest_filled.jpg`;
@@ -196,29 +195,115 @@ export function viewChest(gameState, chest, renderCallback) {
       const index = playerInventory.findIndex(item => item.id === choice);
       chest.placedItems.push(playerInventory[index].category);
       playerInventory.splice(index, 1);
-      
-      //add item to chest filled array
-      
-      //charge one hunger
-      //change lastActionTaken
-      gameState.hungerRemaining -= cost;
-      gameState.lastActionTaken = "fill";
-      
-      //update visuals and add instructions
-      const updatedCard = showChestCard();
-      cardInfo.innerHTML = '';
-      cardInfo.appendChild(updatedCard);
-      actionButtons.innerHTML = '';
-      const instructions = document.createElement("div");
-      instructions.textContent = "You may add items to additional chests at no cost before your next action."
-      actionButtons.appendChild(instructions);
-      actionButtons.appendChild(backButton);
-      
-      
-      //update card visual to back or with cover boxes
-    })
+    });
+    //add item to chest filled array
     
-  });
+    //charge one hunger
+    //change lastActionTaken
+    gameState.hungerRemaining -= cost;
+    gameState.lastActionTaken = "fill";
+    
+    //update visuals and add instructions
+    const updatedCard = showChestCard();
+    cardInfo.innerHTML = '';
+    cardInfo.appendChild(updatedCard);
+    actionButtons.innerHTML = '';
+    const instructions = document.createElement("div");
+    instructions.textContent = "You may add items to additional chests at no cost before your next action."
+    actionButtons.appendChild(instructions);
+    
+    actionButtons.appendChild(backButton);
+    
+    //Define mob reward logic
+    function useCrossbow() {
+      coverButtons.innerHTML = '';
+      boardCover.classList.remove("hidden");
+      mobZone.style.zIndex = "4";
+      mobZone.dataset.actionMode = "crossbow";
+      const doneButton = document.createElement("button");
+      doneButton.classList.add("tap-control", "button");
+      let rect = mobZone.getBoundingClientRect();
+      coverButtons.style.top = (rect.top + rect.height + 30).toString() + "px";
+      coverMessage.innerHTML = "Select a mob to kill.";
+      coverMessage.style.top = (rect.top / 2).toString() + "px";
+      console.log("onuse" + mobZone.dataset.actionMode)
+      doneButton.textContent = "Fight Selected (0🍖)";
+      doneButton.addEventListener("click", () => {
+        const selectedIndices = [...mobZone.querySelectorAll("[data-selected-for-kill]")]
+          .map(el => parseInt(el.dataset.selectedForKill))
+          .sort((a, b) => b - a);
+        if (selectedIndices.length <= 1) {
+          selectedIndices.forEach((index) => {
+            //got here
+            const [newTrophy] = gameState.mobsOnBoard.splice(index, 1);
+            playerTrophies.push(newTrophy);
+          });
+          boardCover.classList.add("hidden");
+          mobZone.style.removeProperty("z-index");
+          renderCallback(gameState, renderCallback);
+        } else {
+          
+        }
+      })
+      const backButton = document.createElement("button");
+      backButton.classList.add("tap-control", "button");
+      backButton.textContent = "Back to Board";
+      backButton.addEventListener("click", () => {
+        boardCover.classList.add("hidden");
+        mobZone.style.removeProperty("z-index");
+        renderCallback(gameState, renderCallback);
+      })
+      
+      coverButtons.appendChild(doneButton);
+      coverButtons.appendChild(backButton);
+    }
+    
+    //Handle Closed Chest
+    if (chest.placedItems.length === chest.fillItems.length) {
+      
+      
+      //Check win condition
+      const filledChests = gameState.chests.filter(chest => chest.placedItems.length === chest.fillItems);
+      if (filledChests.length >= 0) {
+        const victoryOptions = ['url("images/Fireworks.GIF")', 'url("images/MobDance.GIF")', 'url("images/SteveDance.GIF")']
+        const victoryIndex = Math.floor(Math.random() * 3);
+        console.log(victoryIndex)
+        const victoryImage = victoryOptions[victoryIndex];
+        winOverlay.style.backgroundImage = victoryImage;
+        
+        const team = document.getElementById("team");
+        team.innerHTML = '🏆 Winners 🏆';
+        const winDifficulty = document.getElementById("win-difficulty");
+        winDifficulty.textContent = `Difficulty: ${gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1).toLowerCase()}`;
+        gameState.players.forEach((player) => {
+          const playerName = document.createElement("div");
+          playerName.textContent = player.name;
+          playerName.classList.add("death-message");
+          team.appendChild(playerName);
+        });
+        const playAgain = document.getElementById("win-play-again");
+        playAgain.addEventListener("click", () => {location.reload()})
+        winOverlay.classList.remove("hidden");
+        localStorage.clear();
+        
+      } else {
+        backButton.innerHTML = '';
+        backButton.textContent = "Choose a mob"
+        backButton.addEventListener("click", () => {
+          useCrossbow();
+        })
+        
+        
+        
+        
+      }
+      
+    }
+    
+    
+    //update card visual to back or with cover boxes
+  })
+  
   
   
   

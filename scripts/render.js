@@ -41,7 +41,6 @@ function renderChestRow(gameState, renderCallback) {
 			}
 		}
 		card.addEventListener("click", () => {
-			console.log("found")
 	viewChest(gameState, chest, renderCallback);
 });
 		card.appendChild(cardImage);
@@ -287,4 +286,6 @@ export function render(gameState, renderCallback) {
 	renderLandscapeRow(gameState, renderCallback);
 	renderInventoryRow(gameState, renderCallback);
 	renderInfoBar(gameState, renderCallback);
+	localStorage.setItem('MinecraftExplorers',JSON.stringify(gameState));
+
 }
