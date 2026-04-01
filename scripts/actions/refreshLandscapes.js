@@ -54,7 +54,7 @@ export function refreshLandscapes(gameState, renderCallback) {
           }
         };
       }
-      if (selectedIndices.length > 0) {
+      if (/*selectedIndices.length > 0*/landscapeFound===true) {
         gameState.hungerRemaining--;
         gameState.lastActionTaken="refresh";
       }
