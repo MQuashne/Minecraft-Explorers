@@ -693,6 +693,7 @@ export const Landscapes = [
     tradeItem: null,
     isDestination: true,
     toolDiscount: "sword",
+    name: "Woodland Mansion",
   },
   {
     id: "landscape_ocean_monument",
@@ -704,6 +705,7 @@ export const Landscapes = [
     tradeItem: null,
     isDestination: true,
     toolDiscount: "sword",
+    name: "Ocean Monument",
   },
 ];
 

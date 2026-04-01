@@ -174,6 +174,8 @@ function renderLandscapeRow(gameState, renderCallback) {
 						landscapeCard.dataset.selectedForRefresh = i;
 						tint.style.display = "block";
 					}
+				} else if (landscapeZone.dataset.actionMode==="spyglass"){
+					
 				}
 			});
 			landscapeZone.appendChild(landscapeCard);

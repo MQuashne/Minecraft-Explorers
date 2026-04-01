@@ -48,7 +48,7 @@ export function refreshLandscapes(gameState, renderCallback) {
             if (filledLandscape.isDestination) {
               gameState.destinationsOnBoard.push(filledLandscape);
             } else {
-              gameState.landscapesOnBoard.splice(removedLandscape, 1, filledLandscape);
+              gameState.landscapesOnBoard.splice(i, 1, filledLandscape);
               landscapeFound = true;
             }
           }
