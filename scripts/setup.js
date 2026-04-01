@@ -143,9 +143,9 @@ function buildPlayers(playerNames) {
             }
         */],
         trophies: [
-            /*{ id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 },
+            { id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 },
             { id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 }
-        */]
+        ]
     }));
 }
 

@@ -33,7 +33,8 @@ export function useTrophies(gameState, trophyCard, renderCallback) {
     for (let i = 0; i <= 1; i++) {
       const trophyImg = document.createElement("img");
       trophyImg.classList.add("card", "modal-portrait");
-      trophyImg.src = `../images/mobs/${trophyType}.jpg`;
+      console.log(trophyType)
+      trophyImg.src = `./images/mobs/${trophyType}.jpg`;
       dualCardDisplay.appendChild(trophyImg);
     }
     tradeButton.textContent=`Sell 2 trophies for +1🍖?`
