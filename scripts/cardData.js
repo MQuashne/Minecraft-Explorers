@@ -1139,7 +1139,7 @@ export const Items = [
     isUsable: false,
   },
     {
-    id: "item_gold_pickaxe_01",
+    id: "item_gold_pickaxe_02",
     visual: "item_gold_pickaxe",
     name: "Gold Pickaxe",
     category: "pickaxe",

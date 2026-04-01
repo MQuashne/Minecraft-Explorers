@@ -149,6 +149,7 @@ function renderLandscapeRow(gameState, renderCallback) {
 	landscapeZone.dataset.actionMode = "explore";
 	for (let i = 0; i < 5; i++) {
 		const landscape = gameState.landscapesOnBoard[i];
+	
 		if (landscape.id != "empty") {
 			
 			

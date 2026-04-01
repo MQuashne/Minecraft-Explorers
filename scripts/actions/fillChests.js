@@ -263,8 +263,8 @@ export function viewChest(gameState, chest, renderCallback) {
       
       
       //Check win condition
-      const filledChests = gameState.chests.filter(chest => chest.placedItems.length === chest.fillItems);
-      if (filledChests.length >= chests.length-2) {
+      const filledChests = gameState.chests.filter(chest => chest.placedItems.length === chest.fillItems.length);
+      if (filledChests.length >= chests.length-1) {
         const victoryOptions = ['url("images/Fireworks.GIF")', 'url("images/MobDance.GIF")', 'url("images/SteveDance.GIF")']
         const victoryIndex = Math.floor(Math.random() * 3);
         console.log(victoryIndex)

@@ -143,8 +143,8 @@ function buildPlayers(playerNames) {
             }
         */],
         trophies: [
-            { id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 },
-            { id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 }
+           /* { id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 },
+            { id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 }*/
         ]
     }));
 }
@@ -181,5 +181,45 @@ export function setupGame(playerCount, playerNames, difficulty) {
     }
     //gameState.chests[0].placedItems.push("wood");
     //gameState.chests[2].placedItems.push("furnishing");
+    /*
+    gameState.landscapesOnBoard.splice(0,3);
+    const testScapes = [  {
+    id: "landscape_ruined_portal_01",
+    subtype: "explore",
+    visual: "landscape_ruined_portal",
+    cost: 4,
+    mobCount: 0,
+    item: "item_gold_apple_01",
+    tradeItem: null,
+    isDestination: false,
+    toolDiscount: null,
+  },
+  {
+    id: "landscape_ruined_portal_02",
+    subtype: "explore",
+    visual: "landscape_ruined_portal",
+    cost: 4,
+    mobCount: 0,
+    item: "item_gold_sword_02",
+    tradeItem: null,
+    isDestination: false,
+    toolDiscount: null,
+  },
+  {
+    id: "landscape_ruined_portal_03",
+    subtype: "explore",
+    visual: "landscape_ruined_portal",
+    cost: 4,
+    mobCount: 0,
+    item: "item_gold_pickaxe_02",
+    tradeItem: null,
+    isDestination: false,
+    toolDiscount: null,
+  },
+]
+gameState.landscapesOnBoard.push(testScapes[0]);
+gameState.landscapesOnBoard.push(testScapes[1]);
+gameState.landscapesOnBoard.push(testScapes[2]);
+console.log(gameState.landscapesOnBoard)*/
     return gameState;
 }
