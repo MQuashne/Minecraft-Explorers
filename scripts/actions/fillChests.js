@@ -142,7 +142,7 @@ export function viewChest(gameState, chest, renderCallback) {
     select.addEventListener("change", () => {
       currentFill[i] = select.value;
       let countReal = currentFill.filter(currentItem => currentItem != "None").length;
-      if (gameState.hungerRemaining < 1) {
+      if (gameState.hungerRemaining < 1 || gamestate.lastActionTaken==="fill") {
         fillButton.disabled = true;
         fillButton.textContent = `Place Items   (${cost}🍖)`;
       } else if (countReal > 0) {
