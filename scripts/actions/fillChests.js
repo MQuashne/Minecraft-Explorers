@@ -111,23 +111,7 @@ export function viewChest(gameState, chest, renderCallback) {
         }
         itemSelect.appendChild(option);
       });
-      currentFill[index] = "None"
-      //on change of dropdown selection
-      /*itemSelect.addEventListener("change", () => {
-      currentFill[index]=itemSelect.value;
-      let countReal = currentFill.filter(currentItem => currentItem!="None").length;
-      if (countReal>0){
-        fillButton.disabled=false;
-        fillButton.textContent = `Place Items   (1🍖)`;
-      } else {
-        fillButton.disabled=true;
-        fillButton.textContent = `Select Items`;
-
-      }
-      console.log(currentFill);
-      console.log(countNone);
-        
-      });*/
+      currentFill[index] = "None";
       
       
       fillGroup.appendChild(groupLabel);
@@ -142,7 +126,7 @@ export function viewChest(gameState, chest, renderCallback) {
     select.addEventListener("change", () => {
       currentFill[i] = select.value;
       let countReal = currentFill.filter(currentItem => currentItem != "None").length;
-      if (gameState.hungerRemaining < 1 || gamestate.lastActionTaken==="fill") {
+      if (gameState.hungerRemaining < 1 && gamestate.lastActionTaken!="fill") {
         fillButton.disabled = true;
         fillButton.textContent = `Place Items   (${cost}🍖)`;
       } else if (countReal > 0) {
@@ -293,52 +277,7 @@ export function viewChest(gameState, chest, renderCallback) {
         backButton.addEventListener("click", () => {
           useCrossbow();
         })
-        
-        
-        
-        
       }
-      
     }
-    
-    
-    //update card visual to back or with cover boxes
   })
-  
-  
-  
-  
-  /*
-
-  
-  //-----------------
-  //Fill Button Listener
-  //-----------------
-  
-  //Remove item from inventory
-  //add item to chest filled array
-  //charge one hunger
-  //change lastActionTaken
-  //update card visual to back or with cover boxes
-  
-  //Check for full
-  
-  //if not full, show pop up that additional fills are free with "ok" button?
-  
-  //back to board
-  
-  //otherwise...
-  
-  //-------------
-  //ChestConplete
-  //-------------
-  
-  //check win condition
-  //if win, do win stuff
-  
-  //otherwise change chest card to back - fix render logic so those don't get a listener.
-  //bring mob select to the top, just copy over the crossbow logic here.
-  //show free stuff pop up
-  //back to board.
-  */
 }
