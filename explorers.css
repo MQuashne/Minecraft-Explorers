@@ -404,7 +404,7 @@ header {
   border-radius: calc(0.2 * var(--card-short));
 }
 .card-image{
-  border-radius: calc(0.2 * var(--card-short));
+  border-radius: 8%;
 }
 
 

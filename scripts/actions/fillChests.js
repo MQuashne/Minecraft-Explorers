@@ -265,10 +265,11 @@ export function viewChest(gameState, chest, renderCallback) {
       //Check win condition
       const filledChests = gameState.chests.filter(chest => chest.placedItems.length === chest.fillItems.length);
       if (filledChests.length >= chests.length-1) {
-        const victoryOptions = ['url("images/Fireworks.GIF")', 'url("images/MobDance.GIF")', 'url("images/SteveDance.GIF")']
-        const victoryIndex = Math.floor(Math.random() * 3);
+        
+        const victoryOptions = ["Fireworks","MobDance","SteveDance","villagerBrow","Dennis","pigMine","JasonOkay","alexDance","creeperNo","zombieJam","witchClub","villagerDance","mobRoomDance","heroDance","enderDance"]
+        const victoryIndex = Math.floor(Math.random() * victoryOptions.length);
         console.log(victoryIndex)
-        const victoryImage = victoryOptions[victoryIndex];
+        const victoryImage = `url("images/${victoryOptions[victoryIndex]}.GIF")`
         winOverlay.style.backgroundImage = victoryImage;
         
         const team = document.getElementById("team");
