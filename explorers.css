@@ -853,3 +853,408 @@ button:disabled {
   border: 2px solid #1E1E1F;
   margin: 6px 0;
 }
+
+/* =============================================================================
+   16. INSTRUCTIONS
+   ============================================================================= */
+   #instructions-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: var(--bg-primary);
+      z-index: 10;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #instructions-overlay.visible {
+      display: flex;
+    }
+
+    /* ---- Top Nav Bar ---- */
+
+    #instr-header {
+      flex-shrink: 0;
+      background-color: var(--bg-secondary);
+      border-bottom: 2px solid var(--color-green);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      height: 48px;
+      gap: 8px;
+    }
+
+    #instr-title {
+      font-family: 'MinecraftTen', sans-serif;
+      font-size: 14px;
+      color: var(--color-green);
+      white-space: nowrap;
+    }
+
+    #instr-close {
+      font-family: 'MinecraftRegular', sans-serif;
+      font-size: 12px;
+      color: var(--color-text-muted);
+      background: none;
+      border: 1px solid var(--color-border);
+      padding: 4px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    #instr-close:hover {
+      color: var(--color-text);
+      border-color: var(--color-green);
+    }
+
+    /* ---- Body: sidebar + content ---- */
+
+    #instr-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* ---- Sidebar ---- */
+
+    #instr-nav {
+      width: 180px;
+      flex-shrink: 0;
+      background-color: var(--bg-secondary);
+      border-right: 1px solid var(--color-border);
+      overflow-y: auto;
+      padding: 12px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-section-label {
+      font-size: 8px;
+      color: var(--color-text-muted);
+      padding: 12px 14px 4px 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-item {
+      display: block;
+      padding: 8px 14px;
+      font-size: 11px;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      text-decoration: none;
+      font-family: 'MinecraftRegular', sans-serif;
+    }
+
+    .nav-item:hover {
+      color: var(--color-text);
+      border-left-color: var(--color-border);
+    }
+
+    .nav-item.active {
+      color: var(--color-green);
+      border-left-color: var(--color-green);
+    }
+
+    /* ---- Content area ---- */
+
+    #instr-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 20px 48px 20px;
+    }
+
+    /* ============================================================
+       CONTENT SECTIONS
+       ============================================================ */
+
+    .instr-section {
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .instr-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Section headings ---- */
+
+    .instr-section h2 {
+      font-family: 'MinecraftTen', sans-serif;
+      font-size: 16px;
+      color: var(--color-green);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .instr-section h3 {
+      font-family: 'MinecraftRegular', sans-serif;
+      font-size: 13px;
+      color: var(--color-gold);
+      margin: 20px 0 8px 0;
+    }
+
+    .instr-section p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #cccccc;
+      margin-bottom: 12px;
+    }
+
+    .instr-section ul {
+      margin: 0 0 12px 0;
+      padding-left: 18px;
+    }
+
+    .instr-section li {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #cccccc;
+      margin-bottom: 4px;
+    }
+
+    /* ---- Image placeholders ---- */
+
+    .instr-img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: 2px solid var(--color-border);
+      display: block;
+      margin: 12px auto 16px auto;
+      background-color: var(--bg-secondary);
+    }
+
+    .instr-img-placeholder {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      border: 2px dashed var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 12px auto 16px auto;
+      background-color: var(--bg-secondary);
+      color: var(--color-text-muted);
+      font-size: 10px;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .instr-img-placeholder.portrait {
+      max-width: 160px;
+      aspect-ratio: 2/3;
+    }
+
+    .instr-img-placeholder.landscape-card {
+      max-width: 240px;
+      aspect-ratio: 3/2;
+    }
+
+    /* ---- Callout boxes ---- */
+
+    .callout {
+      border-left: 3px solid var(--color-green);
+      background-color: #2a3a2a;
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin: 12px 0;
+    }
+
+    .callout.gold {
+      border-left-color: var(--color-gold);
+      background-color: #2e2a1a;
+    }
+
+    .callout.red {
+      border-left-color: var(--color-red);
+      background-color: #2e1a1a;
+    }
+
+    .callout p {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    /* ---- Stat chips (cost, mob count, etc.) ---- */
+
+    .chip {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      margin: 2px 2px 2px 0;
+    }
+
+    .chip-green  { background-color: #1a3a1a; border: 1px solid var(--color-green); color: var(--color-green); }
+    .chip-gold   { background-color: #2e2a1a; border: 1px solid var(--color-gold);  color: var(--color-gold); }
+    .chip-red    { background-color: #2e1a1a; border: 1px solid var(--color-red);   color: var(--color-red); }
+    .chip-gray   { background-color: #1e1e1e; border: 1px solid var(--color-border); color: #aaaaaa; }
+
+    /* ---- Card grid for item reference ---- */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .card-entry {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 10px;
+    }
+
+    .card-entry-name {
+      font-size: 11px;
+      color: var(--color-text);
+      margin-bottom: 4px;
+    }
+
+    .card-entry-desc {
+      font-size: 10px;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    /* ---- Tool durability visual ---- */
+
+    .tool-state-demo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0;
+      flex-wrap: wrap;
+    }
+
+    .tool-state-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      text-align: center;
+      font-size: 10px;
+    }
+
+    .tool-state-card .label {
+      color: var(--color-text-muted);
+      margin-top: 4px;
+    }
+
+    .arrow-right {
+      color: var(--color-text-muted);
+      font-size: 18px;
+    }
+
+    /* ---- Difficulty table ---- */
+
+    .diff-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 12px;
+    }
+
+    .diff-table th {
+      text-align: left;
+      color: var(--color-text-muted);
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--color-border);
+      font-weight: normal;
+    }
+
+    .diff-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #333;
+      color: #cccccc;
+    }
+
+    .diff-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .diff-table td:first-child {
+      color: var(--color-text);
+    }
+
+    /* ---- Mobile: hide sidebar, show bottom tabs ---- */
+
+    @media (max-width: 520px) {
+      #instr-nav {
+        display: none;
+      }
+
+      #instr-mobile-tabs {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+        background-color: var(--bg-secondary);
+        border-bottom: 1px solid var(--color-border);
+        flex-shrink: 0;
+        -ms-overflow-style: none;
+      }
+
+      #instr-mobile-tabs::-webkit-scrollbar { display: none; }
+
+      .mobile-tab {
+        padding: 10px 14px;
+        font-size: 10px;
+        color: var(--color-text-muted);
+        white-space: nowrap;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        font-family: 'MinecraftRegular', sans-serif;
+        flex-shrink: 0;
+      }
+
+      .mobile-tab.active {
+        color: var(--color-green);
+        border-bottom-color: var(--color-green);
+      }
+
+      #instr-content {
+        padding: 16px 14px 48px 14px;
+      }
+    }
+
+    @media (min-width: 521px) {
+      #instr-mobile-tabs {
+        display: none;
+      }
+    }
+
+    /* ---- Tablet / desktop wider layout ---- */
+
+    @media (min-width: 768px) {
+      #instr-nav {
+        width: 210px;
+      }
+
+      .instr-section p,
+      .instr-section li {
+        font-size: 14px;
+      }
+
+      #instr-content {
+        padding: 32px 40px 64px 40px;
+      }
+
+      .instr-section h2 {
+        font-size: 18px;
+      }
+    }

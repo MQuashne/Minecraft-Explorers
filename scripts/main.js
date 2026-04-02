@@ -64,6 +64,17 @@ document.addEventListener('DOMContentLoaded', (event) =>
 			});
 		});
 		const startButton = document.getElementById("start-button");
+		const helpButton=document.getElementById("instructions");
+		const showHelp=document.getElementById("instructions-overlay");
+		helpButton.addEventListener("click",() => {
+		showHelp.classList.add("visible");
+		})
+		const boardHelp=document.getElementById("board-help");
+		boardHelp.addEventListener("click", () => {
+	showHelp.classList.add("visible");
+})
+		
+		
 		let playerNames = [];
 		startButton.addEventListener('click', (event) => {
 			const visibleInputs = document.querySelectorAll('.player-name-group:not(.hidden) .player-name-input');
@@ -82,4 +93,37 @@ document.addEventListener('DOMContentLoaded', (event) =>
 			
 		});
 	}
+// Instructions
+	const sections = document.querySelectorAll('.instr-section');
+const navItems = document.querySelectorAll('.nav-item');
+const mobileTabs = document.querySelectorAll('.mobile-tab');
+
+function showSection(targetId) {
+	sections.forEach(s => s.classList.remove('active'));
+	navItems.forEach(n => n.classList.remove('active'));
+	mobileTabs.forEach(t => t.classList.remove('active'));
+	
+	const targetSection = document.getElementById(targetId);
+	if (targetSection) targetSection.classList.add('active');
+	
+	navItems.forEach(n => {
+		if (n.dataset.target === targetId) n.classList.add('active');
+	});
+	mobileTabs.forEach(t => {
+		if (t.dataset.target === targetId) t.classList.add('active');
+	});
+	
+	// Scroll content area back to top on section change
+	const content = document.getElementById('instr-content');
+	if (content) content.scrollTop = 0;
+}
+
+navItems.forEach(item => {
+	item.addEventListener('click', () => showSection(item.dataset.target));
 });
+
+mobileTabs.forEach(tab => {
+	tab.addEventListener('click', () => showSection(tab.dataset.target));
+});
+}
+);
