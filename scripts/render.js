@@ -128,7 +128,7 @@ function renderLandscapeRow(gameState, renderCallback) {
 	const deckZone = document.querySelector("#landscape-deck-zone");
 	const landscapeZone = document.querySelector("#landscape-zone");
 	const destinationZone = document.querySelector("#landscape-destination-zone");
-	deckZone.innerHTML = '<span class="zone-label">Landscape Deck</span>';
+	deckZone.innerHTML = `<span class="zone-label">Landscape Deck</span>`;
 	
 	// --- Deck card (right side) ---
 	if (gameState.landscapeDeck.length > 0) {
@@ -145,7 +145,7 @@ function renderLandscapeRow(gameState, renderCallback) {
 	}
 	
 	// --- Landscape zone (always 5 slots) ---
-	landscapeZone.innerHTML = '<span class="zone-label">Landscapes</span>';
+	landscapeZone.innerHTML =`<span class="zone-label">Landscapes (${gameState.landscapeDeck.length})</span>`;
 	landscapeZone.dataset.actionMode = "explore";
 	for (let i = 0; i < 5; i++) {
 		const landscape = gameState.landscapesOnBoard[i];

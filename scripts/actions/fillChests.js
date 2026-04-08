@@ -158,7 +158,7 @@ export function viewChest(gameState, chest, renderCallback) {
   // Go Back Button
   const backButton = document.createElement("button");
   backButton.classList.add("tap-control", "button");
-  backButton.textContent = "Back";
+  backButton.textContent = `Back (${gameState.lastActionTaken})`;
   backButton.addEventListener("click", () => {
     actionModal.classList.add("hidden");
     renderCallback(gameState, renderCallback);
