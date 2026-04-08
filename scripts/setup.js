@@ -140,7 +140,24 @@ function buildPlayers(playerNames) {
                 bonusValue: null,
                 state: null,
                 isUsable: true,
-            }
+            },  {
+      id: "item_glowstone_01",
+      visual: "item_glowstone",
+      name: "Glowstone",
+      category: "lighting",
+      bonusValue: null,
+      state: null,
+      isUsable: false,
+  },
+    {
+      id: "item_illager_banner_01",
+      visual: "item_illager_banner",
+      name: "Illager Banner",
+      category: "furnishing",
+      bonusValue: null,
+      state: null,
+      isUsable: false,
+  },
         */],
         trophies: [
            /* { id: "mob_zombie", name: "Zombie", cost: 2, copies: 6 },

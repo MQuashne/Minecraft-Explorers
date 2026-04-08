@@ -126,7 +126,7 @@ export function viewChest(gameState, chest, renderCallback) {
     select.addEventListener("change", () => {
       currentFill[i] = select.value;
       let countReal = currentFill.filter(currentItem => currentItem != "None").length;
-      if (gameState.hungerRemaining < 1 && gamestate.lastActionTaken!="fill") {
+      if (gameState.hungerRemaining < 1 && gameState.lastActionTaken!="fill") {
         fillButton.disabled = true;
         fillButton.textContent = `Place Items   (${cost}🍖)`;
       } else if (countReal > 0) {
@@ -158,7 +158,7 @@ export function viewChest(gameState, chest, renderCallback) {
   // Go Back Button
   const backButton = document.createElement("button");
   backButton.classList.add("tap-control", "button");
-  backButton.textContent = `Back (${gameState.lastActionTaken})`;
+  backButton.textContent = `Back`;
   backButton.addEventListener("click", () => {
     actionModal.classList.add("hidden");
     renderCallback(gameState, renderCallback);
