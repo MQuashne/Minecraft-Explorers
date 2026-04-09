@@ -36,7 +36,7 @@ export function refreshLandscapes(gameState, renderCallback) {
             gameState.destinationsOnBoard.push(addedLandscape);
           } else {
             const refreshed=gameState.landscapesOnBoard.splice(index, 1, addedLandscape);
-            landscapeDeck.push(refreshed);
+            landscapeDeck.push(...refreshed);
             landscapeFound = true;
           }
         }
